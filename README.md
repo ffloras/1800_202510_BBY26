@@ -58,7 +58,7 @@ project-name/
 ---
 
 ## Contributors
-- **Flora** - I'm excited to get started. Lets make something fun and interesting together.
+- **Flora** - HI, I'm excited to get started. Lets make something fun and interesting together.
 - **Joaquin Paredes** - BCIT CST Student aspiring to become a game developer in the future. My goal is to be part of something as good, if not better, than Red Dead Redemption by Rockstar.
 - **Minh** - Nice to meet you guys.
 ---
