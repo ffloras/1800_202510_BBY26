@@ -58,9 +58,8 @@ project-name/
 ---
 
 ## Contributors
+- **Flora** - I'm excited to get started. Lets make something fun and interesting together.
 - **Joaquin Paredes** - BCIT CST Student aspiring to become a game developer in the future. My goal is to be part of something as good, if not better, than Red Dead Redemption 2 by Rockstar. 
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
-
 ---
 
 ## Acknowledgments
