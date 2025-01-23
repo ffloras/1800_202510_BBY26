@@ -94,3 +94,7 @@ Example:
 
 Example:
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+
+## Hello
+Just testing how conflicts and resolving them work
