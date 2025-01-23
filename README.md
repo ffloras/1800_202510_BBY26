@@ -58,7 +58,7 @@ project-name/
 ---
 
 ## Contributors
-- **Your Name** - BCIT CST Student with a passion for creating user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
+- **Joaquin Paredes** - BCIT CST Student aspiring to become a game developer in the future. My goal is to be part of something as good, if not better, than Red Dead Redemption 2 by Rockstar. 
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
 ---
