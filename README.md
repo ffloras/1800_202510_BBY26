@@ -58,8 +58,8 @@ project-name/
 ---
 
 ## Contributors
-- **Flora** - I'm excited to get started. Lets make something fun and interesting together.
-- **Joaquin Paredes** - BCIT CST Student aspiring to become a game developer in the future. My goal is to be part of something as good, if not better, than Red Dead Redemption by Rockstar.
+- **Flora** - Hi, I'm excited to get started. Lets make something fun and interesting together.
+- **Joaquin Paredes** - BCIT CST Student aspiring to become a game developer in the future. My goal is to be part of something as good, if not better, than Red Dead Redemption by Rockstar. Right now I am anxiously waiting for Kingdom Come Deliverance 2 to come out.
 - **Minh** - Nice to meet you guys.
 ---
 
