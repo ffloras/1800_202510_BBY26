@@ -1,0 +1,51 @@
+
+
+.pet-card {
+    display: inline;
+    background-color:rgba(128, 128, 128, 0.491);
+    color: aliceblue;
+}
+
+.pet-card > img {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+}
+
+.pet-card > h3 {
+    margin: 0;;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        margin: 0;
+        display: grid;
+        grid-template-columns: 100vw;
+        grid-template-rows: 90px calc(100vh - 180px) 90px;
+    }
+    
+    header {
+        background-color: aqua;
+    }
+    
+    main {
+        overflow: hidden;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+
+    #main-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #main-content > div {
+        margin: 15px;
+        padding: 20px;
+        height: 450px;
+    }
+    
+    footer {
+        background-color: aqua;
+    }
+}
