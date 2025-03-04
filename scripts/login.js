@@ -14,7 +14,7 @@ function signUp() {
     console.log(password.checkValidity);
     if (errorCode && email.checkValidity() && password.checkValidity()) {
       document.getElementById("unsuccessfulLogin").innerHTML = "You already have an account. "
-      + "<a href='/login.html'>Login</a>";
+      + "<a href='/html/login.html'>Login</a>";
     } else {}
     // ..
   });
