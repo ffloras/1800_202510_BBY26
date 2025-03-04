@@ -17,6 +17,13 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <!-- Other libraries go here -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Font Awesome 6 (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -38,7 +45,7 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
     <!-- Stuff for body goes here -->
-    <header id="header"></header>
+    <header id="rehomeNavbarPlaceholder"></header>
     <form class="row g-3 m-5 pb-5">
         <div class="col-12">
             <h1 class="text-center">Pet Information</h1>
@@ -99,13 +106,14 @@
         </div>
     </form>
 
-    <footer id="footer"></footer>
+    <footer id="rehomeFooterPlaceholder"></footer>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
 
     <!-- Link to scripts of your own -->
+    <!--
     <script>
         async function loadHTML(elementId, file) {
             const response = await fetch(file);
@@ -116,8 +124,11 @@
         loadHTML("header", "/html/Components/RehomeNavBar.html");
         loadHTML("footer", "/html/Components/RehomeFooter.html");
     </script>
+    -->
     <!-- <script src="./scripts/script.js"></script> -->
 
+    <script src="/scripts/firebaseAPI_team26.js"></script>
+    <script src="/scripts/skeleton.js"></script>
 </body>
 
 </html>

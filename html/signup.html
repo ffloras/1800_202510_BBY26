@@ -25,11 +25,11 @@
 </head>
 
 <body>
+
   <nav id="navbarPlaceholder"></nav>
 
-
-  <form onsubmit="login(); return false;">
-    <h2>Login</h2>
+  <form onsubmit="signUp(); return false;">
+    <h2>Sign Up</h2>
     <div class="form-group row pt-3">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
@@ -39,24 +39,41 @@
     <div class="form-group row">
       <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="password" placeholder="Password">
+        <input type="password" class="form-control" id="password" placeholder="Password" pattern="[a-zA-Z0-9]{6,20}">
       </div>
+      <div id="unsuccessfulLogin"></div>
     </div>
-    <p id="unsuccessfulLogin"></p>
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label pt-3">I am interested in:</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+            <label class="form-check-label" for="gridRadios1">
+              Adopting a Pet
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+            <label class="form-check-label" for="gridRadios2">
+              Rehoming my Pet
+            </label>
+          </div>
+        </div>
+      </div>
+      <p>more user/pet info to fill out....</p>
+    </fieldset>
     <div class="form-group row pt-3">
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary" onclick="login()">Sign in</button>
+        <button type="submit" class="btn btn-primary">Sign up</button>
       </div>
     </div>
   </form>
   
-  
 
-
-  <script src="../scripts/firebaseAPI_team26.js"></script>
-  <!--<script src="./scripts/authentication.js"></script>-->
-  <script src="../scripts/login.js"></script>
-  <script src="../scripts/skeleton.js"></script>
+  <script src="/scripts/firebaseAPI_team26.js"></script>
+  <script src="/scripts/skeleton.js"></script>
+  <script src="/scripts/login.js"></script>
 </body>
 
 </html>
