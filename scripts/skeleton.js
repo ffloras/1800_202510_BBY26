@@ -3,7 +3,7 @@
 function loadSkeleton() {
 
   firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {                   
+      if (true) {                   
       // If the "user" variable is not null, then someone is logged in
           // User is signed in.
           // Do something for the user here.
