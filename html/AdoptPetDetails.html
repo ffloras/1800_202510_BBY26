@@ -20,12 +20,36 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <link rel="stylesheet" href="/styles/AdoptPetDetails.css">
 </head>
 
 <body>
-  <p>new profile</p>
-  <script src="./scripts/firebaseAPI_team26.js"></script>
-  <script src="./scripts/skeleton.js"></script>
+  <div id="container">
+    <nav id="adoptNavbarPlaceholder"></nav>
+    <div class="pet-card">
+      <img id="petImage" src="/images/dog1.jpeg" alt="dog">
+      <div id="menu">
+        <input type="image" class="menuButton" id="favorite" onclick="addFavorite()" src="/images/heartFilledIcon.png">
+        <input type="image" class="menuButton" id="contact" onclick="viewContact()" src="/images/emailIcon.png">
+        <input type="image" class="menuButton" id="share" onclick="viewURL()" src="/images/shareIcon.png">
+      </div>
+      <div id="menuPlaceholder"></div>
+      <div id="links">
+        <a id="emailLink" href="#"></a>
+        <a id="contactLink" href="#"></a>
+      </div>
+      <p id="hidePlaceholder"></p>
+      <h3>Name: Rocky</h3>
+      <h3>Age: 3 Years</h3>
+      <h3>Breed: Mix Breed</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sed fugiat velit doloremque pariatur
+          perferendis nulla minima, soluta consectetur ut.</p>
+    </div>
+    <footer id="adoptFooterPlaceholder"></footer>
+  </div>
+  <script src="/scripts/firebaseAPI_team26.js"></script>
+  <script src="/scripts/skeleton.js"></script>
+  <script src="/scripts/AdoptPetDetails.js"></script>
 </body>
 
 </html>

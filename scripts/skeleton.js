@@ -14,7 +14,8 @@ function loadSkeleton() {
           //if (user.metadata.creationTime == user.metadata.lastSignInTime) {
           //  console.log("new user");
       } else {
-        console.log($('#navbarPlaceholder').load('/html/Components/LoginNavBar.html'));
+        console.log($('#adoptNavbarPlaceholder').load('/html/Components/LoginNavBar.html'));
+        console.log($('#rehomeNavbarPlaceholder').load('/html/Components/LoginNavBar.html'));
         console.log($('#adoptFooterPlaceholder').load('/html/Components/AdoptFooter.html'));
         console.log($('#rehomeFooterPlaceholder').load('/html/Components/RehomeFooter.html'));
       }
