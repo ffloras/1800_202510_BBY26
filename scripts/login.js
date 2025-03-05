@@ -21,7 +21,7 @@ function signUp() {
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      window.location = "/html/RehomeBrowse.html";
+      window.location = "/html/AdoptBrowse.html";
     }
   });
 }
@@ -47,7 +47,7 @@ function login() {
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      window.location = "/html/RehomeBrowse.html";
+      window.location = "/html/AdoptBrowse.html";
     }
     
   });
