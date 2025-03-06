@@ -10,20 +10,16 @@ main {
     scrollbar-width: none;
 }
 
-.main-content > div {
+.main-content {
     margin: 15px;
     padding: 20px;
     max-height: 600px;
     max-width: 400px;
-}
-
-.pet-card {
-    display: inline;
     background-color:rgba(128, 128, 128, 0.491);
     color: aliceblue;
 }
 
-.pet-card  img {
+.main-content  img {
     width: 100%;
     max-height: 300px;
     border-radius: 10px;
@@ -36,7 +32,7 @@ main {
     gap: 15%;
 }
 
-.pet-card > h3 {
+.main-content > h3 {
     margin: 0;
 }
 
@@ -46,14 +42,14 @@ main {
         justify-content: center;
     }
 
-    .main-content {
+    template {
         display: flex;
         flex-direction: column;
     }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 801px) {
-    .main-content {
+    template {
         display: grid;
         grid-template-columns: 50vw 50vw;
         grid-template-rows: auto;
@@ -61,7 +57,7 @@ main {
 }
 
 @media screen and (max-width: 1600px) and (min-width: 1201px) {
-    .main-content {
+    template {
         display: grid;
         grid-template-columns: 33vw 33vw 33vw;
         grid-template-rows: auto;
@@ -69,7 +65,7 @@ main {
 }
 
 @media screen and (min-width: 1601px) {
-    .main-content {
+    template {
         display: grid;
         grid-template-columns: 25vw 25vw 25vw 25vw;
         grid-template-rows: auto;
