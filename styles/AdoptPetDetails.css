@@ -1,0 +1,41 @@
+#container {
+  padding-top: 100px;
+  margin: auto;
+  width: 40%;
+}
+
+#petImage {
+  width: 100%;
+}
+
+#menu {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.menuButton {
+  width: 40px;
+}
+#links {
+  display: flex;
+}
+
+#emailLink {
+  flex: 1;
+}
+
+#contactLink {
+  flex:1;
+}
+
+#links a {
+  font-size: 1.5em;
+}
+
+@media (max-width: 800px) {
+  #container {
+    width: 80%;
+  }
+}
