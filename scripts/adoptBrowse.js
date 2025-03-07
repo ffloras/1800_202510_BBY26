@@ -18,9 +18,9 @@ function displayPetCards(collection) {
 
                 let newcard = cardTemplate.content.cloneNode(true);
 
-                newcard.querySelector(".pet-name").innerHTML = title;
-                newcard.querySelector(".pet-age").innerHTML = age;
-                newcard.querySelector(".pet-breed").innerHTML = breed;
+                newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
+                newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
+                newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
                 newcard.querySelector(".pet-desc").innerHTML = desc;
                 newcard.querySelector(".pet-img").src = `../images/${petCode}.jpeg`;
                 newcard.querySelector("#details").href = "AdoptPetDetails.html?docID=" + docID;

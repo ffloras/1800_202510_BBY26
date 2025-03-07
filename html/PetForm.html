@@ -46,7 +46,7 @@
     <!------------------------------>
     <!-- Stuff for body goes here -->
     <header id="rehomeNavbarPlaceholder"></header>
-    <form class="row g-3 m-5 pb-5">
+    <form class="row g-3 m-5 pb-5" >
         <div class="col-12">
             <h1 class="text-center">Pet Information</h1>
         </div>
@@ -56,38 +56,30 @@
         </div>
         <div class="col-md-6">
             <label for="inputAge" class="form-label">Age</label>
-            <input type="text" pattern="[0-9]{2}" class="form-control" id="inputAge" placeholder="eg. 04">
+            <input type="number" pattern="[0-9]{2}" class="form-control" id="inputAge" placeholder="eg. 04">
         </div>
         <div class="col-md-6">
             <label for="inputBreed" class="form-label">Breed</label>
             <input type="text" class="form-control" id="inputBreed">
         </div>
         <div class="col-md-6">
-            <label for="inputAge" class="form-label">Gender</label>
+            <label for="inputGender" class="form-label">Gender</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="RadioOptions" id="Radio1" value="option1">
+                <input class="form-check-input" type="radio" name="RadioOptions" id="radio1" value="Male">
                 <label class="form-check-label" for="Radio1">Male</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="RadioOptions" id="Radio2" value="option2">
+                <input class="form-check-input" type="radio" name="RadioOptions" id="radio2" value="Female">
                 <label class="form-check-label" for="Radio2">Female</label>
             </div>
         </div>
         <div class="col-md-6">
-            <label for="inputWeight" class="form-label">Weight</label>
-            <input type="text" class="form-control" id="inputWeight">
-        </div>
-        <div class="col-12">
-            <label for="inputHealth" class="form-label">Health status</label>
-            <input type="text" class="form-control" id="inputHealth">
-        </div>
-        <div class="col-12">
-            <label for="inputBehavior" class="form-label">Behavior</label>
-            <input type="text" class="form-control" id="inputBehavior">
-        </div>
-        <div class="col-12">
-            <label for="inputAllergy" class="form-label">Allergies</label>
-            <input type="text" class="form-control" id="inputAllergy">
+            <label for="inputSize" class="form-label">Size</label>
+            <select name="size" id="inputSize">
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
         </div>
         <div class="col-12">
             <label for="formFileMultiple" class="form-label">Photos</label>
@@ -98,11 +90,11 @@
             <input class="form-control" type="file" id="formFileMultiple" multiple>
         </div>
         <div class="col-12">
-            <label for="exampleFormControlTextarea1" class="form-label">Notes</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="exampleFormControlTextarea1" class="form-label">Brief Description</label>
+            <textarea class="form-control" id="inputDescription" rows="3"></textarea>
         </div>
         <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary">Upload</button>
+            <button type="button" class="btn btn-primary" onclick="savePetInfo('petProfiles')">Upload</button>
         </div>
     </form>
 
@@ -127,8 +119,9 @@
     -->
     <!-- <script src="./scripts/script.js"></script> -->
 
-    <script src="/scripts/firebaseAPI_team26.js"></script>
-    <script src="/scripts/skeleton.js"></script>
+    <script src="../scripts/firebaseAPI_team26.js"></script>
+    <script src="../scripts/skeleton.js"></script>
+    <script src="../scripts/petForm.js"></script>
 </body>
 
 </html>
