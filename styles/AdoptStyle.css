@@ -36,36 +36,36 @@ main {
     margin: 0;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 720px) {
     .main-content-wrapper {
         display: flex;
         justify-content: center;
     }
 
-    template {
+    #petProfiles-go-here {
         display: flex;
         flex-direction: column;
     }
 }
 
-@media screen and (max-width: 1200px) and (min-width: 801px) {
-    template {
+@media screen and (max-width: 1200px) and (min-width: 721px) {
+    #petProfiles-go-here {
         display: grid;
         grid-template-columns: 50vw 50vw;
         grid-template-rows: auto;
     }
 }
 
-@media screen and (max-width: 1600px) and (min-width: 1201px) {
-    template {
+@media screen and (max-width: 1440px) and (min-width: 1201px) {
+    #petProfiles-go-here {
         display: grid;
         grid-template-columns: 33vw 33vw 33vw;
         grid-template-rows: auto;
     }
 }
 
-@media screen and (min-width: 1601px) {
-    template {
+@media screen and (min-width: 1440px) {
+    #petProfiles-go-here {
         display: grid;
         grid-template-columns: 25vw 25vw 25vw 25vw;
         grid-template-rows: auto;
