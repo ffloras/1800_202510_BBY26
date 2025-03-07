@@ -29,7 +29,10 @@ function signUp() {
     if (user) {
       db.collection("userProfiles").doc(user.uid).set({
         email: user.email,
+        name: null,
+        housing: null,
         purpose: purpose,
+        pastExperience: null,
         favorites: [],
         contacts: [],
         pets: []
@@ -68,7 +71,17 @@ function login() {
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      window.location = "/html/AdoptBrowse.html";
+      db.collection("userProfiles").doc(user.uid).get().then(doc => {
+        let userInfo = doc.data();
+        if (userInfo.purpose == "rehome"){
+          window.location = "/html/RehomeMain.html";
+        } else {
+          window.location = "/html/AdoptBrowse.html";
+        }
+      });
+      
+      
+      
     }
     
   });

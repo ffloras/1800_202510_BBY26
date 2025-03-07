@@ -23,9 +23,21 @@ function displayPetInfo() {
       document.getElementById("gender").innerHTML = gender;
       document.getElementById("size").innerHTML = size;
       document.getElementById("description").innerHTML = description;
+
+      setFavorite();
     });
+  
+  return ID;
 }
-displayPetInfo();
+let petID = displayPetInfo();
+
+function getUserID() {
+  const user = firebase.auth().currentUser;
+  if (user !== null) {
+    return user.uid;
+  }
+}
+
 
 function viewContact() {
   clearMenu();
@@ -49,10 +61,46 @@ function viewURL() {
 
 function addFavorite() {
   clearMenu();
-  let info = "<h3>Added to favorite</h3>";
-  document.getElementById("menuPlaceholder").innerHTML = info;
-  document.getElementById("hidePlaceholder").innerHTML = "hide";
+  const ID = getUserID();
+  
+  let docRef = db.collection("userProfiles").doc(ID);
+  console.log(ID);
+  docRef.get().then(doc => {
+    docInfo = doc.data();
+    let favoriteList = doc.data().favorites;
+    if (favoriteList.includes(petID)) {
+      let index = favoriteList.indexOf(petID);
+      favoriteList.splice(index, 1);
+      docRef.update({
+        favorites: favoriteList
+      });
+      document.getElementById("favorite").src = "/images/heartUnfilledIcon.png";
+    } else {
+      favoriteList.push(petID);
+      docRef.update({
+        favorites: favoriteList
+      })
+      document.getElementById("favorite").src = "/images/heartFilledIcon.png";
+    }
+  });
 }
+
+function setFavorite() {
+  const ID = getUserID();
+  let docRef = db.collection("userProfiles").doc(ID);
+  console.log(ID);
+  docRef.get().then(doc => {
+    docInfo = doc.data();
+    let favoriteList = doc.data().favorites;
+    if (favoriteList.includes(petID)) {
+      document.getElementById("favorite").src = "/images/heartFilledIcon.png";
+    } else {
+      document.getElementById("favorite").src = "/images/heartUnfilledIcon.png";
+    }
+  });
+}
+
+
 
 function addMenuListener(){
   document.getElementById("hidePlaceholder").addEventListener("click", () => {
@@ -68,3 +116,4 @@ function clearMenu () {
   document.getElementById("emailLink").href = "";
   document.getElementById("contactLink").innerHTML = "";
 }
+
