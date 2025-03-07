@@ -1,6 +1,12 @@
 function signUp() {
   let email = document.getElementById("email");
   let password = document.getElementById("password");
+  let purpose;
+  if (document.getElementById("adopt").checked) {
+    purpose = document.getElementById("adopt").value;
+  } else {
+    purpose = document.getElementById("rehome").value;
+  }
 
   firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
   .then((userCredential) => {
@@ -21,7 +27,22 @@ function signUp() {
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      window.location = "/html/AdoptBrowse.html";
+      db.collection("userProfiles").doc(user.uid).set({
+        email: user.email,
+        purpose: purpose,
+        favorites: [],
+        contacts: [],
+        pets: []
+      }).then(function () {
+        console.log("New user added to firestore");
+        if (purpose == "adopt") {
+          window.location.assign("/html/AdoptBrowse.html");
+        } else {
+          window.location.assign("/html/RehomeMain.html");
+        }
+      }).catch(function (error) {
+        console.log("Error adding new user: " + error);
+      });
     }
   });
 }

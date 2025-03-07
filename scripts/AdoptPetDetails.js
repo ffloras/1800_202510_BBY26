@@ -1,3 +1,32 @@
+function displayPetInfo() {
+  let params = new URL(window.location.href);
+  let ID = params.searchParams.get("docID");
+
+  db.collection("petProfiles")
+    .doc(ID).get().then( doc => {
+      let petInfo = doc.data();
+      let petCode = petInfo.petCode;
+      let name = petInfo.name;
+      let age = petInfo.age;
+      let breed = petInfo.breed;
+      let description = petInfo.description;
+      let size = petInfo.size;
+      let gender = petInfo.isFemale ? "F" : "M";
+
+      let imgEvent = document.querySelector("#petImage");
+      imgEvent.src = "/images/" + petCode + ".jpeg";
+      document.querySelectorAll(".name").forEach(item => {
+        item.innerHTML = name;
+      });
+      document.getElementById("age").innerHTML = age;
+      document.getElementById("breed").innerHTML = breed;
+      document.getElementById("gender").innerHTML = gender;
+      document.getElementById("size").innerHTML = size;
+      document.getElementById("description").innerHTML = description;
+    });
+}
+displayPetInfo();
+
 function viewContact() {
   clearMenu();
   let ownerName = "owner name";

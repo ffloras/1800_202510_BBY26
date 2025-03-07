@@ -9,11 +9,12 @@ function displayPetCards(collection) {
     db.collection(collection).get()
         .then(allPets => {
             allPets.forEach(doc => {
-                var title = doc.data().Name;
-                var age = doc.data().Age;
-                var breed = doc.data().Breed;
-                var desc = doc.data().Description;
+                var title = doc.data().name;
+                var age = doc.data().age;
+                var breed = doc.data().breed;
+                var desc = doc.data().description;
                 var petCode = doc.data().petCode;
+                var docID = doc.id;
 
                 let newcard = cardTemplate.content.cloneNode(true);
 
@@ -22,6 +23,7 @@ function displayPetCards(collection) {
                 newcard.querySelector(".pet-breed").innerHTML = breed;
                 newcard.querySelector(".pet-desc").innerHTML = desc;
                 newcard.querySelector(".pet-img").src = `../images/${petCode}.jpeg`;
+                newcard.querySelector("#details").href = "AdoptPetDetails.html?docID=" + docID;
 
                 document.getElementById(collection + "-go-here").appendChild(newcard);
             })
