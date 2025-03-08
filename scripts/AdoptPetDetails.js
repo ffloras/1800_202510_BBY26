@@ -1,7 +1,9 @@
 function displayPetInfo() {
+  //obtain pet ID using URL
   let params = new URL(window.location.href);
   let ID = params.searchParams.get("docID");
 
+  //obrain pet's info from database using pet ID
   db.collection("petProfiles")
     .doc(ID).get().then( doc => {
       let petInfo = doc.data();
@@ -18,12 +20,15 @@ function displayPetInfo() {
       document.querySelectorAll(".name").forEach(item => {
         item.innerHTML = name;
       });
+
+      //populates html based on pet info from collection
       document.getElementById("age").innerHTML = age;
       document.getElementById("breed").innerHTML = breed;
       document.getElementById("gender").innerHTML = gender;
       document.getElementById("size").innerHTML = size;
       document.getElementById("description").innerHTML = description;
 
+      //sets the favorite icon (filled/unfilled) based on user's favorite field
       setFavorite();
     });
   
@@ -42,9 +47,6 @@ function getUserID() {
 function viewContact() {
   clearMenu();
   let ownerName = "owner name";
-  let email = "example@email.com";
-  let emailLink = `mailto:${email}`;
-  console.log(`email: ${email}`);
   document.getElementById("menuPlaceholder").innerHTML = `<h3>${ownerName}</h3>`;
   document.getElementById("emailLink").innerHTML = 'Email';
   document.getElementById("emailLink").href = emailLink;
@@ -59,15 +61,17 @@ function viewURL() {
   document.getElementById("hidePlaceholder").innerHTML = "hide";
 }
 
-function addFavorite() {
-  clearMenu();
+//toggles favorite button on/off when clicked, add/deletes petID from current user's 'favorites' field
+function changeFavorite() {
   const ID = getUserID();
   
+  //get user's 'favorites' field and store in variable favoriteList
   let docRef = db.collection("userProfiles").doc(ID);
-  console.log(ID);
   docRef.get().then(doc => {
     docInfo = doc.data();
     let favoriteList = doc.data().favorites;
+    //if petID is already in favoriteList, will remove the petID from the favorites field, and sets heart to unfilled.
+    //if petID is not in favoriteList, will add it to user's favorite field, and sets heart to filled.
     if (favoriteList.includes(petID)) {
       let index = favoriteList.indexOf(petID);
       favoriteList.splice(index, 1);
@@ -85,6 +89,7 @@ function addFavorite() {
   });
 }
 
+//sets the favorite icon (filled/unfilled) based on user's favorite field
 function setFavorite() {
   const ID = getUserID();
   let docRef = db.collection("userProfiles").doc(ID);
@@ -100,8 +105,7 @@ function setFavorite() {
   });
 }
 
-
-
+//add "click" event listener to the hide buttons
 function addMenuListener(){
   document.getElementById("hidePlaceholder").addEventListener("click", () => {
   clearMenu();

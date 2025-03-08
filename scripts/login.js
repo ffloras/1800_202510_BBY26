@@ -1,4 +1,5 @@
 function signUp() {
+  //get input form values
   let email = document.getElementById("email");
   let password = document.getElementById("password");
   let purpose;
@@ -8,6 +9,7 @@ function signUp() {
     purpose = document.getElementById("rehome").value;
   }
 
+  //create new user account in firebase using input form values
   firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
   .then((userCredential) => {
     // Signed in 
@@ -25,14 +27,15 @@ function signUp() {
     // ..
   });
 
+  //create the user's doc in 'userProfiles' collection, and populate user fields
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       db.collection("userProfiles").doc(user.uid).set({
         email: user.email,
-        name: null,
-        housing: null,
+        name: "",
+        housing: "",
         purpose: purpose,
-        pastExperience: null,
+        pastExperience: "",
         favorites: [],
         contacts: [],
         pets: []
@@ -52,9 +55,11 @@ function signUp() {
 
 
 function login() {
+  //get value from input form
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
+  //authenticates/logs in user using input form values
   firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     // Signed in
@@ -69,6 +74,7 @@ function login() {
     }
   });
 
+  //after logging in, redirects user to main page based on user purpose (adopt/rehome)
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       db.collection("userProfiles").doc(user.uid).get().then(doc => {

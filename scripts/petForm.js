@@ -35,6 +35,9 @@ async function savePetInfo(collection) {
     await db.collection("userProfiles").doc(userID).update({
         pets: firebase.firestore.FieldValue.arrayUnion(petID)
     });
+
+    //redirect user to Rehom main page once form is submitted
+    window.location.replace("/html/RehomeMain.html");
 }
 
 function getUserID() {
