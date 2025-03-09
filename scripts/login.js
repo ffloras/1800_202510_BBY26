@@ -44,7 +44,7 @@ function signUp() {
         if (isOwner) {
           window.location.assign("/html/RehomeMain.html");
         } else {
-          window.location.assign("/html/AdoptBrowse.html");
+          window.location.assign("/html/UserForm.html");
         }
       }).catch(function (error) {
         console.log("Error adding new user: " + error);
@@ -82,7 +82,7 @@ function login() {
         if (userInfo.isOwner){
           window.location = "/html/RehomeMain.html";
         } else {
-          window.location = "/html/UserForm.html";
+          window.location = "/html/AdoptBrowse.html";
         }
       });
     }
