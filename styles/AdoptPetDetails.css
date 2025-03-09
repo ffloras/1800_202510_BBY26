@@ -19,21 +19,21 @@
 .menuButton {
   width: 40px;
 }
+
+#menuPlaceholder {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#title {
+  text-align: center;
+}
+
 #links {
   display: flex;
+  justify-content: space-around;
 }
 
-#emailLink {
-  flex: 1;
-}
-
-#contactLink {
-  flex:1;
-}
-
-#links a {
-  font-size: 1.5em;
-}
 
 @media (max-width: 800px) {
   #container {
