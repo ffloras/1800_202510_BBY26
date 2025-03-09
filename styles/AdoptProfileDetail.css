@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profile {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.name {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.email,
+.housing-status {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.past-experience,
+.desc h2 {
+    margin-top: 20px;
+}
+
+.past-experience h2{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.past-experience ul {
+    list-style-type: none;
+}
+
+.past-experience ul li {
+    background: #f4f4f4;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.desc .description {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .profile {
+        padding: 30px;
+    }
+
+    .avatar {
+        width: 200px;
+        height: 200px;
+    }
+
+    .name {
+        font-size: 28px;
+    }
+
+    .email,
+    .housing-status {
+        font-size: 20px;
+    }
+
+    .past-experience h2 {
+        font-size: 24px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .profile {
+        padding: 20px;
+    }
+
+    .avatar {
+        width: 150px;
+        height: 150px;
+    }
+
+    .name {
+        font-size: 24px;
+    }
+
+    .email,
+    .housing-status {
+        font-size: 18px;
+    }
+
+    .past-experience h2 {
+        font-size: 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .profile {
+        padding: 15px;
+    }
+
+    .avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .name {
+        font-size: 20px;
+    }
+
+    .email,
+    .housing-status {
+        font-size: 16px;
+    }
+
+    .past-experience h2 {
+        font-size: 18px;
+    }
+
+    .past-experience ul li {
+        padding: 8px;
+    }
+}
