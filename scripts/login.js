@@ -2,11 +2,11 @@ function signUp() {
   //get input form values
   let email = document.getElementById("email");
   let password = document.getElementById("password");
-  let purpose;
+  let isOwner;
   if (document.getElementById("adopt").checked) {
-    purpose = document.getElementById("adopt").value;
+    isOwner = false;
   } else {
-    purpose = document.getElementById("rehome").value;
+    isOwner = true;
   }
 
   //create new user account in firebase using input form values
@@ -34,17 +34,17 @@ function signUp() {
         email: user.email,
         name: "",
         housing: "",
-        purpose: purpose,
+        isOwner: isOwner,
         pastExperience: "",
         favorites: [],
         contacts: [],
         pets: []
       }).then(function () {
         console.log("New user added to firestore");
-        if (purpose == "adopt") {
-          window.location.assign("/html/UserForm.html");
-        } else {
+        if (isOwner) {
           window.location.assign("/html/RehomeMain.html");
+        } else {
+          window.location.assign("/html/AdoptBrowse.html");
         }
       }).catch(function (error) {
         console.log("Error adding new user: " + error);
@@ -79,15 +79,12 @@ function login() {
     if (user) {
       db.collection("userProfiles").doc(user.uid).get().then(doc => {
         let userInfo = doc.data();
-        if (userInfo.purpose == "rehome") {
+        if (userInfo.isOwner){
           window.location = "/html/RehomeMain.html";
         } else {
-          window.location = "/html/AdoptBrowse.html";
+          window.location = "/html/UserForm.html";
         }
       });
-
-
-
     }
 
   });
