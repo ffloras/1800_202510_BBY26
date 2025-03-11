@@ -36,6 +36,17 @@ main {
     margin: 0;
 }
 
+#menu {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.menuButton {
+  width: 40px;
+}
+
 @media screen and (max-width: 720px) {
     .main-content-wrapper {
         display: flex;

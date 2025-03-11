@@ -29,7 +29,7 @@
     <p id="title">Send a contact request to <span id="pet-name"></span>'s owner?</p>
     <div id="links">
       <input type="button" id="yes-button" value="yes" onclick="sendRequest()">
-      <input type="button" id="no-button" value="no" onclick="clearMenu()">
+      <input type="button" id="no-button" value="no" onclick="clearContent()">
     </div>
   </template>
 
@@ -38,7 +38,7 @@
     <div class="pet-card">
       <img id="petImage" src="" alt="dog">
       <div id="menu">
-        <input type="image" class="menuButton" id="favorite" onclick="changeFavorite()" src="">
+        <input type="image" class="menuButton" id="favorite" onclick="changeFavorite()" src="/images/heartUnfilledIcon.png">
         <input type="image" class="menuButton" id="contact" onclick="viewContactPrompt()" src="/images/emailIcon.png">
         <input type="image" class="menuButton" id="share" onclick="viewURL()" src="/images/shareIcon.png">
       </div>

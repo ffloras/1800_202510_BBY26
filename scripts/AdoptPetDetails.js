@@ -42,29 +42,35 @@ function getPetID() {
 
 //obtain user ID from current user's firebase authenication account.
 function getUserID() {
-  const user = firebase.auth().currentUser;
+  let user = firebase.auth().currentUser;
   if (user !== null) {
     return user.uid;
+  } else {
+    return null;
   }
 }
 
 //asks user if they want to send contact request to pet's owner (after
 //they click on the message button)
 function viewContactPrompt() {
-  let cardTemplate = document.getElementById("contactTemplate");
+  if (getUserID() == null) {
+    loginMessage();
+  }
+  else {
+    let cardTemplate = document.getElementById("contactTemplate");
 
-  //get the pet's name using petID
-  let petID = getPetID();
-  db.collection("petProfiles").doc(petID).get().then(doc => {
-    let name = doc.data().name;
+    //get the pet's name using petID
+    let petID = getPetID();
+    db.collection("petProfiles").doc(petID).get().then(doc => {
+      let name = doc.data().name;
 
-    //clear previous placeholder content and populate with template content
-    let newCard = cardTemplate.content.cloneNode(true);
-    newCard.getElementById("pet-name").innerHTML = name;
-    clearMenu();
-    document.getElementById("menuPlaceholder").appendChild(newCard);
-  });
-  
+      //clear previous placeholder content and populate with template content
+      let newCard = cardTemplate.content.cloneNode(true);
+      newCard.getElementById("pet-name").innerHTML = name;
+      clearContent();
+      document.getElementById("menuPlaceholder").appendChild(newCard);
+    });
+  }
 }
 
 //sends contact request to pet's owner
@@ -97,9 +103,14 @@ function sendRequest() {
 
 //adds a copy URL button when share button is clicked
 function viewURL() {
-  let message = `<input type="button" value="Copy URL" onclick="copyURL()">`;
-  document.getElementById("menuPlaceholder").innerHTML = message;
-  document.getElementById("hidePlaceholder").innerHTML = "hide";
+  if (getUserID() == null) {
+    loginMessage();
+  } else {
+    let message = `<input type="button" value="Copy URL" onclick="copyURL()">`;
+    document.getElementById("menuPlaceholder").innerHTML = message;
+    document.getElementById("hidePlaceholder").innerHTML = "hide";
+  }
+  
 }
 
 //copies URL of page to clipboard, with popup confirmation message
@@ -112,38 +123,48 @@ function copyURL() {
 //toggles favorite button on/off when clicked, add/deletes petID from current user's 'favorites' field
 function changeFavorite() {
   let userID = getUserID();
-  let petID = getPetID();
+    
+  //if user is not logged in, clicking on favorite button will prompt user to login
+  if (userID == null) {
+    loginMessage();
+  } else { //user is signed in
+
+    let petID = getPetID();
   
-  //get user's 'favorites' field and store in variable favoriteList
-  let docRef = db.collection("userProfiles").doc(userID);
-  docRef.get().then(doc => {
-    docInfo = doc.data();
-    let favoriteList = doc.data().favorites;
-    //if petID is already in favoriteList, will remove the petID from the favorites field, and sets heart to unfilled.
-    //if petID is not in favoriteList, will add it to user's favorite field, and sets heart to filled.
-    if (favoriteList.includes(petID)) {
-      let index = favoriteList.indexOf(petID);
-      favoriteList.splice(index, 1);
-      docRef.update({
-        favorites: favoriteList
-      });
-      document.getElementById("favorite").src = "/images/heartUnfilledIcon.png";
-    } else {
-      favoriteList.push(petID);
-      docRef.update({
-        favorites: favoriteList
-      })
-      document.getElementById("favorite").src = "/images/heartFilledIcon.png";
-    }
-  });
+    //get user's 'favorites' field and store in variable favoriteList
+    let docRef = db.collection("userProfiles").doc(userID);
+    docRef.get().then(doc => {
+      docInfo = doc.data();
+      let favoriteList = doc.data().favorites;
+      //if petID is already in favoriteList, will remove the petID from the favorites field, and sets heart to unfilled.
+      //if petID is not in favoriteList, will add it to user's favorite field, and sets heart to filled.
+      if (favoriteList.includes(petID)) {
+        let index = favoriteList.indexOf(petID);
+        favoriteList.splice(index, 1);
+        docRef.update({
+          favorites: favoriteList
+        });
+        document.getElementById("favorite").src = "/images/heartUnfilledIcon.png";
+      } else {
+        favoriteList.push(petID);
+        docRef.update({
+          favorites: favoriteList
+        })
+        document.getElementById("favorite").src = "/images/heartFilledIcon.png";
+      }
+    });
+  } 
 }
 
 //sets the favorite icon (filled/unfilled) based on user's "favorite" field
 function setFavorite() {
   let userID = getUserID();
-  let petID = getPetID();
-  let docRef = db.collection("userProfiles").doc(userID);
-  docRef.get().then(doc => {
+  if (userID == null) {
+    console.log("not logged in");
+  } else {
+    let petID = getPetID();
+    let docRef = db.collection("userProfiles").doc(userID);
+    docRef.get().then(doc => {
     docInfo = doc.data();
     let favoriteList = doc.data().favorites;
     if (favoriteList.includes(petID)) {
@@ -152,19 +173,27 @@ function setFavorite() {
       document.getElementById("favorite").src = "/images/heartUnfilledIcon.png";
     }
   });
+  }
 }
 
 //add "click" event listener to the hide buttons to clear expandable content
 function addMenuListener(){
   document.getElementById("hidePlaceholder").addEventListener("click", () => {
-  clearMenu();
+  clearContent();
   });
 }
 addMenuListener();
 
 //removes expandable content
-function clearMenu() {
+function clearContent() {
   document.getElementById("menuPlaceholder").innerHTML = "";
   document.getElementById("hidePlaceholder").innerHTML = "";
 }
 
+function loginMessage() {
+  message = "You are not logged in. "
+          + "<a href='/html/login.html'>Log In</a> or "
+          + "<a href='/html/signup.html'>Sign Up</a>";
+  document.getElementById('menuPlaceholder').innerHTML = message;
+  document.getElementById('hidePlaceholder').innerHTML = "hide";
+}

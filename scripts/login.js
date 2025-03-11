@@ -2,6 +2,9 @@ function signUp() {
   //get input form values
   let email = document.getElementById("email");
   let password = document.getElementById("password");
+  let firstName = document.getElementById("firstName").value;
+  let lastName = document.getElementById("lastName").value;
+  let fullName = firstName + " " + lastName;
   let isOwner;
   if (document.getElementById("adopt").checked) {
     isOwner = false;
@@ -19,7 +22,8 @@ function signUp() {
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(password.checkValidity);
+      //use html input form validation to check if email and password format are valid
+      //if inputs are valid but authentication still sends error code, then account already exists
       if (errorCode && email.checkValidity() && password.checkValidity()) {
         document.getElementById("unsuccessfulLogin").innerHTML = "You already have an account. "
           + "<a href='/html/login.html'>Login</a>";
@@ -32,7 +36,7 @@ function signUp() {
     if (user) {
       db.collection("userProfiles").doc(user.uid).set({
         email: user.email,
-        name: "",
+        name: fullName,
         housing: "",
         isOwner: isOwner,
         pastExperience: "",
