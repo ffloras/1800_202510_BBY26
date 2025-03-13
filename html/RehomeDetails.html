@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paws and Homes</title>
-    <link rel="stylesheet" href="/styles/RehomeMain.css">
+    <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
@@ -16,38 +15,40 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <link rel="stylesheet" href="/styles/RehomeDetails.css">
 </head>
 
 <body>
-    <header id="rehomeNavbarPlaceholder"></header> 
+    <header id="rehomeNavbarPlaceholder"></header>
 
-    <div class="container" id="container">
-        <template id="card-template">
-            <a href="#" class="card">
-                <div class="card-image">
-                    <img src="/images/dog1.jpeg" alt="Pet's picture">
-                </div>
-                <div class="card-content">
-                    <h5 class="name"></h5>
-                </div>
-            </a>
-        </template>
-
-        <a href="/html/PetForm.html" class="card add-pet">
-            <div class="card-image">
-                <i class="fa-solid fa-plus"></i>
+    <div class="container pet-section">
+        <div class="pet-info">
+            <img src="/images/dog2.jpeg" alt="Pet's picture">
+            <h1 id="name">Name: </h1>
+            <p id="age">Age: </p>
+            <p id="breed">Breed: </p>
+            <p id="desc">Description: </p>
+            <p id="size">Size: </p>
+            <div class="actions">
+                <button>Edit</button>
+                <button>Close</button>
+                <button class="delete-btn">Delete</button>
             </div>
-            <div class="card-content">
-                <h5>Upload a new pet profile</h5>
-            </div>
-        </a>
+        </div>
     </div>
-
+    <div class="container likes-section">
+        <div class="likes-list">
+            <h2>List of interested people:</h2>
+            <a href="#">A</a>
+            <a href="#">B</a>
+            <a href="#">C</a>
+        </div>
+    </div>
     <footer id="rehomeFooterPlaceholder"></footer>
 
     <script src="/scripts/firebaseAPI_team26.js"></script>
     <script src="/scripts/skeleton.js"></script>
-    <script src="/scripts/RehomeMain.js"></script>
+    <!-- <script src="/scripts/UserForm.js"></script> -->
 </body>
 
 </html>

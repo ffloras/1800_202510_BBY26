@@ -1,7 +1,6 @@
 async function saveUserInfo(event) {
-    event.preventDefault(); 
+    event.preventDefault();
     var userDocRef = db.collection("userProfiles");
-
     var userHousing = document.getElementById("inputHousing").value;
     var userDesc = document.getElementById("inputDescription").value;
     var isChild;
@@ -12,15 +11,17 @@ async function saveUserInfo(event) {
     } else {
         isYes = false;
     }
-    
+
     if (document.getElementById("radio1").checked) {
         isChild = true;
     } else {
-        isChild = false;    
+        isChild = false;
     }
 
+    var userID = getUserID();
+
     try {
-        await userDocRef.add({
+        await userDocRef.doc(userID).update({
             children: isChild,
             housing: userHousing,
             pastExperience: isYes,
@@ -37,3 +38,10 @@ async function saveUserInfo(event) {
 }
 
 document.getElementById("userForm").addEventListener("submit", saveUserInfo);
+
+function getUserID() {
+    const user = firebase.auth().currentUser;
+    if (user !== null) {
+        return user.uid;
+    }
+}

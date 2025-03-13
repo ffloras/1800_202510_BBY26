@@ -34,6 +34,10 @@
   justify-content: space-around;
 }
 
+#hidePlaceholder {
+  cursor: pointer;
+}
+
 
 @media (max-width: 800px) {
   #container {
