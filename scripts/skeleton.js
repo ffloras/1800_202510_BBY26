@@ -1,4 +1,9 @@
-
+/*
+colours:
+- #3E5F90
+- #9DB8E0
+- #D8D0A3
+*/
 
 function loadSkeleton() {
 
