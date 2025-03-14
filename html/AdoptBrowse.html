@@ -29,14 +29,12 @@
                     <p class="pet-desc"></p>
                 </div>
                 <div id="menu">
-                    <input type="image" class="menuButton favorite"
-                        src="/images/heartFilledIcon.png">
-                    <input type="image" class="menuButton" onclick="viewContactPrompt()"
-                        src="/images/emailIcon.png">
-                    <input type="image" class="menuButton" onclick="viewURL()" src="/images/shareIcon.png">
+                    <input type="image" class="menuButton favorite" src="/images/heartFilledIcon.png">
+                    <input type="image" class="menuButton contact" src="/images/emailIcon.png">
+                    <input type="image" class="menuButton link" src="/images/shareIcon.png">
                 </div>
-                <div id="menuPlaceholder"></div>
-                <p id="hidePlaceholder"></p>
+                <div class="menuPlaceholder"></div>
+                <p class="hidePlaceholder"></p>
                 <a class="details" href="#">see more</a>
             </div>
         </template>
@@ -45,8 +43,8 @@
         <template id="contactTemplate">
             <p id="title">Send a contact request to <span id="pet-name"></span>'s owner?</p>
             <div id="links">
-                <input type="button" id="yes-button" value="yes" onclick="sendRequest()">
-                <input type="button" id="no-button" value="no" onclick="clearContent()">
+                <input type="button" class="yesButton" value="yes">
+                <input type="button" class="noButton" value="no">
             </div>
         </template>
 
