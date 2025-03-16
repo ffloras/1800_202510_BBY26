@@ -10,9 +10,11 @@ async function displayCards(collection) {
                 console.log("Document data:", doc.data());
                 var docID = doc.id;
                 var name = doc.data().name;
+                var image = doc.data().petCode;
 
                 let newcard = cardTemplate.content.cloneNode(true);
 
+                newcard.querySelector(".card-image").src = "data:image/png;base64," + image;
                 newcard.querySelector('.name').innerHTML = name;
                 newcard.querySelector('a').href = "RehomeDetails.html?ID=" + docID;
 
