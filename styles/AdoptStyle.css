@@ -15,8 +15,8 @@ main {
     padding: 20px;
     max-height: 600px;
     max-width: 400px;
-    background-color:rgba(128, 128, 128, 0.491);
-    color: aliceblue;
+    background-color:rgb(216, 208, 163);
+    color: rgb(7, 44, 77);
 }
 
 .main-content  img {
