@@ -30,7 +30,7 @@ async function saveUserInfo(event) {
 
         alert("Successfully uploaded your information!");
 
-        window.location.href = "/html/AdoptBrowse.html";
+        window.location.href = "/html/adoptBrowse.html";
     } catch (error) {
         console.error("Error: ", error);
         alert("Please try again.");

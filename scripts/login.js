@@ -86,7 +86,7 @@ function login() {
         if (userInfo.isOwner){
           window.location = "/html/RehomeMain.html";
         } else {
-          window.location = "/html/AdoptBrowse.html";
+          window.location = "/html/adoptBrowse.html";
         }
       });
     }

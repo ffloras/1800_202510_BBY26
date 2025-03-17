@@ -47,6 +47,15 @@ main {
   width: 40px;
 }
 
+#title {
+    text-align: center;
+}
+
+#links {
+    display: flex;
+    justify-content: space-around;
+}
+
 @media screen and (max-width: 720px) {
     .main-content-wrapper {
         display: flex;
