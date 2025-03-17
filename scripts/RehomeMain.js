@@ -18,14 +18,14 @@ async function displayCards(collection) {
 
                             let newcard = cardTemplate.content.cloneNode(true);
 
-                newcard.querySelector(".card-image").src = "data:image/png;base64," + image;
-                newcard.querySelector('.name').innerHTML = name;
-                newcard.querySelector('a').href = "RehomeDetails.html?ID=" + docID;
+                            newcard.querySelector(".card-image").src = "data:image/png;base64," + image;
+                            newcard.querySelector('.name').innerHTML = name;
+                            newcard.querySelector('a').href = "RehomeDetails.html?petID=" + docID;
 
                             container.insertBefore(newcard, addPetButton);
                         })
                         .catch(error => {
-                            console.error("Error fetching documents: ", error);
+                            console.error("Error fetching documents: ", error); 
                         });
                 }
             });
