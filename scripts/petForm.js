@@ -1,4 +1,4 @@
-async function savePetInfo(collection) {
+async function savePetInfo(collection, petImage) {
     var userID = await getUserID();
 
     var petName = document.getElementById("inputName").value;
@@ -23,7 +23,7 @@ async function savePetInfo(collection) {
         isFemale: isFemale,
         interested: [],
         ownerID: userID,
-        petCode: '',
+        petCode: petImage,
         size: petSize,
         status: true
     });
@@ -38,6 +38,24 @@ async function savePetInfo(collection) {
 
     //redirect user to Rehom main page once form is submitted
     window.location.replace("/html/RehomeMain.html");
+}
+
+document.getElementById("petIcon").addEventListener("change", handlePetFileSelect);
+
+function handlePetFileSelect(event) {
+    var file = event.target.files[0];
+
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var base64String = e.target.result.split(',')[1];
+
+            savePetInfo("petProfiles", base64String);
+        };
+
+        reader.readAsDataURL(file);
+    }
 }
 
 function getUserID() {

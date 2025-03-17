@@ -1,4 +1,9 @@
-
+/*
+colours:
+- #3E5F90
+- #9DB8E0
+- #D8D0A3
+*/
 
 function loadSkeleton() {
 
@@ -16,7 +21,7 @@ function loadSkeleton() {
       } else {
         console.log($('#adoptNavbarPlaceholder').load('/html/components/loginNavBar.html'));
         console.log($('#rehomeNavbarPlaceholder').load('/html/components/loginNavBar.html'));
-        console.log($('#adoptFooterPlaceholder').load('/html/components/laoptFooter.html'));
+        console.log($('#adoptFooterPlaceholder').load('/html/components/adoptFooter.html'));
         console.log($('#rehomeFooterPlaceholder').load('/html/components/rehomeFooter.html'));
       }
   });

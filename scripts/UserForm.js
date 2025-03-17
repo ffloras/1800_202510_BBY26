@@ -30,7 +30,7 @@ async function saveUserInfo(event) {
 
         alert("Successfully uploaded your information!");
 
-        window.location.href = "/html/AdoptBrowse.html";
+        window.location.href = "/html/adoptBrowse.html";
     } catch (error) {
         console.error("Error: ", error);
         alert("Please try again.");
@@ -38,10 +38,48 @@ async function saveUserInfo(event) {
 }
 
 document.getElementById("userForm").addEventListener("submit", saveUserInfo);
+document.getElementById("userIcon").addEventListener("change", handleFileSelect);
 
 function getUserID() {
     const user = firebase.auth().currentUser;
     if (user !== null) {
         return user.uid;
     }
+}
+
+function handleFileSelect(event) {
+    var file = event.target.files[0];
+
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var base64String = e.target.result.split(',')[1];
+
+            console.log(base64String);
+
+            saveProfileImage(base64String);
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
+function saveProfileImage(base64String) {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            userId = user.uid;
+            db.collection("userProfiles").doc(userId).set({
+                profileImage: base64String
+            }, { merge: true })
+                .then(function () {
+                    console.log("Profile image saved successfully!");
+                })
+                .catch(function (error) {
+                    console.error("Error saving profile image: ", error);
+                });
+        } else {
+            console.error("No user is signed in.");
+        }   
+    });
 }

@@ -110,7 +110,6 @@ function viewURL() {
     document.getElementById("menuPlaceholder").innerHTML = message;
     document.getElementById("hidePlaceholder").innerHTML = "hide";
   }
-  
 }
 
 //copies URL of page to clipboard, with popup confirmation message
@@ -139,16 +138,13 @@ function changeFavorite() {
       //if petID is already in favoriteList, will remove the petID from the favorites field, and sets heart to unfilled.
       //if petID is not in favoriteList, will add it to user's favorite field, and sets heart to filled.
       if (favoriteList.includes(petID)) {
-        let index = favoriteList.indexOf(petID);
-        favoriteList.splice(index, 1);
         docRef.update({
-          favorites: favoriteList
+          favorites: firebase.firestore.FieldValue.arrayRemove(petID)
         });
         document.getElementById("favorite").src = "/images/heartUnfilledIcon.png";
       } else {
-        favoriteList.push(petID);
         docRef.update({
-          favorites: favoriteList
+          favorites: firebase.firestore.FieldValue.arrayUnion(petID)
         })
         document.getElementById("favorite").src = "/images/heartFilledIcon.png";
       }

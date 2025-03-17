@@ -1,4 +1,4 @@
-async function displayPetCards(collection) {
+async function displayFavorites() {
   let userID = await getUserID();
 
   let cardTemplate = document.getElementById("petCardTemplate");
@@ -7,57 +7,76 @@ async function displayPetCards(collection) {
     console.error("Template element not found");
     return;
   }
+  let docRef = db.collection("userProfiles").doc(userID)
+  docRef.get().then(doc => {
+    let favoriteList = doc.data().favorites;
+    //if there are no petIDs in favorites list, will show "None"
+    if (favoriteList.length == 0) {
+      document.getElementById("noFavorites").innerHTML = "None";
+    } else {
+      //if there are petIDs in favorites list, iterates through every petID
+      //and read into each pet doc
+      favoriteList.forEach(async petID => {
+        let petRef = db.collection("petProfiles").doc(petID);
+        let petDoc = await petRef.get();
+        //if the petID is found in petProfiles collection, populate template
+        if (petDoc.exists) {
+          var title = petDoc.data().name;
+          var age = petDoc.data().age;
+          var breed = petDoc.data().breed;
+          var desc = petDoc.data().description;
+          var petCode = petDoc.data().petCode;
+          var docID = petDoc.id;
 
-  db.collection(collection).get()
-    .then(allPets => {
-      allPets.forEach(async doc => {
-        var title = doc.data().name;
-        var age = doc.data().age;
-        var breed = doc.data().breed;
-        var desc = doc.data().description;
-        var petCode = doc.data().petCode;
-        var docID = doc.id;
+          var newcard = cardTemplate.content.cloneNode(true);
 
-        var newcard = cardTemplate.content.cloneNode(true);
+          newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
+          newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
+          newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
+          newcard.querySelector(".pet-desc").innerHTML = desc;
+          newcard.querySelector(".pet-img").src = `../images/${petCode}.jpeg`;
+          newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
 
-        newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
-        newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
-        newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
-        newcard.querySelector(".pet-desc").innerHTML = desc;
-        newcard.querySelector(".pet-img").src = `../images/${petCode}.jpeg`;
-        newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
+          //sets favorite button to on/off when page loads
+          if (userID != null) {
+            newcard.querySelector(".favorite").src = await setFavorite(userID, docID);
+          }
 
-        //sets favorite button to on/off when page loads
-        if (userID != null) {
-          newcard.querySelector(".favorite").src = await setFavorite(userID, docID);
+          //toggles favorite button on/off when clicked
+          newcard.querySelector(".favorite").addEventListener("click", (event) => {
+            changeFavorite(userID, docID, event);
+          });
+
+          //shows contact request when clicked
+          newcard.querySelector(".contact").addEventListener("click", (event) => {
+            viewContactPrompt(userID, docID, event);
+          });
+
+          //shows URL button when clicked
+          newcard.querySelector(".link").addEventListener("click", (event) => {
+            viewURL(userID, docID, event);
+          });
+
+          //hides expandable content when clicked
+          newcard.querySelector(".hidePlaceholder").addEventListener("click", (event) => {
+            clearContent(event.target.parentNode);
+          })
+
+          document.getElementById("petProfiles-go-here").appendChild(newcard);
+        } else {
+          //if petID is not found in the petProfiles document (eg: deleted),
+          //petID will be removed from list of favorites
+          docRef.update({
+            favorites: firebase.firestore.FieldValue.arrayRemove(petID)
+          })
         }
+      });
+    }
 
-        //toggles favorite button on/off when clicked
-        newcard.querySelector(".favorite").addEventListener("click", (event) => {
-          changeFavorite(userID, docID, event);
-        });
-
-        //shows contact request when clicked
-        newcard.querySelector(".contact").addEventListener("click", (event) => {
-          viewContactPrompt(userID, docID, event);
-        });
-
-        //shows URL button when clicked
-        newcard.querySelector(".link").addEventListener("click", (event) => {
-          viewURL(userID, docID, event);
-        });
-
-        //hides expandable content when clicked
-        newcard.querySelector(".hidePlaceholder").addEventListener("click", (event) => {
-          clearContent(event.target.parentNode);
-        })
-
-        document.getElementById(collection + "-go-here").appendChild(newcard);
-      })
-    })
+  });
 }
 
-displayPetCards("petProfiles");
+displayFavorites();
 
 function getUserID() {
   return new Promise(function (resolve, reject) {
@@ -72,6 +91,7 @@ function getUserID() {
 
 }
 
+//sets favorites when page is loaded
 function setFavorite(userID, petID) {
   return new Promise(function (resolve, reject) {
     if (userID == null) {
@@ -120,6 +140,7 @@ function changeFavorite(userID, petID, event) {
 //asks user if they want to send contact request to pet's owner (after
 //they click on the message button)
 function viewContactPrompt(userID, petID, event) {
+  //if user is not logged in, will show them message to log in
   if (userID == null) {
     loginMessage(event.target.parentNode.parentNode);
   }
@@ -128,7 +149,7 @@ function viewContactPrompt(userID, petID, event) {
     db.collection("petProfiles").doc(petID).get().then(doc => {
       let name = doc.data().name;
 
-      //clear previous placeholder content and populate with template content
+      //create template and populate with content
       let newCard = cardTemplate.content.cloneNode(true);
       newCard.getElementById("pet-name").innerHTML = name;
 
@@ -140,12 +161,14 @@ function viewContactPrompt(userID, petID, event) {
         sendRequest(userID, petID, event.target.parentNode.parentNode.parentNode);
       });
 
+      //clears any previous content in html element that it's going to go into
       let card = event.target.parentNode.parentNode;
       clearContent(card);
 
+      //adds the template to the html element
       card.querySelector(".menuPlaceholder").appendChild(newCard);
-      
-      
+
+
     });
   }
 }
@@ -183,7 +206,7 @@ function viewURL(userID, petID, event) {
     loginMessage(event.target.parentNode.parentNode);
   } else {
     let message = `<input type="button" value="Copy URL" onclick="copyURL('${petID}')">`;
-    
+
     card.querySelector(".menuPlaceholder").innerHTML = message;
     card.querySelector(".hidePlaceholder").innerHTML = "hide";
 

@@ -42,17 +42,22 @@ Example:
 
 ## Project Structure
 
-Example:
+Paws & Homes
 ```
-project-name/
-├── src/
-│   ├── index.html
-│   ├── style.css
-│   ├── app.js
-│   └── components/
-├── package.json
-├── README.md
-└── .gitignore
+1800_202510_BBY26/
+├── html/
+|   ├── components/
+|   |   └── navbar-footer-htmls
+|   ├── main-htmls
+├── images/
+|   ├── icons.png
+|   └── logo.png
+├── scripts/
+|   └── scripts.js
+├── styles/
+|   └── styles.css
+├── .gitignore
+└── README.md
 ```
 
 ---
