@@ -4,23 +4,31 @@ async function displayCards(collection) {
     let addPetButton = container.querySelector('.add-pet');
     var userID = await getUserID();
 
-    db.collection(collection).where("ownerID", "==", userID).get()
-        .then(pet => {
-            pet.forEach(doc => {
-                console.log("Document data:", doc.data());
-                var docID = doc.id;
-                var name = doc.data().name;
+    db.collection("userProfiles").doc(userID).get()
+        .then(user => {
+            var pets = user.data().pets;
+            pets.forEach(pet => {
+                console.log("pet ID: ", pet);
+                if (pet != "") {
+                    db.collection(collection).doc(pet).get()
+                        .then(doc => {
+                            console.log("Document data:", doc.data());
+                            var docID = doc.id;
+                            var name = doc.data().name;
 
-                let newcard = cardTemplate.content.cloneNode(true);
+                            let newcard = cardTemplate.content.cloneNode(true);
 
-                newcard.querySelector('.name').innerHTML = name;
-                newcard.querySelector('a').href = "RehomeDetails.html?ID=" + docID;
+                            newcard.querySelector('.name').innerHTML = name;
+                            newcard.querySelector('a').href = "RehomeDetails.html?ID=" + docID;
 
-                container.insertBefore(newcard, addPetButton);
+                            container.insertBefore(newcard, addPetButton);
+                        })
+                        .catch(error => {
+                            console.error("Error fetching documents: ", error);
+                        });
+                }
             });
-        })
-        .catch(error => {
-            console.error("Error fetching documents: ", error);
+
         });
 }
 
