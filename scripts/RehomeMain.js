@@ -25,7 +25,7 @@ async function displayCards(collection) {
                             container.insertBefore(newcard, addPetButton);
                         })
                         .catch(error => {
-                            console.error("Error fetching documents: ", error); 
+                            console.error("Error fetching documents: ", error);
                         });
                 }
             });

@@ -77,6 +77,10 @@ body {
     text-decoration: underline;
 }
 
+.hidden {
+    display: none;
+}
+
 @media (min-width: 1024px) {
     
 }
