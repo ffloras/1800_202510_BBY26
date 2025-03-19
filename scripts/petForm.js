@@ -1,4 +1,6 @@
-async function savePetInfo(collection, petImage) {
+var petID;
+
+async function savePetInfo(collection) {
     var userID = await getUserID();
 
     var petName = document.getElementById("inputName").value;
@@ -23,24 +25,26 @@ async function savePetInfo(collection, petImage) {
         isFemale: isFemale,
         interested: [],
         ownerID: userID,
-        petCode: petImage,
+        petCode: "",
         size: petSize,
         status: true
     });
 
     // Get the petID (document ID) of the newly added pet
-    var petID = petDocRef.id;
+    petID = petDocRef.id;
 
     // Update the user's document with the petID
     await db.collection("userProfiles").doc(userID).update({
         pets: firebase.firestore.FieldValue.arrayUnion(petID)
     });
 
+    document.getElementById("petIcon").addEventListener("change", function(e) {
+        handlePetFileSelect(e, "petForm");
+    });
+
     //redirect user to Rehom main page once form is submitted
     window.location.replace("/html/RehomeMain.html");
 }
-
-document.getElementById("petIcon").addEventListener("change", handlePetFileSelect);
 
 function handlePetFileSelect(event) {
     var file = event.target.files[0];
@@ -51,11 +55,17 @@ function handlePetFileSelect(event) {
         reader.onload = function(e) {
             var base64String = e.target.result.split(',')[1];
 
-            savePetInfo("petProfiles", base64String);
+            saveImage(base64String);
         };
 
         reader.readAsDataURL(file);
     }
+}
+
+function saveImage(image) {
+    db.collection("petProfiles").doc(petID).update({
+        petCode: image
+    })
 }
 
 function getUserID() {
