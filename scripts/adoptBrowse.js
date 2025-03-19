@@ -160,6 +160,7 @@ function sendRequest(userID, petID, event) {
     //sets message depending of whether the user has already sent a previous contact request
     //if it is a new request, user's ID will also be written into pet's "interested" field
     let message = "";
+    console.log(petID);
     if (interestedList.includes(userID)) {
       message = `You have already send a contact request to ${petName}'s owner`;
     } else {
