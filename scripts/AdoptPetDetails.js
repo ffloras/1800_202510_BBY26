@@ -92,6 +92,9 @@ function sendRequest() {
       db.collection("petProfiles").doc(petID).update({
         interested: firebase.firestore.FieldValue.arrayUnion(userID)
       });
+      db.collection("userProfiles").doc(userID).update({
+        interested: firebase.firestore.FieldValue.arrayUnion(petID)
+      });
       message = `A contact request has been sent to ${petName}'s owner`;
     }
 

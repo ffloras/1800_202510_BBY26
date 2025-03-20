@@ -41,6 +41,7 @@ function signUp() {
         isOwner: isOwner,
         pastExperience: "",
         favorites: [],
+        interested: [],
         contacts: [],
         pets: []
       }).then(function () {
