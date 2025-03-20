@@ -1,0 +1,19 @@
+main {
+  padding-top: 100px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.petName {
+  font-size: 2em;
+}
+
+.userCard {
+  display: flex;
+  justify-content: space-between;
+  max-width: 30%;
+}
+
+.heading {
+  font-size: 1.5em;
+}

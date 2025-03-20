@@ -18,7 +18,7 @@ async function displayCards(collection) {
 
                             let newcard = cardTemplate.content.cloneNode(true);
 
-                            newcard.querySelector(".card-image").src = "data:image/png;base64," + image;
+                            //newcard.querySelector(".card-image").src = "data:image/png;base64," + image;
                             newcard.querySelector('.name').innerHTML = name;
                             newcard.querySelector('a').href = "RehomeDetails.html?petID=" + docID;
 
