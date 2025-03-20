@@ -24,7 +24,7 @@ async function displayPetCards(collection) {
         newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
         newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
         newcard.querySelector(".pet-desc").innerHTML = desc;
-        newcard.querySelector(".pet-img").src = `../images/${petCode}.jpeg`;
+        newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
         newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
 
         //sets favorite button to on/off when page loads

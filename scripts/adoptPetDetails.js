@@ -25,6 +25,7 @@ function displayPetInfo() {
       document.getElementById("gender").innerHTML = gender;
       document.getElementById("size").innerHTML = size;
       document.getElementById("description").innerHTML = description;
+      document.getElementById("petImage").src = "data:image/png;base64," + petCode;
 
       //sets the favorite icon (filled/unfilled) based on user's favorite field
       setFavorite();
