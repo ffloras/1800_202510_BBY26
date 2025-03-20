@@ -1,6 +1,13 @@
 var petID;
 
-async function savePetInfo(collection) {
+function createEmptyPetProfile() {
+    const emptyPet = db.collection("petProfiles").add({
+        name: ""
+    });
+    petID = emptyPet.id;
+}
+
+async function savePetInfo(collection, image) {
     var userID = await getUserID();
 
     var petName = document.getElementById("inputName").value;
@@ -17,34 +24,30 @@ async function savePetInfo(collection) {
     }
 
     // Add the pet information to the Firestore database
-    const petDocRef = await db.collection(collection).add({
+    const petDocRef = await db.collection(collection).doc(petID).update({
         name: petName,
         age: petAge,
         breed: petBreed,
         description: petDesc,
         isFemale: isFemale,
         interested: [],
+        contacts: [],
         ownerID: userID,
-        petCode: "",
+        petCode: image,
         size: petSize,
         status: true
     });
-
-    // Get the petID (document ID) of the newly added pet
-    petID = petDocRef.id;
 
     // Update the user's document with the petID
     await db.collection("userProfiles").doc(userID).update({
         pets: firebase.firestore.FieldValue.arrayUnion(petID)
     });
 
-    document.getElementById("petIcon").addEventListener("change", function(e) {
-        handlePetFileSelect(e, "petForm");
-    });
-
     //redirect user to Rehom main page once form is submitted
     window.location.replace("/html/RehomeMain.html");
 }
+
+document.getElementById("petIcon").addEventListener("change", handlePetFileSelect);
 
 function handlePetFileSelect(event) {
     var file = event.target.files[0];
@@ -55,17 +58,11 @@ function handlePetFileSelect(event) {
         reader.onload = function(e) {
             var base64String = e.target.result.split(',')[1];
 
-            saveImage(base64String);
+            savePetInfo("petProfiles", base64String);
         };
 
         reader.readAsDataURL(file);
     }
-}
-
-function saveImage(image) {
-    db.collection("petProfiles").doc(petID).update({
-        petCode: image
-    })
 }
 
 function getUserID() {
