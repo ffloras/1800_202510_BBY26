@@ -15,6 +15,7 @@ async function displayCards(collection) {
                             console.log("Document data:", doc.data());
                             var docID = doc.id;
                             var name = doc.data().name;
+                            var image = doc.data().petCode;
 
                             let newcard = cardTemplate.content.cloneNode(true);
 

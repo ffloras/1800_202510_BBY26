@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Paws and Homes</title>
+        <link rel="stylesheet" href="/styles/RehomeMain.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <!-------------------------------------------------------->
+        <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+        <!-------------------------------------------------------->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    </head>
+    <body>
+        <header id="rehomeNavbarPlaceholder"></header> 
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paws and Homes</title>
-    <link rel="stylesheet" href="/styles/RehomeMain.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-------------------------------------------------------->
-    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
-    <!-------------------------------------------------------->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-</head>
+        <div class="container" id="container">
+            <template id="card-template">
+                <a href="#" class="card">
+                    <div>
+                        <img src="" alt="Pet's picture" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <h5 class="name"></h5>
+                    </div>
+                </a>
+            </template>
 
-<body>
-    <header id="rehomeNavbarPlaceholder"></header> 
-
-    <div class="container" id="container">
-        <template id="card-template">
-            <a href="#" class="card">
-                <div>
-                    <img src="" alt="Pet's picture" class="card-image">
+            <a href="/html/PetForm.html" class="card add-pet">
+                <div class="card-image">
+                    <i class="fa-solid fa-plus"></i>
                 </div>
                 <div class="card-content">
-                    <h5 class="name"></h5>
+                    <h5>Upload a new pet profile</h5>
                 </div>
             </a>
-        </template>
+        </div>
 
-        <a href="/html/PetForm.html" class="card add-pet">
-            <div class="card-image">
-                <i class="fa-solid fa-plus"></i>
-            </div>
-            <div class="card-content">
-                <h5>Upload a new pet profile</h5>
-            </div>
-        </a>
-    </div>
+        <footer id="rehomeFooterPlaceholder"></footer>
 
-    <footer id="rehomeFooterPlaceholder"></footer>
-
-    <script src="/scripts/firebaseAPI_team26.js"></script>
-    <script src="/scripts/skeleton.js"></script>
-    <script src="/scripts/rehomeMain.js"></script>
-</body>
+        <script src="/scripts/firebaseAPI_team26.js"></script>
+        <script src="/scripts/skeleton.js"></script>
+        <script src="/scripts/RehomeMain.js"></script>
+    </body>
 
 </html>
