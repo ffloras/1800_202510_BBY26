@@ -47,9 +47,9 @@ function signUp() {
       }).then(function () {
         console.log("New user added to firestore");
         if (isOwner) {
-          window.location.assign("/html/RehomeMain.html");
+          window.location.assign("/html/rehomeMain.html");
         } else {
-          window.location.assign("/html/UserForm.html");
+          window.location.assign("/html/userForm.html");
         }
       }).catch(function (error) {
         console.log("Error adding new user: " + error);

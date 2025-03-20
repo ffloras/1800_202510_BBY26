@@ -1,7 +1,7 @@
 var petID;
 var petImage;
 
-async function savePetInfo(collection, image) {
+async function savePetInfo(collection) {
     var userID = await getUserID();
 
     var petName = document.getElementById("inputName").value;
@@ -40,7 +40,7 @@ async function savePetInfo(collection, image) {
     });
 
     //redirect user to Rehom main page once form is submitted
-    window.location.replace("/html/RehomeMain.html");
+    window.location.replace("/html/rehomeMain.html");
 }
 
 document.getElementById("petIcon").addEventListener("change", handlePetFileSelect);
