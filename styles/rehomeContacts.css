@@ -1,7 +1,11 @@
 main {
   padding-top: 100px;
-  max-width: 80%;
+  max-width: 70%;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-around;;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .petName {
@@ -11,9 +15,15 @@ main {
 .userCard {
   display: flex;
   justify-content: space-between;
-  max-width: 30%;
 }
 
 .heading {
   font-size: 1.5em;
+}
+
+.petCard {
+  border: 1px solid gray;
+  width: 450px;
+  padding: 20px;
+  border-radius: 5px;
 }

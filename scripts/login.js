@@ -43,7 +43,8 @@ function signUp() {
         favorites: [],
         interested: [],
         contacts: [],
-        pets: []
+        pets: [],
+        hasNotification: false
       }).then(function () {
         console.log("New user added to firestore");
         if (isOwner) {

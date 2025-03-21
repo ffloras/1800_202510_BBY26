@@ -1,7 +1,8 @@
 async function displayCards(collection) {
-  let petTemplate = document.getElementById("petCard");
+  let petTemplate = document.getElementById("petCardTemplate");
   let container = document.getElementById("container");
   var userID = await getUserID();
+  container.innerHTML = "";
 
   db.collection("userProfiles").doc(userID).get()
     .then(user => {
@@ -10,36 +11,36 @@ async function displayCards(collection) {
         container.innerHTML = "No Contacts";
       } else {
         pets.forEach(pet => {
-          console.log("pet ID: ", pet);
           if (pet != "") {
             db.collection(collection).doc(pet).get()
               .then(doc => {
-                console.log("Document data:", doc.data());
                 var docID = doc.id;
                 var name = doc.data().name;
                 var petInterest = doc.data().interested;
                 var petContacts = doc.data().contacts;
-  
+
                 let newcard = petTemplate.content.cloneNode(true);
-  
+
                 newcard.querySelector('.petName').innerHTML = "Contacts for " + name;
                 newcard.querySelector('.interested').id = "interested-" + docID;
                 newcard.querySelector('.contacts').id = "contacts-" + docID;
-                
-                if (petInterest.length == 0 && petContacts == 0) {
-                  newcard.querySelector('.contacts').innerHTML = "No contacts";
+
+                if (petContacts.length != 0) {
+                  newcard.querySelector('.contacts').innerHTML = "<h5>Contacts:</h5>";
+                  getContacts(petContacts, docID);
                 } else {
-                  if (petInterest.length != 0) {
-                    newcard.querySelector('.interested').innerHTML = "<h5>Contact requests:</h5>";
-                    getInterestedUser(petInterest, docID);
-                  }
-                  if (petContacts.length != 0) {
-                    newcard.querySelector('.contacts').innerHTML = "<h5>Contacts:</h5>";
-                    getContacts(petContacts, docID);
-                  }
-                  
+                  let message = "<h5>Contacts:</h5><p>None</p>";
+                  newcard.querySelector('.contacts').innerHTML = message;
                 }
-                
+
+                if (petInterest.length != 0) {
+                  newcard.querySelector('.interested').innerHTML = "<h5>Contact requests:</h5>";
+                  getInterestedUser(petInterest, docID);
+                } else {
+                  let message = "<br><h5>Contact requests:</h5><p>None</p>";
+                  newcard.querySelector('.interested').innerHTML = message;
+                }
+
                 container.appendChild(newcard);
               })
               .catch(error => {
@@ -48,7 +49,7 @@ async function displayCards(collection) {
           }
         });
       }
-      
+
 
     });
 }
@@ -85,8 +86,9 @@ function getInterestedUser(petInterest, petID) {
 
           newcard.querySelector('.userName').href = "AdoptProfileDetail.html?userID=" + docID;
           newcard.querySelector('.userName').innerHTML = userName;
+          newcard.querySelector('.userCard').id = "userCard-" + docID;
           let buttons = `<button onclick="acceptRequest('${petID}','${docID}')">Accept</button>
-                        <button>Decline</button>`
+                        <button onclick="declineRequest('${petID}','${docID}')">Decline</button>`
           newcard.querySelector('.nameButtons').innerHTML = buttons;
 
 
@@ -107,12 +109,13 @@ function getContacts(petContacts, petID) {
           let user = userDoc.data();
           let userName = user.name;
           let docID = userDoc.id;
+          let userEmail = user.email;
 
           let newcard = contactTemplate.content.cloneNode(true);
 
           newcard.querySelector('.userName').href = "AdoptProfileDetail.html?userID=" + docID;
           newcard.querySelector('.userName').innerHTML = userName;
-          let buttons = `<button>Email</button>`
+          let buttons = `<a href="mailto:${userEmail}">Email</a>`
           newcard.querySelector('.nameButtons').innerHTML = buttons;
 
 
@@ -124,4 +127,26 @@ function getContacts(petContacts, petID) {
 
 function acceptRequest(petID, userID) {
   console.log(petID + " " + userID)
+  db.collection("petProfiles").doc(petID).update({
+    interested: firebase.firestore.FieldValue.arrayRemove(userID),
+    contacts: firebase.firestore.FieldValue.arrayUnion(userID)
+  });
+  db.collection("userProfiles").doc(userID).update({
+    interested: firebase.firestore.FieldValue.arrayRemove(petID),
+    contacts: firebase.firestore.FieldValue.arrayUnion(petID)
+  })
+  displayCards("petProfiles");
+}
+
+function declineRequest(petID, userID) {
+  let text = "Are you sure you want to decline the request?"
+  if (confirm(text)) {
+    db.collection("petProfiles").doc(petID).update({
+      interested: firebase.firestore.FieldValue.arrayRemove(userID)
+    })
+    db.collection("userProfiles").doc(userID).update({
+      interested: firebase.firestore.FieldValue.arrayRemove(petID)
+    });
+    document.getElementById("userCard-" + userID).remove();
+  }
 }
