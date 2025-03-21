@@ -1,13 +1,7 @@
 var petID;
+var petImage;
 
-function createEmptyPetProfile() {
-    const emptyPet = db.collection("petProfiles").add({
-        name: ""
-    });
-    petID = emptyPet.id;
-}
-
-async function savePetInfo(collection, image) {
+async function savePetInfo(collection) {
     var userID = await getUserID();
 
     var petName = document.getElementById("inputName").value;
@@ -24,7 +18,7 @@ async function savePetInfo(collection, image) {
     }
 
     // Add the pet information to the Firestore database
-    const petDocRef = await db.collection(collection).doc(petID).update({
+    const petDocRef = await db.collection(collection).add({
         name: petName,
         age: petAge,
         breed: petBreed,
@@ -33,10 +27,12 @@ async function savePetInfo(collection, image) {
         interested: [],
         contacts: [],
         ownerID: userID,
-        petCode: image,
+        petCode: petImage,
         size: petSize,
         status: true
     });
+
+    var petID = petDocRef.id;
 
     // Update the user's document with the petID
     await db.collection("userProfiles").doc(userID).update({
@@ -44,7 +40,7 @@ async function savePetInfo(collection, image) {
     });
 
     //redirect user to Rehom main page once form is submitted
-    window.location.replace("/html/RehomeMain.html");
+    window.location.replace("/html/rehomeMain.html");
 }
 
 document.getElementById("petIcon").addEventListener("change", handlePetFileSelect);
@@ -56,9 +52,7 @@ function handlePetFileSelect(event) {
         var reader = new FileReader();
 
         reader.onload = function(e) {
-            var base64String = e.target.result.split(',')[1];
-
-            savePetInfo("petProfiles", base64String);
+            petImage = e.target.result.split(',')[1];
         };
 
         reader.readAsDataURL(file);

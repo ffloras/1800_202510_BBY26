@@ -20,6 +20,8 @@
     <!-- Font Awesome 6 (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <link rel="stylesheet" href="/styles/navBarStyle.css">
+
     <!-- Link to styles of your own -->
 
     <!-- <link rel="stylesheet" href="./styles/style.css"> -->
@@ -27,9 +29,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark fixed-top" style="height: 60px;">
+    <nav class="navbar navbar-dark bg-dark fixed-top" style="height: 60px; background-color:  #3e5f90 !important;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="/images/PAHLogo.png" alt="Logo" height="36"></a>
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-arrow-left"></i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
                 aria-label="Toggle navigation">
@@ -45,19 +47,19 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Settings</a>
+                            <a class="nav-link active" aria-current="page" href="/html/rehomeMain.html">Rehome my pet</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">FAQs</a>
+                            <a class="nav-link" href="#">Settings</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link" href="/html/faqs.html">FAQs</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/html/login.html">Login</a>
+                            <a class="nav-link" href="/html/index.html">Logout</a>
                         </li>
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -82,7 +84,7 @@
             </div>
         </div>
     </nav>
-
+    <br><br>
 </body>
 
 </html>
