@@ -17,11 +17,11 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    justify-items: center;
 }
 
 .pet-section {
     margin-top: 30px;
-
 }
 
 .likes-section {
@@ -47,6 +47,7 @@ body {
     display: flex;
     gap: 10px;
     margin-top: 15px;
+    justify-content: space-between;
 }
 
 .actions button {
@@ -81,8 +82,85 @@ body {
     display: none;
 }
 
+#edit-form {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    position: relative;
+}
+
+#edit-form h2 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+#edit-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+#edit-form input,
+#edit-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+#edit-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#edit-form button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+#edit-form button[type="submit"] {
+    background-color: #0078ff;
+    color: #fff;
+}
+
+#edit-form button[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+#edit-form button[type="button"] {
+    background-color: #ccc;
+    color: #333;
+}
+
+#edit-form button[type="button"]:hover {
+    background-color: #bbb;
+}
+
+#edit-size {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: #fff;
+    cursor: pointer;
+}
+
 @media (min-width: 1024px) {
-    
+   
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -91,7 +169,6 @@ body {
 
 @media (max-width: 768px) {
     .container {
-        max-width: 100%;
+        width: fit-content;
     }
 }
-

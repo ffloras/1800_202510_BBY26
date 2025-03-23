@@ -24,17 +24,45 @@
 
     <div class="container pet-section">
         <div class="pet-info">
-            <img src="/images/dog2.jpeg" alt="Pet's picture">
+            <img id="card-image" alt="Pet's picture">
             <h1 id="name">Name: </h1>
             <p id="age">Age: </p>
             <p id="breed">Breed: </p>
             <p id="desc">Description: </p>
             <p id="size">Size: </p>
             <div class="actions">
-                <button>Edit</button>
-                <button>Close</button>
-                <button class="delete-btn">Delete</button>
+                <button id="edit-btn">Edit</button>
+                <button id="close-btn" onclick="closeProfile()">Close</button>
+                <button id="open-btn" onclick="openProfile()" style="display: none;">Open</button>
+                <button id="delete-btn" onclick="deleteProfile()">Delete</button>
             </div>
+        </div>
+
+        <div id="edit-form" style="display: none;">
+            <h2>Edit Pet Information</h2>
+            <form id="edit-pet-form">
+                <label for="edit-name">Name:</label>
+                <input type="text" id="edit-name" name="edit-name" required><br>
+        
+                <label for="edit-age">Age:</label>
+                <input type="number" id="edit-age" name="edit-age" required><br>
+        
+                <label for="edit-breed">Breed:</label>
+                <input type="text" id="edit-breed" name="edit-breed" required><br>
+        
+                <label for="edit-desc">Description:</label>
+                <textarea id="edit-desc" name="edit-desc" required></textarea><br>
+        
+                <label for="edit-size">Size:</label>
+                <select id="edit-size" name="edit-size" required>
+                    <option value="Large">Large</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Small">Small</option>
+                </select><br>
+        
+                <button type="submit">Save Changes</button>
+                <button type="button" onclick="hideEditForm()">Cancel</button>
+            </form>
         </div>
     </div>
     <div class="container likes-section">

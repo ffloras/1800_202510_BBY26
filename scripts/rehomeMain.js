@@ -2,7 +2,7 @@ async function displayCards(collection) {
     let cardTemplate = document.getElementById("card-template");
     let container = document.getElementById("container");
     let addPetButton = container.querySelector('.add-pet');
-    var userID = await getUserID();
+    let userID = await getUserID();
 
     db.collection("userProfiles").doc(userID).get()
         .then(user => {
@@ -21,7 +21,7 @@ async function displayCards(collection) {
 
                             newcard.querySelector(".card-image").src = "data:image/png;base64," + image;
                             newcard.querySelector('.name').innerHTML = name;
-                            newcard.querySelector('a').href = "RehomeDetails.html?petID=" + docID;
+                            newcard.querySelector('a').href = "rehomeDetails.html?petID=" + docID;
 
                             container.insertBefore(newcard, addPetButton);
                         })
