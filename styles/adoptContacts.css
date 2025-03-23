@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 60px calc(100vh - 120px) 60px;
+}
+
+#pet-contact-card {
+    display: flex;
+    flex-direction: row;
+    max-width: 700px;
+    max-height: 200px;
+    background-color: rgb(216, 208, 163);
+}
+
+#pet-contact-card > img {
+    align-self: center;
+    width: 200px;
+    border-radius: 100%;
+}
+
+#pet-contact-card > h3 {
+    display: block;
+}
+
+@media screen and (max-width: 720px) {
+    #contacts-go-here {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
+@media screen and (min-width: 721px) {
+    #contacts-go-here {
+        display: grid;
+        grid-template-columns: calc(50vw - 15px) calc(50vw - 15px);
+        grid-template-rows: auto;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        gap: 10px;
+    }
+}

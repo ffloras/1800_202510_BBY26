@@ -169,8 +169,7 @@ function sendRequest(userID, petID, event) {
       message = `You already have ${petName}'s owner as your contact`;
     } else {
       db.collection("petProfiles").doc(petID).update({
-        interested: firebase.firestore.FieldValue.arrayUnion(userID),
-        
+        interested: firebase.firestore.FieldValue.arrayUnion(userID)        
       });
       db.collection("userProfiles").doc(userID).update({
         interested: firebase.firestore.FieldValue.arrayUnion(petID)
