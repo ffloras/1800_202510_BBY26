@@ -155,7 +155,9 @@ function sendRequest(userID, petID, event) {
   db.collection("petProfiles").doc(petID).get().then(doc => {
     //get pet info
     let interestedList = doc.data().interested;
+    let contactList = doc.data().contacts;
     let petName = doc.data().name;
+    let ownerID = doc.data().ownerID;
 
     //sets message depending of whether the user has already sent a previous contact request
     //if it is a new request, user's ID will also be written into pet's "interested" field
@@ -163,12 +165,18 @@ function sendRequest(userID, petID, event) {
     console.log(petID);
     if (interestedList.includes(userID)) {
       message = `You have already send a contact request to ${petName}'s owner`;
+    } else if (contactList.includes(userID)) {
+      message = `You already have ${petName}'s owner as your contact`;
     } else {
       db.collection("petProfiles").doc(petID).update({
-        interested: firebase.firestore.FieldValue.arrayUnion(userID)
+        interested: firebase.firestore.FieldValue.arrayUnion(userID),
+        
       });
       db.collection("userProfiles").doc(userID).update({
         interested: firebase.firestore.FieldValue.arrayUnion(petID)
+      });
+      db.collection("userProfiles").doc(ownerID).update({
+        hasNotification: true
       });
       message = `A contact request has been sent to ${petName}'s owner`;
     }
