@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws & Homes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-------------------------------------------------------->
+    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    
+    <link rel="stylesheet" href="/styles/adoptUserProfile.css">
+</head>
+<body>
+    <header id="adoptNavbarPlaceholder"></header>
+
+    <div class="container">
+        <h1>User Profile</h1>
+
+        <div id="user-info">
+            <img id="avatar-img" src="" alt="Avatar" class="avatar">
+            <p><strong>Name:</strong> <span id="display-name"></span></p>
+            <p><strong>Email:</strong> <span id="display-email"></span></p>
+            <p><strong>Children:</strong> <span id="display-child"></span></p>
+            <p><strong>Housing Status:</strong> <span id="display-housing"></span></p>
+            <p><strong>Past Experience:</strong> <span id="display-experience"></span></p>
+            <button id="edit-btn">Edit</button>
+        </div>
+
+        <form id="edit-form" style="display: none;">
+            <label for="name">Name:</label>
+            <input type="text" id="edit-name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="edit-email" name="email" required>
+
+            <label for="children">Children:</label>
+            <select id="edit-child" name="child" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="housing-status">Housing Status:</label>
+            <input type="text" id="edit-housing" name="housing" required>
+
+            <label for="past-experience">Past Experience:</label>
+            <select id="edit-experience" name="experience" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <button type="submit">Save</button>
+            <button type="button" onclick="hideEditForm()">Cancel</button>
+        </form>
+    </div>
+    <footer id="adoptFooterPlaceholder"></footer>
+
+    <script src="/scripts/firebaseAPI_team26.js"></script>
+    <script src="/scripts/skeleton.js"></script>
+    <script src="/scripts/adoptUserProfile.js"></script>
+</body>
+</html>
