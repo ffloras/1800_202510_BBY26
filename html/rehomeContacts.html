@@ -22,7 +22,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-  
+
   <link type="text/css" rel="stylesheet" href="/styles/rehomeContacts.css">
 </head>
 
@@ -30,8 +30,12 @@
   <template id="petCardTemplate">
     <div class="petCard">
       <p class="petName"></p>
-      <div class="contacts"></div>
-      <div class="interested"></div>
+      <div class="petInfo">
+        <h5 class="contact-title"></h5>
+        <div class="contacts"></div>
+        <h5 class="request-title"></h5>
+        <div class="interested"></div>
+      </div>
     </div>
   </template>
   <template id="contactCard">

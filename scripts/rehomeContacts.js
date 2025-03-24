@@ -2,7 +2,6 @@ async function displayCards(collection) {
   let petTemplate = document.getElementById("petCardTemplate");
   let container = document.getElementById("container");
   var userID = await getUserID();
-  container.innerHTML = "";
 
   //iterates through every pet in user's pet list to create a card for each pet
   db.collection("userProfiles").doc(userID).get()
@@ -13,42 +12,32 @@ async function displayCards(collection) {
       } else {
         pets.forEach(pet => {
           if (pet != "") {
-            db.collection(collection).doc(pet).get()
-              .then(doc => {
-                var docID = doc.id;
-                var name = doc.data().name;
-                var petInterest = doc.data().interested;
-                var petContacts = doc.data().contacts;
+            db.collection(collection).doc(pet).get().then(doc => {
+              var docID = doc.id;
+              var name = doc.data().name;
+              var petInterest = doc.data().interested;
+              var petContacts = doc.data().contacts;
 
-                let newcard = petTemplate.content.cloneNode(true);
 
-                //sets title of card with name of pet
-                newcard.querySelector('.petName').innerHTML = "Contacts for " + name;
-                //adds unique identifier to each pet card's "interested/contact requests" and "contacts" section
-                //list of will be added to this section using the unique identifier
-                newcard.querySelector('.interested').id = "interested-" + docID;
-                newcard.querySelector('.contacts').id = "contacts-" + docID;
+              let newcard = petTemplate.content.cloneNode(true);
 
-                if (petContacts.length != 0) {
-                  newcard.querySelector('.contacts').innerHTML = "<h5>Contacts:</h5>";
-                  //add list of users to the "contacts" section
-                  getContacts(petContacts, docID);
-                } else {
-                  let message = "<h5>Contacts:</h5><p>None</p>";
-                  newcard.querySelector('.contacts').innerHTML = message;
-                }
 
-                if (petInterest.length != 0) {
-                  newcard.querySelector('.interested').innerHTML = "<h5>Contact requests:</h5>";
-                  //add list of interest users to the "contact requests" section
-                  getInterestedUser(petInterest, docID);
-                } else {
-                  let message = "<br><h5>Contact requests:</h5><p>None</p>";
-                  newcard.querySelector('.interested').innerHTML = message;
-                }
+              //sets title of card with name of pet
+              newcard.querySelector('.petName').innerHTML = "Contacts for " + name;
+              //adds unique identifier to each pet card's "interested/contact requests" and "contacts" section
+              //list of will be added to this section using the unique identifier
+              newcard.querySelector('.interested').id = "interested-" + docID;
+              newcard.querySelector('.request-title').id = "request-title-" + docID;
+              
+              newcard.querySelector('.contacts').id = "contacts-" + docID;
+              newcard.querySelector('.contact-title').id = "contact-title-" + docID;
 
-                container.appendChild(newcard);
-              })
+              container.appendChild(newcard);
+
+              getContacts(docID);
+              getInterestedUser(docID);
+
+            })
               .catch(error => {
                 console.error("Error fetching documents: ", error);
               });
@@ -89,76 +78,105 @@ function getUserID() {
 }
 
 //adds a list of users interested in the pet under the "contact requests" section
-function getInterestedUser(petInterest, petID) {
+function getInterestedUser(petID) {
   let contactTemplate = document.getElementById("contactCard");
+  
+  document.getElementById("request-title-" + petID).innerHTML = "<br><h4>Contacts Requests:</h4>";
 
-  //iterates through every user in the pet's "interested" array list and adds them to the
-  //pet card's "interested/contact request" section
-  petInterest.forEach(element => {
-    if (element != null) {
-      db.collection("userProfiles").doc(element).get()
-        .then(userDoc => {
-          let user = userDoc.data();
-          let userName = user.name;
-          let docID = userDoc.id;
+  db.collection("petProfiles").doc(petID).onSnapshot(petDoc => {
+    let petInterest = petDoc.data().interested;
+    //requestCard.innerHTML = "";
+    if (petInterest.length == 0) {
+      document.getElementById("interested-" + petID).innerHTML = "<p>None</p>";
+    } else {
 
-          let newcard = contactTemplate.content.cloneNode(true);
+      let usersList = document.createElement('div');
+      usersList.id = "interested-" + petID;
+      usersList.setAttribute("class", "interested");
+      //iterates through every user in the pet's "interested" array list and adds them to the
+      //pet card's "interested/contact request" section
+      petInterest.forEach(element => {
+        if (element != null) {
+          db.collection("userProfiles").doc(element).get().then(userDoc => {
+            let user = userDoc.data();
+            let userName = user.name;
+            let docID = userDoc.id;
 
-          //links the interested user's name to their profile page
-          newcard.querySelector('.userName').href = "AdoptProfileDetail.html?userID=" + docID;
-          newcard.querySelector('.userName').innerHTML = userName;
-          //adds unique identifier to the interested user's card, which will be used to remove the user
-          //if the owner rejects their request
-          newcard.querySelector('.userCard').id = "userCard-" + docID + petID;
-          //adds buttons to accept/decline the request
-          let buttons = `<button onclick="acceptRequest('${petID}','${docID}')">Accept</button>
-                        <button onclick="declineRequest('${petID}','${docID}')">Decline</button>`
-          newcard.querySelector('.nameButtons').innerHTML = buttons;
+            let newcard = contactTemplate.content.cloneNode(true);
 
-          document.querySelector('#interested-' + petID).appendChild(newcard);
-        });
+            //links the interested user's name to their profile page
+            newcard.querySelector('.userName').href = "AdoptProfileDetail.html?userID=" + docID;
+            newcard.querySelector('.userName').innerHTML = userName;
+            
+            //adds buttons to accept/decline the request
+            let buttons = `<button onclick="acceptRequest('${petID}','${docID}')">Accept</button>
+                          <button onclick="declineRequest('${petID}','${docID}')">Decline</button>`
+            newcard.querySelector('.nameButtons').innerHTML = buttons;
+
+            usersList.appendChild(newcard);
+          });
+        }
+      });
+
+      document.getElementById("interested-" + petID).replaceWith(usersList);
     }
   });
+
+
 }
 
 //adds a list of contacts (that the owner accepted) under the "contacts" section
-function getContacts(petContacts, petID) {
-  let contactTemplate = document.getElementById("contactCard");
+function getContacts(petID) {
+  document.getElementById("contact-title-" + petID).innerHTML = "<h4>Contacts:</h4>";
+  
 
-  //iterates through every user in the pet's "contacts" array list and adds them to the
-  //pet card's "contacts" section
-  petContacts.forEach(element => {
-    if (element != null) {
-      db.collection("userProfiles").doc(element).get()
-        .then(userDoc => {
-          let user = userDoc.data();
-          let userName = user.name;
-          let docID = userDoc.id;
-          let userEmail = user.email;
+  db.collection("petProfiles").doc(petID).onSnapshot(petDoc => {
+    let petContacts = petDoc.data().contacts;
+    //contactsCard.innerHTML = "";
+    if (petContacts.length == 0) {
+      document.getElementById("contacts-" + petID).innerHTML = "<p>None</p>";
+    } else {
+      let contactTemplate = document.getElementById("contactCard");
+      let usersList = document.createElement('div');
+      usersList.id = "contacts-" + petID;
+      usersList.setAttribute("class", "contacts")
 
-          let newcard = contactTemplate.content.cloneNode(true);
+      //iterates through every user in the pet's "contacts" array list and adds them to the
+      //pet card's "contacts" section
+      petContacts.forEach(element => {
+        if (element != null) {
+          db.collection("userProfiles").doc(element).get().then(userDoc => {
+            let user = userDoc.data();
+            let userName = user.name;
+            let docID = userDoc.id;
+            let userEmail = user.email;
 
-          //links contact's name to the contact's profile page
-          newcard.querySelector('.userName').href = "AdoptProfileDetail.html?userID=" + docID;
-          newcard.querySelector('.userName').innerHTML = userName;
-          //link to open email and populate with the contact's email
-          let buttons = `<a href="mailto:${userEmail}">Email</a>`
-          newcard.querySelector('.nameButtons').innerHTML = buttons;
+            let newcard = contactTemplate.content.cloneNode(true);
 
+            //links contact's name to the contact's profile page
+            newcard.querySelector('.userName').href = "AdoptProfileDetail.html?userID=" + docID;
+            newcard.querySelector('.userName').innerHTML = userName;
+            //link to open email and populate with the contact's email
+            let buttons = `<a href="mailto:${userEmail}">Email</a>`
+            newcard.querySelector('.nameButtons').innerHTML = buttons;
 
-          document.querySelector('#contacts-' + petID).appendChild(newcard);
-        });
+            usersList.appendChild(newcard);
+          });
+        }
+      });
+      console.log("users list id: " + usersList.id);
+      document.getElementById("contacts-" + petID).replaceWith(usersList);
     }
   });
+
 }
 
 //adds contacts to the database when owner accepts interested user's request
-async function acceptRequest(petID, userID) {
-  var currentUser = await getUserID();
-  console.log(currentUser);
+function acceptRequest(petID, userID) {
+  var petInfo = db.collection("petProfiles").doc(petID);
   //adds interested user to the pet's contact list
   //removes interested user from the pet's interested list
-  db.collection("petProfiles").doc(petID).update({
+  petInfo.update({
     interested: firebase.firestore.FieldValue.arrayRemove(userID),
     contacts: firebase.firestore.FieldValue.arrayUnion(userID)
   });
@@ -166,11 +184,10 @@ async function acceptRequest(petID, userID) {
   //removes pet from the interested user's interested list
   db.collection("userProfiles").doc(userID).update({
     interested: firebase.firestore.FieldValue.arrayRemove(petID),
-    contacts: firebase.firestore.FieldValue.arrayUnion(currentUser),
+    contacts: firebase.firestore.FieldValue.arrayUnion(petID),
     hasNotification: true
   })
-  //refreshes page to show update
-  displayCards("petProfiles");
+
 }
 
 
@@ -187,7 +204,6 @@ function declineRequest(petID, userID) {
     db.collection("userProfiles").doc(userID).update({
       interested: firebase.firestore.FieldValue.arrayRemove(petID)
     });
-    //removes the interested user's information from the "contacts request list"
-    document.getElementById("userCard-" + userID + petID).remove();
+    
   }
 }

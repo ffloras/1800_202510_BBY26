@@ -1,5 +1,5 @@
 main {
-  padding-top: 100px;
+  padding-top: 150px;
   max-width: 70%;
   margin: 0 auto;
   display: flex;
@@ -8,13 +8,25 @@ main {
   flex-wrap: wrap;
 }
 
+p, a {
+  font-size: 1.3em;
+}
+
 .petName {
   font-size: 2em;
+  border-bottom: 1px solid grey;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0 15px 0;
+  background-color: rgb(240, 232, 196);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .userCard {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 .heading {
@@ -22,8 +34,19 @@ main {
 }
 
 .petCard {
-  border: 1px solid gray;
+  border: 1px solid rgb(138, 135, 124);
   width: 450px;
-  padding: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
+}
+
+.petInfo {
+  padding: 0 20px 0 20px;
+}
+
+.contacts {
+  height: 100px;
+}
+
+.interested {
+  height: 150px;
 }
