@@ -90,3 +90,65 @@ function getUserID() {
         });
     });
 }
+
+var editBtn = document.getElementById("edit-btn");
+var editForm = document.getElementById("edit-form");
+var editPetForm = document.getElementById("edit-pet-form");
+var petInfo = document.querySelector(".pet-info");
+
+function showEditForm(petData) {
+    document.getElementById("edit-name").value = petData.name;
+    document.getElementById("edit-age").value = petData.age;
+    document.getElementById("edit-breed").value = petData.breed;
+    document.getElementById("edit-desc").value = petData.description;
+    document.getElementById("edit-size").value = petData.size;
+
+    editForm.style.display = "block";
+    petInfo.style.display = "none";
+}
+
+function hideEditForm() {
+    editForm.style.display = "none";
+    petInfo.style.display = "block";
+}
+
+editBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    let petData = {
+        name: document.getElementById('name').textContent.replace('Name: ', ''),
+        age: document.getElementById('age').textContent.replace('Age: ', ''),
+        breed: document.getElementById('breed').textContent.replace('Breed: ', ''),
+        description: document.getElementById('desc').textContent.replace('Description: ', ''),
+        size: document.getElementById('size').textContent.replace('Size: ', '')
+    };
+    showEditForm(petData);
+});
+
+editPetForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    let updatedData = {
+        name: document.getElementById("edit-name").value,
+        age: document.getElementById("edit-age").value,
+        breed: document.getElementById("edit-breed").value,
+        description: document.getElementById("edit-desc").value,
+        size: document.getElementById("edit-size").value
+    };
+
+    try {
+        let petRef = db.collection("petProfiles").doc(ID);
+        await petRef.update(updatedData);
+
+        document.getElementById("name").textContent = `Name: ${updatedData.name}`;
+        document.getElementById("age").textContent = `Age: ${updatedData.age}`;
+        document.getElementById("breed").textContent = `Breed: ${updatedData.breed}`;
+        document.getElementById("desc").textContent = `Description: ${updatedData.description}`;
+        document.getElementById("size").textContent = `Size: ${updatedData.size}`;
+
+        alert("Successfully updated!");
+        hideEditForm();
+    } catch (error) {
+        console.error("Fail to change pet information:", error);
+    }
+});
