@@ -12,7 +12,6 @@ function displayPetInfo() {
             petBreed = pet.breed;
             petDesc = pet.description;
             petSize = pet.size;
-            petInterest = pet.interested;
             image = pet.petCode;
 
             document.querySelector("#card-image").src = "data:image/png;base64," + image;   
@@ -21,25 +20,6 @@ function displayPetInfo() {
             document.getElementById("breed").innerHTML = "Breed: " + petBreed;
             document.getElementById("desc").innerHTML = "Description: " + petDesc;
             document.getElementById("size").innerHTML = "Size: " + petSize;
-
-            petInterest.forEach(element => {
-                if (element != null) {
-                    db.collection("userProfiles").doc(element).get()
-                       .then(userDoc => {
-                            let user = userDoc.data();
-                            let userName = user.name;
-                            let docID = userDoc.id;
-
-                            let newcard = document.querySelector('.likes-list').cloneNode(true);
-
-                            newcard.classList.remove("hidden");
-                            newcard.querySelector('#userName').href = "AdoptProfileDetail.html?userID=" + docID;
-                            newcard.querySelector('#userName').innerHTML = userName;
-
-                            document.querySelector('.likes-section').appendChild(newcard);
-                        });
-                }
-            });
         });
 }
 displayPetInfo();
