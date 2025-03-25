@@ -157,7 +157,7 @@ function getContacts(petID) {
             newcard.querySelector('.userName').href = "AdoptProfileDetail.html?userID=" + docID;
             newcard.querySelector('.userName').innerHTML = userName;
             //link to open email and populate with the contact's email
-            let buttons = `<a href="mailto:${userEmail}">Email</a>`
+            let buttons = `<a href="mailto:${userEmail}">${userEmail}</a>`
             newcard.querySelector('.nameButtons').innerHTML = buttons;
 
             usersList.appendChild(newcard);

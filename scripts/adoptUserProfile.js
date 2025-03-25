@@ -7,16 +7,16 @@ async function displayUserInfo() {
             user = doc.data();
             image = user.profileImage;
             userName = user.name;
-            userEmail = user.email;
             userChild = user.children;
             userHousing = user.housing;
             userExperience = user.pastExperience;
+            userPets = user.hasPets;
 
             document.querySelector("#avatar-img").src = "data:image/png;base64," + image;
             document.getElementById("display-name").innerHTML = userName;
-            document.getElementById("display-email").innerHTML = userEmail;
             document.getElementById("display-housing").innerHTML = userHousing;
 
+            console.log(userChild)
             if (userChild) {
                 document.getElementById("display-child").innerHTML = "Yes";
             } else {
@@ -27,6 +27,12 @@ async function displayUserInfo() {
                 document.getElementById("display-experience").innerHTML = "Yes";
             }else {
                 document.getElementById("display-experience").innerHTML = "No";
+            }
+
+            if (userPets) {
+                document.getElementById("display-pets").innerHTML = "Yes";
+            }else {
+                document.getElementById("display-pets").innerHTML = "No";
             }
         });
 }
@@ -53,10 +59,10 @@ const userInfo = document.getElementById("user-info");
 
 function showEditForm(userData) {
     document.getElementById("edit-name").value = userData.name;
-    document.getElementById("edit-email").value = userData.email;
     document.getElementById("edit-housing").value = userData.housing;
     document.getElementById("edit-experience").value = userData.pastExperience;
     document.getElementById("edit-child").value = userData.children;
+    document.getElementById("edit-pets").value = userData.hasPets;
 
     editForm.style.display = "block";
     userInfo.style.display = "none";
@@ -72,10 +78,10 @@ editBtn.addEventListener("click", (e) => {
 
     let userData = {
         name: document.getElementById('display-name').textContent,
-        email: document.getElementById('display-email').textContent,
         housing: document.getElementById('display-housing').textContent,
         pastExperience: document.getElementById('display-experience').textContent,
         children: document.getElementById('display-child').textContent,
+        hasPets: document.getElementById('display-pets').textContent
     };
 
     showEditForm(userData);
@@ -84,12 +90,37 @@ editBtn.addEventListener("click", (e) => {
 editForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    let hasChildren;
+    if (document.getElementById('edit-child').value == "Yes") {
+        hasChildren = true;
+    } else {
+        hasChildren = false;
+    }
+
+    let hasPets;
+    if (document.getElementById('edit-pets').value == "Yes") {
+        hasPets = true;
+    } else {
+        hasPets = false;
+    }
+
+    let pastExperience;
+    if (document.getElementById('edit-experience').value == "Yes") {
+        pastExperience = true;
+    } else {
+        pastExperience = false;
+    }
+
+    console.log(hasChildren);
+    console.log(hasPets);
+    console.log(pastExperience);
+
     let updatedData = {
         name: document.getElementById("edit-name").value,
-        email: document.getElementById("edit-email").value,
         housing: document.getElementById("edit-housing").value,
-        pastExperience: document.getElementById("edit-experience").value,
-        children: document.getElementById("edit-child").value
+        pastExperience: pastExperience,
+        children: hasChildren,
+        hasPets: hasPets
     };
 
     try {
@@ -98,10 +129,10 @@ editForm.addEventListener("submit", async (e) => {
         await userRef.update(updatedData);
 
         document.getElementById("display-name").textContent = updatedData.name;
-        document.getElementById("display-email").textContent = updatedData.email;
         document.getElementById("display-housing").textContent = updatedData.housing;
-        document.getElementById("display-experience").textContent = updatedData.pastExperience;
-        document.getElementById("display-child").src = updatedData.children;
+        document.getElementById("display-experience").textContent = document.getElementById("edit-experience").value;
+        document.getElementById("display-child").textContent = document.getElementById("edit-child").value;
+        document.getElementById("display-pets").textContent = document.getElementById("edit-pets").value;
 
         alert("Successfully updated!");
         hideEditForm();

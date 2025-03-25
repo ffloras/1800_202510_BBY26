@@ -8,15 +8,21 @@ function displayUserInfo() {
         .then(doc => {
             user = doc.data();
             userName = user.name;
-            userEmail = user.email;
             userHousing = user.housing;
-            userExperience = user.pastExperience;
+            userExperience = user.pastExperience ? "Yes" : "No";
+            hasChildren = user.children ? "Yes" : "No";
+            hasPets = user.hasPets ? "Yes": "No";
+            avatar = user.profileImage;
+            userDescription = user.description;
 
             document.getElementById("name").innerHTML = userName;
-            document.getElementById("email").innerHTML = userEmail;
-            document.getElementById("housing").innerHTML = userHousing;
-            document.getElementById("experience").innerHTML = userExperience;
-            document.getElementById("purpose").innerHTML = userPurpose;
+            document.getElementById("past-experience").innerHTML = "<strong>Previous Experience with pets: </strong>" + userExperience;
+            document.getElementById("current-pet").innerHTML = "<strong>Currently has another pet: </strong>" + hasPets;
+            document.getElementById("has-children").innerHTML = "<strong>Living with young children: </strong>" + hasChildren;
+            document.getElementById("housing").innerHTML = "<strong>Current Housing: </strong>" + userHousing;
+            document.getElementById("avatar").src = "data:image/png;base64," + avatar;
+            document.getElementById("description-title").innerHTML = "More about " + userName + ":";
+            document.getElementById("description").innerHTML = userDescription;
         });
 }
 displayUserInfo();
