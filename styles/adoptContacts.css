@@ -5,25 +5,45 @@ body {
     grid-template-rows: 60px calc(100vh - 120px) 60px;
 }
 
-#pet-contact-card {
-    display: flex;
-    flex-direction: row;
-    max-width: 700px;
-    max-height: 200px;
-    background-color: rgb(216, 208, 163);
+main {
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
-#pet-contact-card > img {
-    align-self: center;
-    width: 200px;
-    border-radius: 100%;
+.pet-contact-card {
+    border: 1px solid rgb(138, 135, 124);
+    width: 450px;
+    border-radius: 10px;
 }
 
-#pet-contact-card > h3 {
-    display: block;
+.pet-contact-card > img {
+    width: 100%;
+    max-height: 300px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
-@media screen and (max-width: 720px) {
+.pet-name {
+    font-size: 2em;
+    border-bottom: 1px solid grey;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0 15px 0;
+    background-color: rgb(240, 232, 196);
+}
+
+.pet-info {
+    height: 50px;
+    text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .main-content-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+    
     #contacts-go-here {
         display: flex;
         flex-direction: column;
@@ -32,14 +52,13 @@ body {
     }
 }
 
-@media screen and (min-width: 721px) {
+@media screen and (min-width: 1001px) {
     #contacts-go-here {
         display: grid;
-        grid-template-columns: calc(50vw - 15px) calc(50vw - 15px);
-        grid-template-rows: auto;
-        padding-left: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        gap: 10px;
+        width: 100%;
+        justify-content: center;
+        grid-template-columns: calc(50vw - 30px) calc(50vw - 30px);
+        padding: 20px;
+        gap: 20px;
     }
 }
