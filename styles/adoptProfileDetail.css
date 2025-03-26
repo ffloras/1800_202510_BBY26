@@ -64,6 +64,27 @@ body {
     border-radius: 4px;
 }
 
+.children,
+.desc h2 {
+    margin-top: 20px;
+}
+
+.children h2{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.children ul {
+    list-style-type: none;
+}
+
+.children ul li {
+    background: #f4f4f4;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
 .desc .description {
     margin-top: 10px;
     font-size: 18px;

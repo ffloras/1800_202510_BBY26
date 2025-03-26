@@ -30,6 +30,7 @@
             <p><strong>Children:</strong> <span id="display-child"></span></p>
             <p><strong>Housing Status:</strong> <span id="display-housing"></span></p>
             <p><strong>Past Experience:</strong> <span id="display-experience"></span></p>
+            <p><strong>Description:</strong> <span id="display-desc"></span></p>
             <button id="edit-btn">Edit</button>
         </div>
 
@@ -54,6 +55,9 @@
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
             </select>
+
+            <label for="description">Description:</label>
+            <textarea type="text" id="edit-desc" name="desc"></textarea>
 
             <button type="submit">Save</button>
             <button type="button" onclick="hideEditForm()">Cancel</button>

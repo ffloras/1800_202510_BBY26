@@ -11,11 +11,18 @@ async function displayUserInfo() {
             userChild = user.children;
             userHousing = user.housing;
             userExperience = user.pastExperience;
+            userDesc = user.description;
 
             document.querySelector("#avatar-img").src = "data:image/png;base64," + image;
             document.getElementById("display-name").innerHTML = userName;
             document.getElementById("display-email").innerHTML = userEmail;
             document.getElementById("display-housing").innerHTML = userHousing;
+
+            if (userDesc == null) {
+                document.getElementById("display-desc").innerHTML = "Nothing here" ;
+            } else {
+                document.getElementById("display-desc").innerHTML = userDesc;
+            }
 
             if (userChild) {
                 document.getElementById("display-child").innerHTML = "Yes";
@@ -57,6 +64,7 @@ function showEditForm(userData) {
     document.getElementById("edit-housing").value = userData.housing;
     document.getElementById("edit-experience").value = userData.pastExperience;
     document.getElementById("edit-child").value = userData.children;
+    document.getElementById("edit-desc").value = userData.description;
 
     editForm.style.display = "block";
     userInfo.style.display = "none";
@@ -76,6 +84,7 @@ editBtn.addEventListener("click", (e) => {
         housing: document.getElementById('display-housing').textContent,
         pastExperience: document.getElementById('display-experience').textContent,
         children: document.getElementById('display-child').textContent,
+        description: document.getElementById('display-desc').textContent,
     };
 
     showEditForm(userData);
@@ -89,7 +98,8 @@ editForm.addEventListener("submit", async (e) => {
         email: document.getElementById("edit-email").value,
         housing: document.getElementById("edit-housing").value,
         pastExperience: document.getElementById("edit-experience").value,
-        children: document.getElementById("edit-child").value
+        children: document.getElementById("edit-child").value,
+        description: document.getElementById("edit-desc").value,
     };
 
     try {
@@ -102,9 +112,12 @@ editForm.addEventListener("submit", async (e) => {
         document.getElementById("display-housing").textContent = updatedData.housing;
         document.getElementById("display-experience").textContent = updatedData.pastExperience;
         document.getElementById("display-child").src = updatedData.children;
+        document.getElementById("display-desc").src = updatedData.description;
 
         alert("Successfully updated!");
         hideEditForm();
+
+        window.location.reload();
     } catch (error) {
         console.error("Fail to update user information:", error);
     }

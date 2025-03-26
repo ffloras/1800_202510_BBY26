@@ -11,12 +11,27 @@ function displayUserInfo() {
             userEmail = user.email;
             userHousing = user.housing;
             userExperience = user.pastExperience;
+            userDesc = user.description;
+            image = user.profileImage;
+            userChild = user.children;
 
+            document.querySelector("#avatar-img").src = "data:image/png;base64," + image;
             document.getElementById("name").innerHTML = userName;
             document.getElementById("email").innerHTML = userEmail;
             document.getElementById("housing").innerHTML = userHousing;
-            document.getElementById("experience").innerHTML = userExperience;
-            document.getElementById("purpose").innerHTML = userPurpose;
+            document.getElementById("description").innerHTML = userDesc;
+
+            if (userChild) {
+                document.getElementById("child").innerHTML = "Yes";
+            } else {
+                document.getElementById("child").innerHTML = "No";
+            }
+
+            if (userExperience) {
+                document.getElementById("experience").innerHTML = "Yes";
+            } else {
+                document.getElementById("experience").innerHTML = "No";
+            }
         });
 }
 displayUserInfo();

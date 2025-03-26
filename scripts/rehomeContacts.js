@@ -105,7 +105,7 @@ function getInterestedUser(petID) {
             let newcard = contactTemplate.content.cloneNode(true);
 
             //links the interested user's name to their profile page
-            newcard.querySelector('.userName').href = "AdoptProfileDetail.html?userID=" + docID;
+            newcard.querySelector('.userName').href = "adoptProfileDetail.html?userID=" + docID;
             newcard.querySelector('.userName').innerHTML = userName;
             
             //adds buttons to accept/decline the request
