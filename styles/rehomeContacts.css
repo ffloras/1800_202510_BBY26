@@ -3,7 +3,7 @@ main {
   max-width: 70%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;;
+  justify-content: space-around;
   gap: 20px;
   flex-wrap: wrap;
 }
@@ -44,9 +44,14 @@ p, a {
 }
 
 .contacts {
-  height: 100px;
+  height: 120px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .interested {
-  height: 150px;
+  height: 170px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+

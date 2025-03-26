@@ -8,7 +8,7 @@ async function displayPetCards(collection) {
     return;
   }
 
-  db.collection(collection).get()
+  db.collection(collection).where("status", "==", true).get()
     .then(allPets => {
       allPets.forEach(async doc => {
         var title = doc.data().name;

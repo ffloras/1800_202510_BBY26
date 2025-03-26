@@ -137,7 +137,7 @@ editPetForm.addEventListener("submit", async (e) => {
     };
 
     try {
-        let petRef = db.collection("petProfiles").doc(ID);
+        let petRef = db.collection("petProfiles").doc(petID);
         await petRef.update(updatedData);
 
         document.getElementById("name").textContent = `Name: ${updatedData.name}`;

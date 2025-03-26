@@ -11,12 +11,18 @@ async function displayUserInfo() {
             userHousing = user.housing;
             userExperience = user.pastExperience;
             userPets = user.hasPets;
+            userDesc = user.description;
 
             document.querySelector("#avatar-img").src = "data:image/png;base64," + image;
             document.getElementById("display-name").innerHTML = userName;
             document.getElementById("display-housing").innerHTML = userHousing;
 
-            console.log(userChild)
+            if (userDesc == null) {
+                document.getElementById("display-desc").innerHTML = "Nothing here" ;
+            } else {
+                document.getElementById("display-desc").innerHTML = userDesc;
+            }
+
             if (userChild) {
                 document.getElementById("display-child").innerHTML = "Yes";
             } else {
@@ -63,6 +69,7 @@ function showEditForm(userData) {
     document.getElementById("edit-experience").value = userData.pastExperience;
     document.getElementById("edit-child").value = userData.children;
     document.getElementById("edit-pets").value = userData.hasPets;
+    document.getElementById("edit-desc").value = userData.description;
 
     editForm.style.display = "block";
     userInfo.style.display = "none";
@@ -81,7 +88,8 @@ editBtn.addEventListener("click", (e) => {
         housing: document.getElementById('display-housing').textContent,
         pastExperience: document.getElementById('display-experience').textContent,
         children: document.getElementById('display-child').textContent,
-        hasPets: document.getElementById('display-pets').textContent
+        hasPets: document.getElementById('display-pets').textContent,
+        description: document.getElementById('display-desc').textContent,
     };
 
     showEditForm(userData);
@@ -120,7 +128,8 @@ editForm.addEventListener("submit", async (e) => {
         housing: document.getElementById("edit-housing").value,
         pastExperience: pastExperience,
         children: hasChildren,
-        hasPets: hasPets
+        hasPets: hasPets,
+        description: document.getElementById("edit-desc").value
     };
 
     try {
@@ -133,9 +142,12 @@ editForm.addEventListener("submit", async (e) => {
         document.getElementById("display-experience").textContent = document.getElementById("edit-experience").value;
         document.getElementById("display-child").textContent = document.getElementById("edit-child").value;
         document.getElementById("display-pets").textContent = document.getElementById("edit-pets").value;
+        document.getElementById("display-desc").textContent = updatedData.description;
 
         alert("Successfully updated!");
         hideEditForm();
+
+        window.location.reload();
     } catch (error) {
         console.error("Fail to update user information:", error);
     }

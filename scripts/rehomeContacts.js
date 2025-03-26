@@ -15,8 +15,8 @@ async function displayCards(collection) {
             db.collection(collection).doc(pet).get().then(doc => {
               var docID = doc.id;
               var name = doc.data().name;
-              var petInterest = doc.data().interested;
-              var petContacts = doc.data().contacts;
+              //var petInterest = doc.data().interested;
+              //var petContacts = doc.data().contacts;
 
 
               let newcard = petTemplate.content.cloneNode(true);
@@ -25,7 +25,7 @@ async function displayCards(collection) {
               //sets title of card with name of pet
               newcard.querySelector('.petName').innerHTML = "Contacts for " + name;
               //adds unique identifier to each pet card's "interested/contact requests" and "contacts" section
-              //list of will be added to this section using the unique identifier
+              //list of contacts/contact requests will be added to this section using the unique identifier
               newcard.querySelector('.interested').id = "interested-" + docID;
               newcard.querySelector('.request-title').id = "request-title-" + docID;
               
@@ -92,7 +92,7 @@ function getInterestedUser(petID) {
 
       let usersList = document.createElement('div');
       usersList.id = "interested-" + petID;
-      usersList.setAttribute("class", "interested");
+      usersList.setAttribute("class", "interested scroll");
       //iterates through every user in the pet's "interested" array list and adds them to the
       //pet card's "interested/contact request" section
       petInterest.forEach(element => {
@@ -105,7 +105,7 @@ function getInterestedUser(petID) {
             let newcard = contactTemplate.content.cloneNode(true);
 
             //links the interested user's name to their profile page
-            newcard.querySelector('.userName').href = "AdoptProfileDetail.html?userID=" + docID;
+            newcard.querySelector('.userName').href = "adoptProfileDetail.html?userID=" + docID;
             newcard.querySelector('.userName').innerHTML = userName;
             
             //adds buttons to accept/decline the request

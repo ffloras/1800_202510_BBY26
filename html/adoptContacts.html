@@ -23,21 +23,29 @@
         <link rel="stylesheet" href="/styles/adoptContacts.css">
     </head>
     <body>
+        <template id="pet-contact">
+            <div class="pet-contact-card">
+            <img src="" alt="" class="pet-image">
+                <div>
+                    <p class="pet-name"></p>
+                    <div class="pet-info">
+                        <h3 class="request-status"></h3>
+                        <h4 class="owner-email"></h4>
+                        <h4 class="owner-name"></h4>
+                    </div>
+                </div>
+                <img src="" alt="" class="onwer-image">
+            </div>
+        </template>
+        
         <header id="adoptNavbarPlaceholder"></header>
 
-        <div id="main">
-            <div id="contacts-go-here">
-                <template id="pet-contact">
-                    <div id="pet-contact-card">
-                        <img src="" alt="" class="pet-image">
-                        <h3 class="pet-name"></h3>
-                        <img src="" alt="" class="onwer-image">
-                        <p class="owner-name"></p>
-                        <p class="owner-email"></p>
-                    </div>
-                </template>
+        <main>
+            <div class="main-content-wrapper">
+                <div id="contacts-go-here">
+                </div>
             </div>
-        </div>
+        </main>
 
         <footer id="adoptFooterPlaceholder"></footer>
         <script src="/scripts/firebaseAPI_team26.js"></script>
