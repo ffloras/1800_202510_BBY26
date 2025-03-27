@@ -25,7 +25,8 @@ body {
 }
 
 .pet-info img {
-    width: 100%;
+    transform: translateX(50%);
+    width: 50%;
     max-width: fit-content;
     border-radius: 8px;
     margin-bottom: 15px;
@@ -33,6 +34,7 @@ body {
 
 .pet-info {
     width: fit-content;
+    margin-bottom: 20px;
 }
 
 .pet-info h1 {
@@ -145,7 +147,9 @@ body {
 }
 
 @media (min-width: 1024px) {
-   
+   .pet-info {
+        width: 70%;
+   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
