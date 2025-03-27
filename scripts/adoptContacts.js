@@ -58,6 +58,17 @@ async function displayPetContacts() {
 
 displayPetContacts();
 
+resetNotification();
+
+//removes notification icon on contact button once user clicks into
+//the contacts page by setting their 'hasNotification' field to false
+async function resetNotification() {
+  let currentUser = await getUserID();
+  db.collection("userProfiles").doc(currentUser).update({
+    hasNotification: false
+  });
+}
+
 function getUserID() {
     return new Promise((resolve, reject) => {
       firebase.auth().onAuthStateChanged((user) => {

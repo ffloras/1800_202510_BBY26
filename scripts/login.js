@@ -54,6 +54,8 @@ function signUp() {
         interested: [],
         contacts: [],
         pets: [],
+        petType: "",
+        location: "",
         hasNotification: false
       }).then(function () {
         console.log("New user added to firestore");
