@@ -58,18 +58,16 @@ function viewContactPrompt() {
     loginMessage();
   }
   else {
-    let cardTemplate = document.getElementById("contactTemplate");
-
     //get the pet's name using petID
     let petID = getPetID();
     db.collection("petProfiles").doc(petID).get().then(doc => {
       let name = doc.data().name;
 
-      //clear previous placeholder content and populate with template content
-      let newCard = cardTemplate.content.cloneNode(true);
-      newCard.getElementById("pet-name").innerHTML = name;
-      clearContent();
-      document.getElementById("menuPlaceholder").appendChild(newCard);
+      let text = `Do you want to send a contact request to ${name}'s owner?`;
+
+      if (confirm(text)) {
+        sendRequest();
+      }
     });
   }
 }
@@ -88,7 +86,6 @@ function sendRequest() {
 
     //sets message depending of whether the user has already sent a previous contact request
     //if it is a new request, user's ID will also be written into pet's "interested" field
-    let message = "";
     if (interestedList.includes(userID)) {
       message = `You have already send a contact request to ${petName}'s owner`;
     } else if (contactList.includes(userID)) {
@@ -107,8 +104,8 @@ function sendRequest() {
       message = `A contact request has been sent to ${petName}'s owner`;
     }
 
-    document.getElementById("menuPlaceholder").innerHTML = message;
-    document.getElementById("hidePlaceholder").innerHTML = "hide";
+    alert(message);
+
   });
 
 }
@@ -199,9 +196,9 @@ function clearContent() {
 }
 
 function loginMessage() {
-  message = "You are not logged in. "
-          + "<a href='/html/login.html'>Log In</a> or "
-          + "<a href='/html/signup.html'>Sign Up</a>";
-  document.getElementById('menuPlaceholder').innerHTML = message;
-  document.getElementById('hidePlaceholder').innerHTML = "hide";
+  
+  message = "You are not logged in. Click 'OK' to log in";
+  if (confirm(message)) {
+    window.location.href = "/html/login.html";
+  }
 }

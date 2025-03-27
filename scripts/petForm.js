@@ -29,7 +29,7 @@ async function savePetInfo(collection) {
         ownerID: userID,
         petCode: petImage,
         size: petSize,
-        status: true
+        status: true,
     });
 
     var petID = petDocRef.id;
