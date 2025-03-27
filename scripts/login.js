@@ -95,8 +95,8 @@ function login() {
     if (user) {
       db.collection("userProfiles").doc(user.uid).get().then(doc => {
         let userInfo = doc.data();
-        if (userInfo.isOwner) {
-          window.location = "/html/RehomeMain.html";
+        if (userInfo.isOwner){
+          window.location = "/html/rehomeMain.html";
         } else {
           window.location = "/html/adoptBrowse.html";
         }

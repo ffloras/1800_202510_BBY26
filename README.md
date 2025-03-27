@@ -1,42 +1,36 @@
 
-# Project Name
+# Paws & Homes
 
 ## Overview
-Summarize your project's purpose, problem solved, key features, user benefits, development context, and main technologies used.
+Our web application called Paws & Homes aimts to help pet owners who can no longer care for their pets connect with those who are looking to adopt, by providing a safe platform to effectively communicate.
 
-Example:
-
-This client-side JavaScript web application provides real-time weather updates for cities worldwide. It simplifies accessing weather information through an intuitive mobile-first interface, allowing users to input a city name and receive data on temperature, humidity, and conditions.
-
-Developed for the [Course Name] course, applying User-Centred Design practices, agile project management processes, integrating a weather API, and Firebase backend services.
+Developed for the COMP1800 course, applying User-Centered Design practices, agile project management processes with by-weekly meetings, and Firebase backend services.
 
 ---
 
 ## Features
-
-Example:
-- Real-time weather updates for any city.
-- Responsive design for desktop and mobile.
-- Displays temperature, humidity, and weather conditions.
+- Allows owners to create personallized pet profiles.
+- Allows owners to accept/decline contact requests from users interested in adopting.
+- Allows users to filter all the options available.
+- Allows users to like/contact request/share a pet profile.
 
 ---
 
 ## Technologies Used
 
-Example:
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Firebase for hosting
 - **Database**: Firestore
-- **API**: OpenWeatherMap API
 
 ---
 
 ## Usage
 
-Example:
-1. Open your browser and visit `http://localhost:3000`.
-2. Enter the name of the city in the search bar and press enter.
-3. View the weather information displayed on the screen.
+1. Go to _____(page link).
+2. Sign up - Enter your name, email & password, and select if you want to adopt or rehome a pet.
+3. depending on previous selection:
+    4. If adopt was selected, user will be promted to fill out a form that will provide useful info for pet owners.
+    5. If rehome was selected, user will be taken to the create pet profile page.
 
 ---
 
@@ -47,8 +41,8 @@ Paws & Homes
 1800_202510_BBY26/
 ├── html/
 |   ├── components/
-|   |   └── navbar-footer-htmls
-|   ├── main-htmls
+|   |   └── navbars/footers.html
+|   ├── main-pages.hmtl
 ├── images/
 |   ├── icons.png
 |   └── logo.png
@@ -64,26 +58,15 @@ Paws & Homes
 
 ## Contributors
 - **Flora** - Hi, I'm excited to get started. Lets make something fun and interesting together.
-- **Joaquin Paredes** - BCIT CST Student aspiring to become a game developer in the future. My goal is to be part of something as good, if not better, than Red Dead Redemption by Rockstar. Right now I am anxiously waiting for Kingdom Come Deliverance 2 to come out.
+- **Joaquin Paredes** - BCIT CST Student aspiring to become a game developer in the future. Past experience in HTML, CSS, Java, C, and C++.
 - **Minh** - Nice to meet you guys.
----
-
-## Acknowledgments
-
-Example:
-- Weather data sourced from [OpenWeatherMap](https://openweathermap.org/).
-- Code snippets for ___ algoirthm were adapted from resources such as [Stack Overflow](https://stackoverflow.com/) and [MDN Web Docs](https://developer.mozilla.org/).
-- Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
-
 ---
 
 ## Limitations and Future Work
 ### Limitations
 
-Example:
-- Currently, the app only supports city-based weather searches.
-- Limited to basic weather parameters like temperature, humidity, and conditions.
-- The user interface can be further enhanced for accessibility.
+- Currently if a user forgets their password, there is no function to reset it.
+- Email verification has not yet been implemented.
 
 ### Future Work
 
@@ -92,10 +75,3 @@ Example:
 - Implement additional weather parameters like wind speed and UV index.
 - Create a dark mode for better usability in low-light conditions.
 - Integrate user accounts for saving favorite locations.
-
----
-
-## License
-
-Example:
-This project is licensed under the MIT License. See the LICENSE file for details.

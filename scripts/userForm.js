@@ -1,3 +1,5 @@
+var userImage;
+
 async function saveUserInfo(event) {
     event.preventDefault();
     var userDocRef = db.collection("userProfiles");
@@ -33,7 +35,8 @@ async function saveUserInfo(event) {
             housing: userHousing,
             pastExperience: isYes,
             description: userDesc,
-            hasPets: hasPets
+            hasPets: hasPets,
+            profileImage: userImage
         });
 
         alert("Successfully uploaded your information!");
@@ -62,32 +65,9 @@ function handleFileSelect(event) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            var base64String = e.target.result.split(',')[1];
-
-            console.log(base64String);
-
-            saveProfileImage(base64String);
+            userImage = e.target.result.split(',')[1];
         };
 
         reader.readAsDataURL(file);
     }
-}
-
-function saveProfileImage(base64String) {
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            userId = user.uid;
-            db.collection("userProfiles").doc(userId).set({
-                profileImage: base64String
-            }, { merge: true })
-                .then(function () {
-                    console.log("Profile image saved successfully!");
-                })
-                .catch(function (error) {
-                    console.error("Error saving profile image: ", error);
-                });
-        } else {
-            console.error("No user is signed in.");
-        }   
-    });
 }

@@ -21,8 +21,6 @@ function loadSkeleton() {
       } else {
         console.log($('#adoptNavbarPlaceholder').load('/html/components/loginNavBar.html'));
         console.log($('#rehomeNavbarPlaceholder').load('/html/components/loginNavBar.html'));
-        //console.log($('#adoptFooterPlaceholder').load('/html/components/adoptFooter.html'));
-        //console.log($('#rehomeFooterPlaceholder').load('/html/components/rehomeFooter.html'));
       }
   });
 }
