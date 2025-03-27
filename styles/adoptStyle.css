@@ -19,7 +19,7 @@ main {
     color: rgb(7, 44, 77);
 }
 
-.main-content  img {
+.pet-img {
     width: 100%;
     max-height: 300px;
     border-radius: 10px;

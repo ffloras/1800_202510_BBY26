@@ -21,27 +21,38 @@
     <header id="adoptNavbarPlaceholder"></header>
 
     <div class="container">
-        <h1>User Profile</h1>
+        <h1 id="display-name"></h1>
 
         <div id="user-info">
             <img id="avatar-img" src="" alt="Avatar" class="avatar">
-            <p><strong>Name:</strong> <span id="display-name"></span></p>
-            <p><strong>Email:</strong> <span id="display-email"></span></p>
-            <p><strong>Children:</strong> <span id="display-child"></span></p>
+            <p><strong>Do you currently have any pets:</strong> <span id="display-pets"></span></p>
+            <p><strong>Do you have past experience with pets:</strong> <span id="display-experience"></span></p>
+            <p><strong>Do you have young children:</strong> <span id="display-child"></span></p>
             <p><strong>Housing Status:</strong> <span id="display-housing"></span></p>
-            <p><strong>Past Experience:</strong> <span id="display-experience"></span></p>
             <p><strong>Description:</strong> <span id="display-desc"></span></p>
             <button id="edit-btn">Edit</button>
         </div>
 
         <form id="edit-form" style="display: none;">
+
             <label for="name">Name:</label>
             <input type="text" id="edit-name" name="name" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="edit-email" name="email" required>
+            <label for="past-pets">Do you currently have any pets:</label>
+            <select id="edit-pets" name="pets" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
 
-            <label for="children">Children:</label>
+            <label for="past-experience">Do you have previous experience raising pets:</label>
+            <select id="edit-experience" name="experience" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            
+
+            <label for="children">Are you living with young children:</label>
             <select id="edit-child" name="child" required>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -50,11 +61,7 @@
             <label for="housing-status">Housing Status:</label>
             <input type="text" id="edit-housing" name="housing" required>
 
-            <label for="past-experience">Past Experience:</label>
-            <select id="edit-experience" name="experience" required>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+            
 
             <label for="description">Description:</label>
             <textarea type="text" id="edit-desc" name="desc"></textarea>

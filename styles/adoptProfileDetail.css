@@ -33,12 +33,11 @@ body {
 }
 
 .name {
-    font-size: 24px;
+    font-size: 32px;
     margin-bottom: 10px;
 }
 
-.email,
-.housing-status {
+.profile > p {
     font-size: 18px;
     margin-bottom: 10px;
 }
@@ -87,7 +86,6 @@ body {
 
 .desc .description {
     margin-top: 10px;
-    font-size: 18px;
 }
 
 /* Desktop */
@@ -102,11 +100,10 @@ body {
     }
 
     .name {
-        font-size: 28px;
+        font-size: 35px;
     }
 
-    .email,
-    .housing-status {
+    .profile > p {
         font-size: 20px;
     }
 
@@ -127,11 +124,10 @@ body {
     }
 
     .name {
-        font-size: 24px;
+        font-size: 32px;
     }
 
-    .email,
-    .housing-status {
+    .profile > p {
         font-size: 18px;
     }
 
@@ -152,7 +148,7 @@ body {
     }
 
     .name {
-        font-size: 20px;
+        font-size: 25px;
     }
 
     .email,

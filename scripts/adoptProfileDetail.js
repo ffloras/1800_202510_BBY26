@@ -8,30 +8,21 @@ function displayUserInfo() {
         .then(doc => {
             user = doc.data();
             userName = user.name;
-            userEmail = user.email;
             userHousing = user.housing;
-            userExperience = user.pastExperience;
-            userDesc = user.description;
-            image = user.profileImage;
-            userChild = user.children;
+            userExperience = user.pastExperience ? "Yes" : "No";
+            hasChildren = user.children ? "Yes" : "No";
+            hasPets = user.hasPets ? "Yes": "No";
+            avatar = user.profileImage;
+            userDescription = user.description;
 
-            document.querySelector("#avatar-img").src = "data:image/png;base64," + image;
             document.getElementById("name").innerHTML = userName;
-            document.getElementById("email").innerHTML = userEmail;
-            document.getElementById("housing").innerHTML = userHousing;
-            document.getElementById("description").innerHTML = userDesc;
-
-            if (userChild) {
-                document.getElementById("child").innerHTML = "Yes";
-            } else {
-                document.getElementById("child").innerHTML = "No";
-            }
-
-            if (userExperience) {
-                document.getElementById("experience").innerHTML = "Yes";
-            } else {
-                document.getElementById("experience").innerHTML = "No";
-            }
+            document.getElementById("past-experience").innerHTML = "<strong>Previous Experience with pets: </strong>" + userExperience;
+            document.getElementById("current-pet").innerHTML = "<strong>Currently has another pet: </strong>" + hasPets;
+            document.getElementById("has-children").innerHTML = "<strong>Living with young children: </strong>" + hasChildren;
+            document.getElementById("housing").innerHTML = "<strong>Current Housing: </strong>" + userHousing;
+            document.getElementById("avatar").src = "data:image/png;base64," + avatar;
+            document.getElementById("description-title").innerHTML = "More about " + userName + ":";
+            document.getElementById("description").innerHTML = userDescription;
         });
 }
 displayUserInfo();

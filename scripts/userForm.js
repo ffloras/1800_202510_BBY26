@@ -5,6 +5,7 @@ async function saveUserInfo(event) {
     var userDesc = document.getElementById("inputDescription").value;
     var isChild;
     var isYes;
+    var hasPets;
 
     if (document.getElementById("radio3").checked) {
         isYes = true;
@@ -18,6 +19,12 @@ async function saveUserInfo(event) {
         isChild = false;
     }
 
+    if (document.getElementById("hasPets").checked) {
+        hasPets = true;
+    } else {
+        hasPets = false;
+    }
+
     var userID = getUserID();
 
     try {
@@ -25,7 +32,8 @@ async function saveUserInfo(event) {
             children: isChild,
             housing: userHousing,
             pastExperience: isYes,
-            description: userDesc
+            description: userDesc,
+            hasPets: hasPets
         });
 
         alert("Successfully uploaded your information!");

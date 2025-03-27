@@ -12,12 +12,20 @@ function signUp() {
     isOwner = true;
   }
 
+
+
   //create new user account in firebase using input form values
   firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
     .then((userCredential) => {
       // Signed in 
       var user = userCredential.user;
       // ...
+
+      firebase.auth().currentUser.sendEmailVerification()
+        .then(() => {
+          console.log("Email verification sent!");
+          // ...
+        });
     })
     .catch((error) => {
       var errorCode = error.code;
@@ -40,6 +48,8 @@ function signUp() {
         housing: "",
         isOwner: isOwner,
         pastExperience: "",
+        children: "",
+        hasPets: "",
         favorites: [],
         interested: [],
         contacts: [],

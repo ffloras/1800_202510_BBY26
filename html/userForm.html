@@ -42,8 +42,8 @@
         <div class="col-12">
             <h1 class="text-center">User Information</h1>
         </div>
-        <div class="col-md-3">
-            <label for="inputGender" class="form-label">Do you have children ?</label>
+        <div class="col-md-4">
+            <label for="childOptions" class="form-label">Are you living with young children?</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="childOptions" id="radio1" value="Yes">
                 <label class="form-check-label" for="radio1">Yes</label>
@@ -53,8 +53,8 @@
                 <label class="form-check-label" for="radio2">No</label>
             </div>
         </div>
-        <div class="col-md-3">
-            <label for="inputExperience" class="form-label">Past experience about pet</label>
+        <div class="col-md-4">
+            <label for="inputExperience" class="form-label">Do you have previous experience raising pets?</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="experienceOptions" id="radio3" value="Yes">
                 <label class="form-check-label" for="radio3">Yes</label>
@@ -64,8 +64,19 @@
                 <label class="form-check-label" for="radio4">No</label>
             </div>
         </div>
+        <div class="col-md-4">
+            <label for="inputPet" class="form-label">Do you currently have any pets?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="petOption" id="hasPets" value="Yes">
+                <label class="form-check-label" for="inputPet">Yes</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="petOption" id="noPets" value="No">
+                <label class="form-check-label" for="inputPet">No</label>
+            </div>
+        </div>
         <div class="col-md-6">
-            <label for="inputHousing" class="form-label">Housing status</label>
+            <label for="inputHousing" class="form-label">What is your housing status</label>
             <input type="text" class="form-control" id="inputHousing" placeholder="e.g. Apartment" required>
         </div>
         <div class="col-12">
@@ -73,7 +84,7 @@
             <input class="form-control" type="file" id="userIcon">
         </div>
         <div class="col-12">
-            <label for="inputDescription" class="form-label">Brief Description</label>
+            <label for="inputDescription" class="form-label">Brief Description about yourself:</label>
             <textarea class="form-control" id="inputDescription" rows="3"></textarea>
         </div>
         <div class="col-12 text-center">
