@@ -2,7 +2,7 @@
 # Paws & Homes
 
 ## Overview
-Our web application called Paws and Homes aimts to help pet owners who can no longer care for their pets connect with those who are looking to adopt, by providing a safe platform to effectively communicate.
+Our web application called Paws & Homes aimts to help pet owners who can no longer care for their pets connect with those who are looking to adopt, by providing a safe platform to effectively communicate.
 
 Developed for the COMP1800 course, applying User-Centered Design practices, agile project management processes with by-weekly meetings, and Firebase backend services.
 
@@ -29,8 +29,8 @@ Developed for the COMP1800 course, applying User-Centered Design practices, agil
 1. Go to _____(page link).
 2. Sign up - Enter your name, email & password, and select if you want to adopt or rehome a pet.
 3. depending on previous selection:
-    3.1. If adopt was selected, user will be promted to fill out a form that will provide useful info for pet owners.
-    3.2. If rehome was selected, user will be taken to the create pet profile page.
+    4. If adopt was selected, user will be promted to fill out a form that will provide useful info for pet owners.
+    5. If rehome was selected, user will be taken to the create pet profile page.
 
 ---
 
@@ -65,10 +65,8 @@ Paws & Homes
 ## Limitations and Future Work
 ### Limitations
 
-Example:
-- Currently, the app only supports city-based weather searches.
-- Limited to basic weather parameters like temperature, humidity, and conditions.
-- The user interface can be further enhanced for accessibility.
+- Currently if a user forgets their password, there is no function to reset it.
+- Email verification has not yet been implemented.
 
 ### Future Work
 

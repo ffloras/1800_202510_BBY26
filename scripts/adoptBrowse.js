@@ -1,6 +1,7 @@
 async function displayPetCards(collection) {
   let userID = await getUserID();
 
+  // Gets the template for cards
   let cardTemplate = document.getElementById("petCardTemplate");
 
   if (!cardTemplate) {
@@ -8,6 +9,7 @@ async function displayPetCards(collection) {
     return;
   }
 
+  // If the pet profile is active, it will load its info and display it
   db.collection(collection).where("status", "==", true).get()
     .then(allPets => {
       allPets.forEach(async doc => {
@@ -20,6 +22,7 @@ async function displayPetCards(collection) {
 
         var newcard = cardTemplate.content.cloneNode(true);
 
+        // Sets the inner html/others of html elements to the correct information
         newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
         newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
         newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
@@ -52,6 +55,7 @@ async function displayPetCards(collection) {
           clearContent(event.target.parentNode);
         })
 
+        // Appends the new card to the main div
         document.getElementById(collection + "-go-here").appendChild(newcard);
       })
     })
