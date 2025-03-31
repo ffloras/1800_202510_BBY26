@@ -16,6 +16,7 @@ main {
     max-height: 600px;
     max-width: 400px;
     background-color: rgb(216, 208, 163);
+    border-radius: 10px;
     color: rgb(120, 77, 13);
 }
 
@@ -31,6 +32,7 @@ main {
     justify-content: center;
     gap: 15%;
 }
+
 
 .card-body>h3 {
     margin: 0;

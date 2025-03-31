@@ -24,8 +24,8 @@ async function displayPetCards(collection) {
 
         // Sets the inner html/others of html elements to the correct information
         newcard.querySelector(".pet-name").innerHTML = title;
-        newcard.querySelector(".pet-age").innerHTML = age + " years old ";
-        newcard.querySelector(".pet-breed").innerHTML = breed;
+        newcard.querySelector(".pet-age").innerHTML = "Age: " + age + " years old ";
+        newcard.querySelector(".pet-breed").innerHTML = "Breed: " + breed;
         newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
         newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
 

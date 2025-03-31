@@ -30,10 +30,9 @@ async function displayFavorites() {
 
           var newcard = cardTemplate.content.cloneNode(true);
 
-          newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
-          newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
-          newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
-          newcard.querySelector(".pet-desc").innerHTML = desc;
+          newcard.querySelector(".pet-name").innerHTML = title;
+          newcard.querySelector(".pet-age").innerHTML = "Age: " + age + " year/s";
+          newcard.querySelector(".pet-breed").innerHTML = "Breed: " + breed;
           newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
           newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
 
