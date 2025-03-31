@@ -9,6 +9,8 @@ async function savePetInfo(collection) {
     var petBreed = document.getElementById("inputBreed").value;
     var petDesc = document.getElementById("inputDescription").value;
     var petSize = document.getElementById("inputSize").value;
+    var petType = document.getElementById("inputType").value;
+    var petLocation = document.getElementById("inputLocation").value;
     var isFemale;
 
     if (document.getElementById("radio1").checked) {
@@ -29,6 +31,8 @@ async function savePetInfo(collection) {
         ownerID: userID,
         petCode: petImage,
         size: petSize,
+        petType: petType,
+        location: petLocation,
         status: true
     });
 

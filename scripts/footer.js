@@ -28,3 +28,13 @@ function getUserID() {
     return null;
   }
 }
+
+// function highlightIcons() {
+//   const icon = document.querySelectorAll('.toggle');
+
+//   icon.forEach((element) => {
+//     element.addEventListener('click', () => {
+//         element.classList.toggle('active');
+//     });
+//   });
+// }
