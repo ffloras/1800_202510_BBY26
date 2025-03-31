@@ -115,9 +115,10 @@ function viewURL() {
   if (getUserID() == null) {
     loginMessage();
   } else {
-    let message = `<input type="button" value="Copy URL" onclick="copyURL()">`;
+    let message = `<input class="url-button" type="button" value="Copy URL" onclick="copyURL()">`;
+    let button = "<button>hide</button>";
     document.getElementById("menuPlaceholder").innerHTML = message;
-    document.getElementById("hidePlaceholder").innerHTML = "hide";
+    document.getElementById("hidePlaceholder").innerHTML = button;
   }
 }
 

@@ -21,8 +21,9 @@ main {
     padding: 20px;
     max-height: 600px;
     max-width: 400px;
-    background-color:rgb(216, 208, 163);
-    color: rgb(7, 44, 77);
+    background-color: rgb(216, 208, 163);
+    border-radius: 10px;
+    color: rgb(120, 77, 13);
 }
 
 .pet-img {
@@ -38,19 +39,20 @@ main {
     gap: 15%;
 }
 
-.card-body > h3 {
+
+.card-body>h3 {
     margin: 0;
 }
 
 #menu {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 20px;
-  padding-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .menuButton {
-  width: 40px;
+    width: 40px;
 }
 
 #title {
@@ -62,6 +64,24 @@ main {
     justify-content: space-around;
 }
 
+.expand {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.hidePlaceholder button {
+    background-color: rgb(216, 208, 163);
+    border-radius: 5px;
+}
+
+.url-button {
+    background-color: rgb(214, 114, 0);
+    width: 100px;
+    border: 2px rgb(120, 73, 20) solid;
+    border-radius: 5px;
+    color: white;
+}
 .no-pets-message {
     text-align: center;
     padding: 20px;

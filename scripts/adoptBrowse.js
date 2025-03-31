@@ -10,18 +10,11 @@ async function displayPetCards(collection, petType = null) {
 
   document.getElementById(collection + "-go-here").innerHTML = "";
 
+  
+  
   let query = db.collection(collection).where("status", "==", true);
 
-  if (petType && petType !== "") {
-    query = query.where("petType", "==", petType);
-  }
-
   query.get().then(allPets => {
-    if (allPets.empty) {
-      document.getElementById(collection + "-go-here").innerHTML =
-        `<p class="no-pets-message">No pets found matching your criteria.</p>`;
-      return;
-    }
 
     allPets.forEach(async doc => {
       var title = doc.data().name;
@@ -32,6 +25,10 @@ async function displayPetCards(collection, petType = null) {
       var docID = doc.id;
 
       var newcard = cardTemplate.content.cloneNode(true);
+        //shows contact request when clicked
+        newcard.querySelector(".contact").addEventListener("click", (event) => {
+          viewContactPrompt(userID, docID);
+        });
 
       newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
       newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
@@ -40,10 +37,15 @@ async function displayPetCards(collection, petType = null) {
       newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
       newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
 
-      //sets favorite button to on/off when page loads
-      if (userID != null) {
-        newcard.querySelector(".favorite").src = await setFavorite(userID, docID);
-      }
+      //shows URL button when clicked
+      newcard.querySelector(".link").addEventListener("click", (event) => {
+        viewURL(userID, docID, event);
+      });
+      
+        //hides expandable content when clicked
+        newcard.querySelector(".hidePlaceholder").addEventListener("click", (event) => {
+          clearContent(event.target.parentNode.parentNode);
+        })
 
       //toggles favorite button on/off when clicked
       newcard.querySelector(".favorite").addEventListener("click", (event) => {
@@ -70,20 +72,9 @@ async function displayPetCards(collection, petType = null) {
   })
 }
 
-// displayPetCards("petProfiles");
+ displayPetCards("petProfiles");
 
-document.addEventListener('DOMContentLoaded', function() {
-  displayPetCards("petProfiles");
-  
-  document.getElementById('inputType').addEventListener('change', function() {
-    const selectedType = this.value;
-    if (selectedType === "") {
-      displayPetCards("petProfiles");
-    } else {
-      displayPetCards("petProfiles", selectedType);
-    }
-  });
-});
+
 
 function getUserID() {
   return new Promise(function (resolve, reject) {
@@ -219,10 +210,10 @@ function viewURL(userID, petID, event) {
   if (userID == null) {
     loginMessage(event.target.parentNode.parentNode);
   } else {
-    let message = `<input type="button" value="Copy URL" onclick="copyURL('${petID}')">`;
-
+    let message = `<input class="url-button" type="button" value="Copy URL" onclick="copyURL('${petID}')">`;
+    let button = "<button>hide</button>";
     card.querySelector(".menuPlaceholder").innerHTML = message;
-    card.querySelector(".hidePlaceholder").innerHTML = "hide";
+    card.querySelector(".hidePlaceholder").innerHTML = button;
 
   }
 }

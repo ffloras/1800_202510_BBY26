@@ -55,3 +55,18 @@ p, a {
   overflow-x: hidden;
 }
 
+.contact-button {
+  border: rgb(199, 135, 17) 1px solid;
+  background-color: rgb(249, 225, 165);
+  color: rgb(125, 92, 8);
+  border-radius: 10px;
+  font-size: 1.2em;
+  width: 85px;
+}
+
+@media (max-width: 900px) {
+  main {
+    max-width: 100%;
+  }
+}
+
