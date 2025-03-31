@@ -1,4 +1,4 @@
-async function displayPetCards(collection) {
+async function displayPetCards(collection, petType = null) {
   let userID = await getUserID();
 
   // Gets the template for cards
@@ -9,46 +9,40 @@ async function displayPetCards(collection) {
     return;
   }
 
-  // If the pet profile is active, it will load its info and display it
-  db.collection(collection).where("status", "==", true).get()
-    .then(allPets => {
-      allPets.forEach(async doc => {
-        var title = doc.data().name;
-        var age = doc.data().age;
-        var breed = doc.data().breed;
-        var desc = doc.data().description;
-        var petCode = doc.data().petCode;
-        var docID = doc.id;
+  document.getElementById(collection + "-go-here").innerHTML = "";
 
-        var newcard = cardTemplate.content.cloneNode(true);
+  
+  
+  let query = db.collection(collection).where("status", "==", true);
 
-        // Sets the inner html/others of html elements to the correct information
-        newcard.querySelector(".pet-name").innerHTML = title;
-        newcard.querySelector(".pet-age").innerHTML = "Age: " + age + " years old ";
-        newcard.querySelector(".pet-breed").innerHTML = "Breed: " + breed;
-        newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
-        newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
+  query.get().then(allPets => {
 
-        //sets favorite button to on/off when page loads
-        if (userID != null) {
-          newcard.querySelector(".favorite").src = await setFavorite(userID, docID);
-        }
+    allPets.forEach(async doc => {
+      var title = doc.data().name;
+      var age = doc.data().age;
+      var breed = doc.data().breed;
+      var desc = doc.data().description;
+      var petCode = doc.data().petCode;
+      var docID = doc.id;
 
-        //toggles favorite button on/off when clicked
-        newcard.querySelector(".favorite").addEventListener("click", (event) => {
-          changeFavorite(userID, docID, event);
-        });
-
+      var newcard = cardTemplate.content.cloneNode(true);
         //shows contact request when clicked
         newcard.querySelector(".contact").addEventListener("click", (event) => {
           viewContactPrompt(userID, docID);
         });
 
-        //shows URL button when clicked
-        newcard.querySelector(".link").addEventListener("click", (event) => {
-          viewURL(userID, docID, event);
-        });
+      newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
+      newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
+      newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
+      newcard.querySelector(".pet-desc").innerHTML = desc;
+      newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
+      newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
 
+      //shows URL button when clicked
+      newcard.querySelector(".link").addEventListener("click", (event) => {
+        viewURL(userID, docID, event);
+      });
+      
         //hides expandable content when clicked
         newcard.querySelector(".hidePlaceholder").addEventListener("click", (event) => {
           clearContent(event.target.parentNode.parentNode);
@@ -57,10 +51,13 @@ async function displayPetCards(collection) {
         // Appends the new card to the main div
         document.getElementById(collection + "-go-here").appendChild(newcard);
       })
-    })
+
+    });
 }
 
-displayPetCards("petProfiles");
+ displayPetCards("petProfiles");
+
+
 
 function getUserID() {
   return new Promise(function (resolve, reject) {
@@ -159,7 +156,7 @@ function sendRequest(userID, petID) {
       message = `You already have ${petName}'s owner as your contact`;
     } else {
       db.collection("petProfiles").doc(petID).update({
-        interested: firebase.firestore.FieldValue.arrayUnion(userID)        
+        interested: firebase.firestore.FieldValue.arrayUnion(userID)
       });
       db.collection("userProfiles").doc(userID).update({
         interested: firebase.firestore.FieldValue.arrayUnion(petID)

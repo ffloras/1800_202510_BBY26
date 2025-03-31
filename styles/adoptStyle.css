@@ -4,6 +4,12 @@ body {
     grid-template-rows: 60px calc(100vh - 120px) 60px;
 }
 
+#filter {
+    position: relative;
+    top: 10px;
+    margin-left: 30px;
+}
+
 main {
     overflow: hidden;
     overflow-y: scroll;
@@ -76,6 +82,12 @@ main {
     border-radius: 5px;
     color: white;
 }
+.no-pets-message {
+    text-align: center;
+    padding: 20px;
+    color: red !important;
+    grid-column: 1 / -1;
+  }
 
 @media screen and (max-width: 720px) {
     .main-content-wrapper {

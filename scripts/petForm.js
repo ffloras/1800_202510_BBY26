@@ -4,13 +4,14 @@ var petImage;
 async function savePetInfo(collection) {
   var userID = await getUserID();
 
-  // Gets the values from the form fields
-  var petName = document.getElementById("inputName").value;
-  var petAge = document.getElementById("inputAge").value;
-  var petBreed = document.getElementById("inputBreed").value;
-  var petDesc = document.getElementById("inputDescription").value;
-  var petSize = document.getElementById("inputSize").value;
-  var isFemale;
+    var petName = document.getElementById("inputName").value;
+    var petAge = document.getElementById("inputAge").value;
+    var petBreed = document.getElementById("inputBreed").value;
+    var petDesc = document.getElementById("inputDescription").value;
+    var petSize = document.getElementById("inputSize").value;
+    var petType = document.getElementById("inputType").value;
+    var petLocation = document.getElementById("inputLocation").value;
+    var isFemale;
 
   if (document.getElementById("radio1").checked) {
     isFemale = false;
@@ -18,20 +19,22 @@ async function savePetInfo(collection) {
     isFemale = true;
   }
 
-  // Add the pet information to the Firestore database
-  const petDocRef = await db.collection(collection).add({
-    name: petName,
-    age: petAge,
-    breed: petBreed,
-    description: petDesc,
-    isFemale: isFemale,
-    interested: [],
-    contacts: [],
-    ownerID: userID,
-    petCode: petImage,
-    size: petSize,
-    status: true
-  });
+    // Add the pet information to the Firestore database
+    const petDocRef = await db.collection(collection).add({
+        name: petName,
+        age: petAge,
+        breed: petBreed,
+        description: petDesc,
+        isFemale: isFemale,
+        interested: [],
+        contacts: [],
+        ownerID: userID,
+        petCode: petImage,
+        size: petSize,
+        petType: petType,
+        location: petLocation,
+        status: true
+    });
 
   var petID = petDocRef.id;
 
