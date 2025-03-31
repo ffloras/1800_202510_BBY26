@@ -1,5 +1,7 @@
 h1 {
   text-align: center;
+  padding-top: 20px;
+  color: rgb(91, 57, 7);
 }
 
 #noFavorites {

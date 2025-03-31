@@ -2,6 +2,7 @@ body {
     display: grid;
     grid-template-columns: 100vw;
     grid-template-rows: 60px calc(100vh - 120px) 60px;
+    
 }
 
 #filter {
@@ -23,7 +24,7 @@ main {
     max-width: 400px;
     background-color: rgb(216, 208, 163);
     border-radius: 10px;
-    color: rgb(120, 77, 13);
+    color: rgb(91, 57, 7);
 }
 
 .pet-img {
@@ -76,12 +77,22 @@ main {
 }
 
 .url-button {
-    background-color: rgb(214, 114, 0);
+    background-color: rgb(223, 131, 27);
     width: 100px;
-    border: 2px rgb(120, 73, 20) solid;
+    border: 2px rgb(185, 117, 40) solid;
     border-radius: 5px;
     color: white;
 }
+
+.details {
+    background-color: rgb(223, 131, 27);
+    width: 100px;
+    border: 2px rgb(185, 117, 40) solid;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2em;
+}
+
 .no-pets-message {
     text-align: center;
     padding: 20px;
@@ -90,14 +101,26 @@ main {
   }
 
 @media screen and (max-width: 720px) {
-    .main-content-wrapper {
+
+    body {
+        padding-top: 60px;
         display: flex;
         justify-content: center;
+        width: 100%;
+    }
+
+    .main-content-wrapper {
+        width: 100%;
     }
 
     #petProfiles-go-here {
         display: flex;
         flex-direction: column;
+        width: 100%;
+    }
+
+    .main-content {
+        width: 750px;
     }
 }
 
