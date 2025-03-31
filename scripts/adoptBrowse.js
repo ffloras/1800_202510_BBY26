@@ -41,7 +41,6 @@ async function displayPetCards(collection, petType = null) {
       newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
       newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
       newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
-      newcard.querySelector(".pet-desc").innerHTML = desc;
       newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
 
       //sets favorite button to on/off when page loads

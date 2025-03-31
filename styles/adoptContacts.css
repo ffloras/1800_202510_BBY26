@@ -11,6 +11,18 @@ main {
     scrollbar-width: none;
 }
 
+h1 {
+    text-align: center;
+    padding-top: 20px;
+    color: rgb(91, 57, 7) !important;
+}
+
+#noContacts {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 2em;
+}
+
 .pet-contact-card {
     border: 1px solid rgb(138, 135, 124);
     width: 450px;
