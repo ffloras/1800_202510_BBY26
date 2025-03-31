@@ -8,7 +8,6 @@ async function displayCards(collection) {
         .then(user => {
             var pets = user.data().pets;
             pets.forEach(pet => {
-                console.log("pet ID: ", pet);
                 if (pet != "") {
                     db.collection(collection).doc(pet).get()
                         .then(doc => {
@@ -40,10 +39,8 @@ function getUserID() {
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log("User is logged in:", user.uid);
                 resolve(user.uid);
             } else {
-                console.log("User is not logged in.");
                 reject("No user is signed in");
                 window.location = "/html/login.html";
             }

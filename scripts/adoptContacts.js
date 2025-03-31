@@ -1,13 +1,18 @@
 async function displayPetContacts() {
+  // Gets the template for the pet card
     let cardTemplate = document.getElementById("pet-contact");
     let ID = await getUserID();
 
+    // Using the ID of the currently logged user, it looks at its info
     db.collection("userProfiles").doc(ID).get()
     .then(user => {
+        // Stores the data of the interested array into var interested
         var interested = user.data().interested;
 
+        // Store the data of the contacts array into var contacts
         var contacts = user.data().contacts;
 
+        // It will go through every petID and gets the information needed
         interested.forEach(inter => {
             if (inter != "") {
                 db.collection("petProfiles").doc(inter).get()
@@ -57,6 +62,17 @@ async function displayPetContacts() {
 }
 
 displayPetContacts();
+
+resetNotification();
+
+//removes notification icon on contact button once user clicks into
+//the contacts page by setting their 'hasNotification' field to false
+async function resetNotification() {
+  let currentUser = await getUserID();
+  db.collection("userProfiles").doc(currentUser).update({
+    hasNotification: false
+  });
+}
 
 function getUserID() {
     return new Promise((resolve, reject) => {

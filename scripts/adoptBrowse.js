@@ -1,6 +1,7 @@
 async function displayPetCards(collection, petType = null) {
   let userID = await getUserID();
 
+  // Gets the template for cards
   let cardTemplate = document.getElementById("petCardTemplate");
 
   if (!cardTemplate) {
@@ -31,7 +32,10 @@ async function displayPetCards(collection, petType = null) {
       var petCode = doc.data().petCode;
       var docID = doc.id;
 
-      var newcard = cardTemplate.content.cloneNode(true);
+        //shows contact request when clicked
+        newcard.querySelector(".contact").addEventListener("click", (event) => {
+          viewContactPrompt(userID, docID);
+        });
 
       newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
       newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
@@ -45,29 +49,12 @@ async function displayPetCards(collection, petType = null) {
         newcard.querySelector(".favorite").src = await setFavorite(userID, docID);
       }
 
-      //toggles favorite button on/off when clicked
-      newcard.querySelector(".favorite").addEventListener("click", (event) => {
-        changeFavorite(userID, docID, event);
-      });
-
-      //shows contact request when clicked
-      newcard.querySelector(".contact").addEventListener("click", (event) => {
-        viewContactPrompt(userID, docID, event);
-      });
-
-      //shows URL button when clicked
-      newcard.querySelector(".link").addEventListener("click", (event) => {
-        viewURL(userID, docID, event);
-      });
-
-      //hides expandable content when clicked
-      newcard.querySelector(".hidePlaceholder").addEventListener("click", (event) => {
-        clearContent(event.target.parentNode);
+        // Appends the new card to the main div
+        document.getElementById(collection + "-go-here").appendChild(newcard);
       })
 
       document.getElementById(collection + "-go-here").appendChild(newcard);
-    })
-  })
+    });
 }
 
 // displayPetCards("petProfiles");
@@ -119,7 +106,7 @@ function setFavorite(userID, petID) {
 
 function changeFavorite(userID, petID, event) {
   if (userID == null) {
-    loginMessage(event.target.parentNode.parentNode);
+    loginMessage();
   } else {
     //get user's 'favorites' field and store in variable favoriteList
     let docRef = db.collection("userProfiles").doc(userID);
@@ -145,39 +132,26 @@ function changeFavorite(userID, petID, event) {
 
 //asks user if they want to send contact request to pet's owner (after
 //they click on the message button)
-function viewContactPrompt(userID, petID, event) {
+function viewContactPrompt(userID, petID) {
   if (userID == null) {
-    loginMessage(event.target.parentNode.parentNode);
+    loginMessage();
   }
   else {
     let cardTemplate = document.getElementById("contactTemplate");
     db.collection("petProfiles").doc(petID).get().then(doc => {
       let name = doc.data().name;
 
-      //clear previous placeholder content and populate with template content
-      let newCard = cardTemplate.content.cloneNode(true);
-      newCard.getElementById("pet-name").innerHTML = name;
-
-      newCard.querySelector(".noButton").addEventListener("click", (event) => {
-        clearContent(event.target.parentNode.parentNode.parentNode);
-      });
-
-      newCard.querySelector(".yesButton").addEventListener("click", (event) => {
-        sendRequest(userID, petID, event.target.parentNode.parentNode.parentNode);
-      });
-
-      let card = event.target.parentNode.parentNode;
-      clearContent(card);
-
-      card.querySelector(".menuPlaceholder").appendChild(newCard);
-
-
+      let text = `Do you want to send a contact request to ${name}'s owner?`;
+      if (confirm(text)) {
+        sendRequest(userID, petID);
+      }
+      
     });
   }
 }
 
 //sends contact request to pet's owner
-function sendRequest(userID, petID, event) {
+function sendRequest(userID, petID) {
   db.collection("petProfiles").doc(petID).get().then(doc => {
     //get pet info
     let interestedList = doc.data().interested;
@@ -206,8 +180,10 @@ function sendRequest(userID, petID, event) {
       message = `A contact request has been sent to ${petName}'s owner`;
     }
 
-    event.querySelector(".menuPlaceholder").innerHTML = message;
-    event.querySelector(".hidePlaceholder").innerHTML = "hide";
+    alert(message);
+
+    // event.querySelector(".menuPlaceholder").innerHTML = message;
+    // event.querySelector(".hidePlaceholder").innerHTML = "hide";
   });
 
 }
@@ -217,7 +193,7 @@ function sendRequest(userID, petID, event) {
 function viewURL(userID, petID, event) {
   let card = event.target.parentNode.parentNode;
   if (userID == null) {
-    loginMessage(event.target.parentNode.parentNode);
+    loginMessage();
   } else {
     let message = `<input type="button" value="Copy URL" onclick="copyURL('${petID}')">`;
 
@@ -234,13 +210,11 @@ function copyURL(petID) {
   alert("URL has been copied");
 }
 
-//message that displays when user clicks button but is not logged in
-function loginMessage(event) {
-  message = "You are not logged in. "
-    + "<a href='/html/login.html'>Log In</a> or "
-    + "<a href='/html/signup.html'>Sign Up</a>";
-  event.querySelector(".menuPlaceholder").innerHTML = message;
-  event.querySelector(".hidePlaceholder").innerHTML = "hide";
+function loginMessage() {
+  message = "You are not logged in. Click 'OK' to log in";
+  if (confirm(message)) {
+    window.location.href = "/html/login.html";
+  }
 }
 
 //removes expandable content

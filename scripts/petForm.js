@@ -2,7 +2,7 @@ var petID;
 var petImage;
 
 async function savePetInfo(collection) {
-    var userID = await getUserID();
+  var userID = await getUserID();
 
     var petName = document.getElementById("inputName").value;
     var petAge = document.getElementById("inputAge").value;
@@ -13,11 +13,11 @@ async function savePetInfo(collection) {
     var petLocation = document.getElementById("inputLocation").value;
     var isFemale;
 
-    if (document.getElementById("radio1").checked) {
-        isFemale = false;
-    } else {
-        isFemale = true;
-    }
+  if (document.getElementById("radio1").checked) {
+    isFemale = false;
+  } else {
+    isFemale = true;
+  }
 
     // Add the pet information to the Firestore database
     const petDocRef = await db.collection(collection).add({
@@ -36,54 +36,47 @@ async function savePetInfo(collection) {
         status: true
     });
 
-    var petID = petDocRef.id;
+  var petID = petDocRef.id;
 
-    // Update the user's document with the petID
-    await db.collection("userProfiles").doc(userID).update({
-        pets: firebase.firestore.FieldValue.arrayUnion(petID)
-    });
+  // Update the user's document with the petID
+  await db.collection("userProfiles").doc(userID).update({
+    pets: firebase.firestore.FieldValue.arrayUnion(petID)
+  });
 
-    //redirect user to Rehom main page once form is submitted
-    window.location.replace("/html/rehomeMain.html");
+  // Redirect user to Rehom main page once form is submitted
+  window.location.replace("/html/rehomeMain.html");
 }
 
+// Eevnt listener for the image field in the form
 document.getElementById("petIcon").addEventListener("change", handlePetFileSelect);
 
+// Function to save the pet photo as a 64-bit string
 function handlePetFileSelect(event) {
-    var file = event.target.files[0];
+  // Save the full file into the var file
+  var file = event.target.files[0];
 
-    if (file) {
-        var reader = new FileReader();
+  if (file) {
+    var reader = new FileReader();
 
-        reader.onload = function(e) {
-            petImage = e.target.result.split(',')[1];
-        };
+    reader.onload = function (e) {
+      // Removes the first bit of the image source and keeps the 64-bit string
+      petImage = e.target.result.split(',')[1];
+    };
 
-        reader.readAsDataURL(file);
-    }
+    reader.readAsDataURL(file);
+  }
 }
 
+// Function to ge the user ID of the currently logged user
 function getUserID() {
-    return new Promise((resolve, reject) => {
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                var userEmail = user.email;
-
-                db.collection("userProfiles").where("email", "==", userEmail).get()
-                    .then(querySnapshot => {
-                        if (!querySnapshot.empty) {
-                            var userDoc = querySnapshot.docs[0];
-                            var userID = userDoc.id;
-
-                            console.log("User ID: " + userID);
-                            resolve(userID);
-                        } else {
-                            reject("No matching user found in the database");
-                        }
-                    })
-            } else {
-                reject("No user is signed in");
-            }
-        });
+  return new Promise((resolve, reject) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        resolve(user.uid);
+      } else {
+        reject("No user is signed in");
+        window.location = "/html/login.html";
+      }
     });
+  });
 }
