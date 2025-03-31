@@ -109,8 +109,8 @@ function getInterestedUser(petID) {
             newcard.querySelector('.userName').innerHTML = userName;
             
             //adds buttons to accept/decline the request
-            let buttons = `<button onclick="acceptRequest('${petID}','${docID}')">Accept</button>
-                          <button onclick="declineRequest('${petID}','${docID}')">Decline</button>`
+            let buttons = `<button class='contact-button' onclick="acceptRequest('${petID}','${docID}')">Accept</button>
+                          <button class='contact-button' onclick="declineRequest('${petID}','${docID}')">Decline</button>`
             newcard.querySelector('.nameButtons').innerHTML = buttons;
 
             usersList.appendChild(newcard);

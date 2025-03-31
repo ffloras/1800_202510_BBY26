@@ -59,7 +59,7 @@ async function displayFavorites() {
 
           //hides expandable content when clicked
           newcard.querySelector(".hidePlaceholder").addEventListener("click", (event) => {
-            clearContent(event.target.parentNode);
+            clearContent(event.target.parentNode.parentNode);
           })
 
           document.getElementById("petProfiles-go-here").appendChild(newcard);
@@ -153,27 +153,6 @@ function viewContactPrompt(userID, petID) {
       if (confirm(text)) {
         sendRequest(userID, petID);
       }
-
-      // //create template and populate with content
-      // let newCard = cardTemplate.content.cloneNode(true);
-      // newCard.getElementById("pet-name").innerHTML = name;
-
-      // newCard.querySelector(".noButton").addEventListener("click", (event) => {
-      //   clearContent(event.target.parentNode.parentNode.parentNode);
-      // });
-
-      // newCard.querySelector(".yesButton").addEventListener("click", (event) => {
-      //   sendRequest(userID, petID, event.target.parentNode.parentNode.parentNode);
-      // });
-
-      // //clears any previous content in html element that it's going to go into
-      // let card = event.target.parentNode.parentNode;
-      // clearContent(card);
-
-      // //adds the template to the html element
-      // card.querySelector(".menuPlaceholder").appendChild(newCard);
-
-
     });
   }
 }
@@ -220,10 +199,10 @@ function viewURL(userID, petID, event) {
   if (userID == null) {
     loginMessage(event.target.parentNode.parentNode);
   } else {
-    let message = `<input type="button" value="Copy URL" onclick="copyURL('${petID}')">`;
-
+    let message = `<input class="url-button" type="button" value="Copy URL" onclick="copyURL('${petID}')">`;
+    let button = "<button>hide</button>";
     card.querySelector(".menuPlaceholder").innerHTML = message;
-    card.querySelector(".hidePlaceholder").innerHTML = "hide";
+    card.querySelector(".hidePlaceholder").innerHTML = button;
 
   }
 }

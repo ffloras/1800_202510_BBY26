@@ -23,10 +23,9 @@ async function displayPetCards(collection) {
         var newcard = cardTemplate.content.cloneNode(true);
 
         // Sets the inner html/others of html elements to the correct information
-        newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
-        newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
-        newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
-        newcard.querySelector(".pet-desc").innerHTML = desc;
+        newcard.querySelector(".pet-name").innerHTML = title;
+        newcard.querySelector(".pet-age").innerHTML = age + " years old ";
+        newcard.querySelector(".pet-breed").innerHTML = breed;
         newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
         newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
 
@@ -52,7 +51,7 @@ async function displayPetCards(collection) {
 
         //hides expandable content when clicked
         newcard.querySelector(".hidePlaceholder").addEventListener("click", (event) => {
-          clearContent(event.target.parentNode);
+          clearContent(event.target.parentNode.parentNode);
         })
 
         // Appends the new card to the main div
@@ -186,10 +185,10 @@ function viewURL(userID, petID, event) {
   if (userID == null) {
     loginMessage();
   } else {
-    let message = `<input type="button" value="Copy URL" onclick="copyURL('${petID}')">`;
-    
+    let message = `<input class="url-button" type="button" value="Copy URL" onclick="copyURL('${petID}')">`;
+    let button = "<button>hide</button>";
     card.querySelector(".menuPlaceholder").innerHTML = message;
-    card.querySelector(".hidePlaceholder").innerHTML = "hide";
+    card.querySelector(".hidePlaceholder").innerHTML = button;
 
   }
 }
