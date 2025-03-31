@@ -19,6 +19,18 @@
 <body>
   <header id="adoptNavbarPlaceholder"></header>
   <main>
+    <div id="filter">
+      <div class="col-md-12">
+          <label for="inputType" class="form-label">Pet type</label>
+          <select name="type" id="inputType">
+              <option value="" selected>All</option>
+              <option value="Dog">Dog</option>
+              <option value="Cat">Cat</option>
+              <option value="Small Animal">Small Animal</option>
+              <option value="Others">Others</option>
+          </select>
+      </div>
+  </div>
     <template id="petCardTemplate">
       <div class="main-content">
         <img class="pet-img" src="..." alt="..." />
