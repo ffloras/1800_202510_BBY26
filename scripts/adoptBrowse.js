@@ -11,8 +11,8 @@ async function displayPetCards(collection, petType = null) {
 
   document.getElementById(collection + "-go-here").innerHTML = "";
 
-  
-  
+
+
   let query = db.collection(collection).where("status", "==", true);
 
   query.get().then(allPets => {
@@ -26,36 +26,50 @@ async function displayPetCards(collection, petType = null) {
       var docID = doc.id;
 
       var newcard = cardTemplate.content.cloneNode(true);
-        //shows contact request when clicked
-        newcard.querySelector(".contact").addEventListener("click", (event) => {
-          viewContactPrompt(userID, docID);
-        });
+      //shows contact request when clicked
+      newcard.querySelector(".contact").addEventListener("click", (event) => {
+        viewContactPrompt(userID, docID);
+      });
 
       newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
       newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
       newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
       newcard.querySelector(".pet-desc").innerHTML = desc;
       newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
-      newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
+
+      //sets favorite button to on/off when page loads
+      if (userID != null) {
+        newcard.querySelector(".favorite").src = await setFavorite(userID, docID);
+      }
+
+      //toggles favorite button on/off when clicked
+      newcard.querySelector(".favorite").addEventListener("click", (event) => {
+        changeFavorite(userID, docID, event);
+      });
+      
+      //redirect to petDetails when clicked
+      newcard.querySelector(".details").addEventListener("click", (event) => {
+        window.location.replace("adoptPetDetails.html?docID=" + docID);
+      });
 
       //shows URL button when clicked
       newcard.querySelector(".link").addEventListener("click", (event) => {
         viewURL(userID, docID, event);
       });
-      
-        //hides expandable content when clicked
-        newcard.querySelector(".hidePlaceholder").addEventListener("click", (event) => {
-          clearContent(event.target.parentNode.parentNode);
-        })
 
-        // Appends the new card to the main div
-        document.getElementById(collection + "-go-here").appendChild(newcard);
+      //hides expandable content when clicked
+      newcard.querySelector(".hidePlaceholder").addEventListener("click", (event) => {
+        clearContent(event.target.parentNode.parentNode);
       })
 
-    });
+      // Appends the new card to the main div
+      document.getElementById(collection + "-go-here").appendChild(newcard);
+    })
+
+  });
 }
 
- displayPetCards("petProfiles");
+displayPetCards("petProfiles");
 
 
 
@@ -132,7 +146,7 @@ function viewContactPrompt(userID, petID) {
       if (confirm(text)) {
         sendRequest(userID, petID);
       }
-      
+
     });
   }
 }

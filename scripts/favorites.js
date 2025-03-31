@@ -34,7 +34,11 @@ async function displayFavorites() {
           newcard.querySelector(".pet-age").innerHTML = "Age: " + age + " year/s";
           newcard.querySelector(".pet-breed").innerHTML = "Breed: " + breed;
           newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
-          newcard.querySelector(".details").href = "adoptPetDetails.html?docID=" + docID;
+
+          //redirect to petDetails when clicked
+          newcard.querySelector(".details").addEventListener("click", (event) => {
+            window.location.replace("adoptPetDetails.html?docID=" + docID);
+          });
 
           //sets favorite button to on/off when page loads
           if (userID != null) {
@@ -215,7 +219,7 @@ function copyURL(petID) {
 
 //message that displays when user clicks button but is not logged in
 function loginMessage() {
-  
+
   message = "You are not logged in. Click 'OK' to log in";
   if (confirm(message)) {
     window.location.href = "/html/login.html";
