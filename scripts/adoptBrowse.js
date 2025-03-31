@@ -10,11 +10,19 @@ async function displayPetCards(collection, petType = null) {
 
   document.getElementById(collection + "-go-here").innerHTML = "";
 
-
-
   let query = db.collection(collection).where("status", "==", true);
 
+  if (petType && petType !== "") {
+    query = query.where("petType", "==", petType);
+  }
+
   query.get().then(allPets => {
+
+    if (allPets.empty) {
+      document.getElementById(collection + "-go-here").innerHTML = 
+        `<p class="no-pets-message">No pets found matching your criteria.</p>`;
+        return;
+    }
 
     allPets.forEach(async doc => {
       var title = doc.data().name;
@@ -68,9 +76,20 @@ async function displayPetCards(collection, petType = null) {
   });
 }
 
-displayPetCards("petProfiles");
+// displayPetCards("petProfiles");
 
+document.addEventListener("DOMContentLoaded", function () {
+  displayPetCards("petProfiles");
 
+  document.getElementById("inputType").addEventListener("change", function () {
+    const selectedType = this.value;
+    if (selectedType === "" || selectedType == "All") {
+      displayPetCards("petProfiles");
+    } else {
+      displayPetCards("petProfiles", selectedType);
+    }
+  });
+});
 
 function getUserID() {
   return new Promise(function (resolve, reject) {
