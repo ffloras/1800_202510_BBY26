@@ -11,6 +11,7 @@ function displayPetInfo() {
       let breed = petInfo.breed;
       let description = petInfo.description;
       let size = petInfo.size;
+      let location = petInfo.location;
       let gender = petInfo.isFemale ? "F" : "M";
 
       let imgEvent = document.querySelector("#petImage");
@@ -25,6 +26,7 @@ function displayPetInfo() {
       document.getElementById("gender").innerHTML = gender;
       document.getElementById("size").innerHTML = size;
       document.getElementById("description").innerHTML = description;
+      document.getElementById("location").innerHTML = "Location: " + location;
       document.getElementById("petImage").src = "data:image/png;base64," + petCode;
 
       //sets the favorite icon (filled/unfilled) based on user's favorite field

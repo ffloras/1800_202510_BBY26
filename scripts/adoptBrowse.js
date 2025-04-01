@@ -28,7 +28,7 @@ async function displayPetCards(collection, petType = null) {
       var title = doc.data().name;
       var age = doc.data().age;
       var breed = doc.data().breed;
-      var desc = doc.data().description;
+      var location = doc.data().location;
       var petCode = doc.data().petCode;
       var docID = doc.id;
 
@@ -41,6 +41,7 @@ async function displayPetCards(collection, petType = null) {
       newcard.querySelector(".pet-name").innerHTML = "NAME: " + title;
       newcard.querySelector(".pet-age").innerHTML = "AGE: " + age + " year/s";
       newcard.querySelector(".pet-breed").innerHTML = "BREED: " + breed;
+      newcard.querySelector(".pet-location").innerHTML = "Location: " + location;
       newcard.querySelector(".pet-img").src = "data:image/png;base64," + petCode;
 
       //sets favorite button to on/off when page loads
