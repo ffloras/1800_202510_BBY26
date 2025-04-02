@@ -28,7 +28,9 @@
             <h2 id="name">Name: </h2>
             <p id="age">Age: </p>
             <p id="breed">Breed: </p>
+            <p id="type">Pet type: </p>
             <p id="size">Size: </p>
+            <p id="location">Location: </p>
             <p id="desc">Description: </p>
             <div class="actions">
                 <button id="edit-btn">Edit</button>
@@ -49,6 +51,9 @@
         
                 <label for="edit-breed">Breed:</label>
                 <input type="text" id="edit-breed" name="edit-breed" required><br>
+
+                <label for="edit-location">Location:</label>
+                <input type="text" id="edit-location" name="edit-location" required><br>
         
                 <label for="edit-desc">Description:</label>
                 <textarea id="edit-desc" name="edit-desc" required></textarea><br>
@@ -58,6 +63,14 @@
                     <option value="Large">Large</option>
                     <option value="Medium">Medium</option>
                     <option value="Small">Small</option>
+                </select>
+
+                <label for="edit-type">Pet type</label>
+                <select name="type" id="edit-type">
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Small Animal">Small Animal</option>
+                    <option value="Others">Others</option>
                 </select><br>
         
                 <button type="submit">Save Changes</button>

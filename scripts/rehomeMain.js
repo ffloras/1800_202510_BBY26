@@ -1,3 +1,4 @@
+// Display all the pets that the user has posted
 async function displayCards(collection) {
     let cardTemplate = document.getElementById("card-template");
     let container = document.getElementById("container");
@@ -35,6 +36,7 @@ async function displayCards(collection) {
 
 displayCards("petProfiles");
 
+// Get the id of the current user
 function getUserID() {
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged((user) => {

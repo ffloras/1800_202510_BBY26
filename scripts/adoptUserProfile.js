@@ -1,3 +1,4 @@
+// Display the user information
 async function displayUserInfo() {
     let userID = await getUserID();
     db.collection("userProfiles")
@@ -44,6 +45,7 @@ async function displayUserInfo() {
 }
 displayUserInfo();
 
+// Get the id of the current user
 function getUserID() {
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged((user) => {
@@ -63,6 +65,7 @@ const editBtn = document.getElementById("edit-btn");
 const editForm = document.getElementById("edit-form");
 const userInfo = document.getElementById("user-info");
 
+// Show the edit form
 function showEditForm(userData) {
     document.getElementById("edit-name").value = userData.name;
     document.getElementById("edit-housing").value = userData.housing;
@@ -75,11 +78,13 @@ function showEditForm(userData) {
     userInfo.style.display = "none";
 }
 
+// Exit the edit form
 function hideEditForm() {
     editForm.style.display = "none";
     userInfo.style.display = "block";
 }
 
+// Show the edit form when the edit button is clicked
 editBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -95,6 +100,7 @@ editBtn.addEventListener("click", (e) => {
     showEditForm(userData);
 });
 
+// Update the user information when the form is submitted
 editForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 

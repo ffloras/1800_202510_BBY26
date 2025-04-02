@@ -1,3 +1,4 @@
+// Display the user information
 function displayUserInfo() {
     let params = new URL(window.location.href);
     let ID = params.searchParams.get("userID");

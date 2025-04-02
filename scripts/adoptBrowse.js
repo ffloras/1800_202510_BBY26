@@ -1,3 +1,4 @@
+// Display the pets based on the filter
 async function displayPetCards(collection, petType = null) {
   let userID = await getUserID();
 
@@ -78,6 +79,7 @@ async function displayPetCards(collection, petType = null) {
 
 // displayPetCards("petProfiles");
 
+// Display exactly pets based on what type of pet that users select
 document.addEventListener("DOMContentLoaded", function () {
   displayPetCards("petProfiles");
 
@@ -91,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Get the id of the current user
 function getUserID() {
   return new Promise(function (resolve, reject) {
     firebase.auth().onAuthStateChanged(function (user) {

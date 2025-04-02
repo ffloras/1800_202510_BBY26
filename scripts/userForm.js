@@ -1,5 +1,6 @@
 var userImage;
 
+// 
 async function saveUserInfo(event) {
     event.preventDefault();
     var userDocRef = db.collection("userProfiles");
@@ -51,6 +52,7 @@ async function saveUserInfo(event) {
 document.getElementById("userForm").addEventListener("submit", saveUserInfo);
 document.getElementById("userIcon").addEventListener("change", handleFileSelect);
 
+// Get the id of the current user
 function getUserID() {
     const user = firebase.auth().currentUser;
     if (user !== null) {

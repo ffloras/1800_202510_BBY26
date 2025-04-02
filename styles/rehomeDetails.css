@@ -41,6 +41,10 @@ body {
     margin-bottom: 5px;
 }
 
+.pet-info #desc {
+    max-width: 300px;
+}
+
 .actions {
     display: flex;
     gap: 10px;
@@ -136,6 +140,17 @@ body {
 }
 
 #edit-size {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+#edit-type {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
