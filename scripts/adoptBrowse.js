@@ -202,8 +202,6 @@ function sendRequest(userID, petID, event) {
     }
 
     alert(message);
-    // event.querySelector(".menuPlaceholder").innerHTML = message;
-    // event.querySelector(".hidePlaceholder").innerHTML = "hide";
   });
 
 }
