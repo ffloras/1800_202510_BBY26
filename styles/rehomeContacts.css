@@ -16,7 +16,7 @@ p, a {
 .petName {
   font-size: 2em;
   border-bottom: 1px solid grey;
-  width: 100%;
+  max-width: 400px;
   text-align: center;
   padding: 15px 0 15px 0;
   background-color: rgb(240, 232, 196);
@@ -36,7 +36,7 @@ p, a {
 
 .petCard {
   border: 1px solid rgb(138, 135, 124);
-  width: 450px;
+  max-width: 400px;
   border-radius: 10px;
 }
 

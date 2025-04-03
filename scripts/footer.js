@@ -5,9 +5,9 @@ function setNotification() {
     db.collection("userProfiles").doc(currentUser).onSnapshot( (userDoc) => {
         let hasNotification = userDoc.data().hasNotification;
         if (hasNotification) {
-          document.getElementById("contact-icon").src = "/images/fcontactAlert.png";
+          document.getElementById("contact-icon").src = "/images/fContactAlert.png";
         } else {
-          document.getElementById("contact-icon").src = "/images/fcontact.png";
+          document.getElementById("contact-icon").src = "/images/fContact.png";
         }
         
       })

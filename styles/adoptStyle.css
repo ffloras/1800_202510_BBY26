@@ -104,6 +104,7 @@ main {
 
     body {
         padding-top: 60px;
+        padding-bottom: 60px;
         display: flex;
         justify-content: center;
         width: 100%;
@@ -120,7 +121,8 @@ main {
     }
 
     .main-content {
-        width: 750px;
+        max-height: 600px;
+        max-width: 400px;
     }
 }
 
