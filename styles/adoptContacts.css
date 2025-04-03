@@ -50,10 +50,11 @@ h1 {
     text-align: center;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 950px) {
     .main-content-wrapper {
         display: flex;
         justify-content: center;
+        width: 100%;
     }
     
     #contacts-go-here {
@@ -64,13 +65,44 @@ h1 {
     }
 }
 
-@media screen and (min-width: 1001px) {
+@media screen and (max-width: 1440px) and (min-width: 951px) {
+    .main-content-wrapper {
+        padding: 20px;
+        width: 100%;
+    }
+
     #contacts-go-here {
         display: grid;
-        width: 100%;
-        justify-content: center;
-        grid-template-columns: calc(50vw - 30px) calc(50vw - 30px);
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1920px) and (min-width: 1441px) {
+    .main-content-wrapper {
         padding: 20px;
+        width: 100%;
+    }
+    
+    #contacts-go-here {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto;
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 1921px) {
+    .main-content-wrapper {
+        padding: 20px;
+        width: 100%;
+    }
+    
+    #contacts-go-here {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto;
         gap: 20px;
     }
 }
