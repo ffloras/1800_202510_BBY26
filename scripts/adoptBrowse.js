@@ -202,8 +202,7 @@ function sendRequest(userID, petID, event) {
       message = `A contact request has been sent to ${petName}'s owner`;
     }
 
-    event.querySelector(".menuPlaceholder").innerHTML = message;
-    event.querySelector(".hidePlaceholder").innerHTML = "hide";
+    alert(message);
   });
 
 }

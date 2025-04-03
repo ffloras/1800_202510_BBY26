@@ -1,11 +1,12 @@
 main {
-  padding-top: 150px;
+  padding-top: 100px;
   max-width: 70%;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
   gap: 20px;
   flex-wrap: wrap;
+  padding-bottom: 100px;
 }
 
 p, a {
@@ -69,4 +70,3 @@ p, a {
     max-width: 100%;
   }
 }
-
