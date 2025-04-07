@@ -50,10 +50,8 @@ function getUserID() {
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log("User is logged in:", user.uid);
                 resolve(user.uid);
             } else {
-                console.log("User is not logged in.");
                 reject("No user is signed in");
                 window.location = "/html/login.html";
             }
@@ -124,10 +122,6 @@ editForm.addEventListener("submit", async (e) => {
     } else {
         pastExperience = false;
     }
-
-    console.log(hasChildren);
-    console.log(hasPets);
-    console.log(pastExperience);
 
     let updatedData = {
         name: document.getElementById("edit-name").value,

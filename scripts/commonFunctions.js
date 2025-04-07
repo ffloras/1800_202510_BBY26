@@ -1,9 +1,6 @@
 function handleFileSelect(event, source, docID) {
     var file = event.target.files[0];
-
-    console.log("Source: " + source);
-    console.log("Document ID: " + docID);
-
+    
     if (file) {
         var reader = new FileReader();
         

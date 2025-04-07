@@ -12,7 +12,6 @@ async function displayCards(collection) {
                 if (pet != "") {
                     db.collection(collection).doc(pet).get()
                         .then(doc => {
-                            console.log("Document data:", doc.data());
                             var docID = doc.id;
                             var name = doc.data().name;
                             var image = doc.data().petCode;

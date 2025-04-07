@@ -15,12 +15,7 @@ async function displayCards(collection) {
             db.collection(collection).doc(pet).get().then(doc => {
               var docID = doc.id;
               var name = doc.data().name;
-              //var petInterest = doc.data().interested;
-              //var petContacts = doc.data().contacts;
-
-
               let newcard = petTemplate.content.cloneNode(true);
-
 
               //sets title of card with name of pet
               newcard.querySelector('.petName').innerHTML = "Contacts for " + name;
@@ -36,7 +31,6 @@ async function displayCards(collection) {
 
               getContacts(docID);
               getInterestedUser(docID);
-
             })
               .catch(error => {
                 console.error("Error fetching documents: ", error);
@@ -44,8 +38,6 @@ async function displayCards(collection) {
           }
         });
       }
-
-
     });
 }
 
@@ -61,15 +53,12 @@ async function resetNotification() {
   });
 }
 
-
 function getUserID() {
   return new Promise((resolve, reject) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log("User is logged in:", user.uid);
         resolve(user.uid);
       } else {
-        console.log("User is not logged in.");
         reject("No user is signed in");
         window.location = "/html/login.html";
       }
@@ -117,19 +106,15 @@ function getInterestedUser(petID) {
           });
         }
       });
-
       document.getElementById("interested-" + petID).replaceWith(usersList);
     }
   });
-
-
 }
 
 //adds a list of contacts (that the owner accepted) under the "contacts" section
 function getContacts(petID) {
   document.getElementById("contact-title-" + petID).innerHTML = "<h4>Contacts:</h4>";
   
-
   db.collection("petProfiles").doc(petID).onSnapshot(petDoc => {
     let petContacts = petDoc.data().contacts;
     //contactsCard.innerHTML = "";
@@ -164,11 +149,9 @@ function getContacts(petID) {
           });
         }
       });
-      console.log("users list id: " + usersList.id);
       document.getElementById("contacts-" + petID).replaceWith(usersList);
     }
   });
-
 }
 
 //adds contacts to the database when owner accepts interested user's request
@@ -187,9 +170,7 @@ function acceptRequest(petID, userID) {
     contacts: firebase.firestore.FieldValue.arrayUnion(petID),
     hasNotification: true
   })
-
 }
-
 
 //removes interested user from the database when owner declines request
 function declineRequest(petID, userID) {
@@ -204,6 +185,5 @@ function declineRequest(petID, userID) {
     db.collection("userProfiles").doc(userID).update({
       interested: firebase.firestore.FieldValue.arrayRemove(petID)
     });
-    
   }
 }
