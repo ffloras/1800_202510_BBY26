@@ -124,6 +124,11 @@ main {
         max-height: 600px;
         max-width: 400px;
     }
+
+    .details {
+        font-size: 1.0em;
+        width: 130px;
+    }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 721px) {
