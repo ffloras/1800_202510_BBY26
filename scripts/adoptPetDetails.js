@@ -168,7 +168,6 @@ function changeFavorite() {
 function setFavorite() {
   let userID = getUserID();
   if (userID == null) {
-    console.log("not logged in");
   } else {
     let petID = getPetID();
     let docRef = db.collection("userProfiles").doc(userID);

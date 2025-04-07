@@ -77,8 +77,6 @@ async function displayPetCards(collection, petType = null) {
   });
 }
 
-// displayPetCards("petProfiles");
-
 // Display exactly pets based on what type of pet that users select
 document.addEventListener("DOMContentLoaded", function () {
   displayPetCards("petProfiles");

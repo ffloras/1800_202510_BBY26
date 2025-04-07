@@ -60,8 +60,6 @@ function deleteProfile() {
             .doc(petID)
             .delete()
             .then(() => {
-                console.log("Delete pet information successfully!");
-
                 window.location.href = "/html/rehomeMain.html";
             })
             .catch((error) => {
@@ -69,7 +67,6 @@ function deleteProfile() {
                 alert("Please try again.");
             });
     } else {
-        console.log("User canceled the deletion.");
     }
 }
 
@@ -90,10 +87,8 @@ function getUserID() {
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log("User is logged in:", user.uid);
                 resolve(user.uid);
             } else {
-                console.log("User is not logged in.");
                 reject("No user is signed in");
                 window.location = "/html/login.html";
             }

@@ -17,8 +17,6 @@ function setNotification() {
 
 setNotification();
 
-
-
 //obtain user ID from current user's firebase authenication account.
 function getUserID() {
   let user = firebase.auth().currentUser;
@@ -28,13 +26,3 @@ function getUserID() {
     return null;
   }
 }
-
-// function highlightIcons() {
-//   const icon = document.querySelectorAll('.toggle');
-
-//   icon.forEach((element) => {
-//     element.addEventListener('click', () => {
-//         element.classList.toggle('active');
-//     });
-//   });
-// }

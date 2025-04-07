@@ -12,8 +12,6 @@ function signUp() {
     isOwner = true;
   }
 
-
-
   //create new user account in firebase using input form values
   firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
     .then((userCredential) => {
@@ -21,11 +19,6 @@ function signUp() {
       var user = userCredential.user;
       // ...
 
-      firebase.auth().currentUser.sendEmailVerification()
-        .then(() => {
-          console.log("Email verification sent!");
-          // ...
-        });
     })
     .catch((error) => {
       var errorCode = error.code;
@@ -56,19 +49,16 @@ function signUp() {
         pets: [],
         hasNotification: false
       }).then(function () {
-        console.log("New user added to firestore");
         if (isOwner) {
           window.location.assign("/html/rehomeMain.html");
         } else {
           window.location.assign("/html/userForm.html");
         }
       }).catch(function (error) {
-        console.log("Error adding new user: " + error);
       });
     }
   });
 }
-
 
 function login() {
   //get value from input form
@@ -102,6 +92,5 @@ function login() {
         }
       });
     }
-
   });
 }
