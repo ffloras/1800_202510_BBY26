@@ -112,6 +112,10 @@ body {
     }
 }
 
+#text-info {
+    text-align: left;
+}
+
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
     .profile {
