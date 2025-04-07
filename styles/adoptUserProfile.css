@@ -22,6 +22,10 @@ h1 {
     margin-bottom: 20px;
 }
 
+#text-info {
+    text-align: left;
+}
+
 .avatar {
     width: 100px;
     height: 100px;
