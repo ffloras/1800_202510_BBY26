@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.about-us {
+    width: 80%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.about-us h2 {
+    font-size: 36px;
+    color: #FF6F61;
+    margin-bottom: 25px;
+    margin-top: 80px;
+}
+
+.about-us p {
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.our-story, .what-we-do, .our-impact, .our-values, .join-us {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.our-story h3, .what-we-do h3, .our-impact h3, .our-values h3, .join-us h3 {
+    font-size: 28px;
+    color: #FF6F61;
+    margin-bottom: 15px;
+}
+
+.our-story ul, .what-we-do ul, .our-impact ul, .our-values ul {
+    list-style-type: disc;
+    margin-left: 30px;
+    margin-bottom: 25px;
+}
+
+.our-story ul li, .what-we-do ul li, .our-impact ul li, .our-values ul li {
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+a {
+    color: #1E90FF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.team {
+    margin-top: 40px;
+}
+
+.team h3 {
+    font-size: 28px;
+    color: #FF6F61;
+    margin-bottom: 25px;
+}
+
+.team-member {
+    display: inline-block;
+    width: 200px;
+    margin: 0 20px;
+    vertical-align: top;
+}
+
+.team-member img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.team-member h4 {
+    font-size: 20px;
+    color: #FF6F61;
+}
+
+.team-member p {
+    font-size: 16px;
+    color: #666;
+}
+
+.join-us {
+    margin-bottom: 80px;
+}
+
+/* Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+    .about-us {
+        width: 90%;
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .about-us h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .about-us p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .our-story h3, .what-we-do h3, .our-impact h3, .our-values h3, .join-us h3 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .our-story ul, .what-we-do ul, .our-impact ul, .our-values ul {
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .our-story ul li, .what-we-do ul li, .our-impact ul li, .our-values ul li {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .team h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .team-member {
+        width: 180px;
+        margin: 0 15px 30px 15px;
+    }
+
+    .team-member h4 {
+        font-size: 18px;
+    }
+
+    .team-member p {
+        font-size: 14px;
+    }
+}
+
+/* Phone (max-width: 480px) */
+@media (max-width: 480px) {
+    .about-us {
+        width: 95%;
+        margin: 20px auto;
+        padding: 0 10px;
+    }
+
+    .about-us h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .about-us p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .our-story, .what-we-do, .our-impact, .our-values, .join-us {
+        margin-top: 30px;
+    }
+
+    .our-story h3, .what-we-do h3, .our-impact h3, .our-values h3, .join-us h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .our-story ul, .what-we-do ul, .our-impact ul, .our-values ul {
+        margin-left: 15px;
+        margin-bottom: 15px;
+    }
+
+    .our-story ul li, .what-we-do ul li, .our-impact ul li, .our-values ul li {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .team h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .team-member {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto 30px auto;
+        text-align: center;
+    }
+
+    .team-member img {
+        width: 150px;
+        margin: 0 auto 10px auto;
+    }
+
+    .team-member h4 {
+        font-size: 16px;
+    }
+
+    .team-member p {
+        font-size: 13px;
+    }
+}
