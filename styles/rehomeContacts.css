@@ -36,7 +36,7 @@ p, a {
 
 .petCard {
   border: 1px solid rgb(138, 135, 124);
-  max-width: 400px;
+  width: 380px;
   border-radius: 10px;
 }
 
