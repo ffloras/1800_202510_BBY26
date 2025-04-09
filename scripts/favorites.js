@@ -114,6 +114,7 @@ function setFavorite(userID, petID) {
   });
 }
 
+//changes favorites button when user clicks on heart icon
 function changeFavorite(userID, petID, event) {
   if (userID == null) {
     loginMessage();
