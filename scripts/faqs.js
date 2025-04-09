@@ -2,11 +2,11 @@ getAdoptInfo();
 setType();
 
 function getAdoptInfo() {
-  console.log($('#info').load('/html/Components/adoptInfo.html'));
+  console.log($('#info').load('/html/components/adoptInfo.html'));
 }
 
 function getRehomeInfo() {
-  console.log($('#info').load('/html/Components/rehomeInfo.html'));
+  console.log($('#info').load('/html/components/rehomeInfo.html'));
 }
 
 //obtain the type of navbar/footer to display

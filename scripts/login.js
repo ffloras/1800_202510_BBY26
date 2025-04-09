@@ -94,3 +94,12 @@ function login() {
     }
   });
 }
+
+//sets password validity prompt to custom message
+function setPasswordValidity() {
+  document.getElementById("password").oninvalid = (event) => {
+    event.target.setCustomValidity("Password must be alphanumerical, with at least 6 characters");
+  }
+}
+
+setPasswordValidity();

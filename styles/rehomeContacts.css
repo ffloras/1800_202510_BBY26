@@ -69,4 +69,8 @@ p, a {
   main {
     max-width: 100%;
   }
+
+  .contact-button {
+    font-size: 1em;
+  }
 }

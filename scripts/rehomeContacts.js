@@ -53,6 +53,7 @@ async function resetNotification() {
   });
 }
 
+//returns userID
 function getUserID() {
   return new Promise((resolve, reject) => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -141,13 +142,15 @@ function getContacts(petID) {
             //links contact's name to the contact's profile page
             newcard.querySelector('.userName').href = "adoptProfileDetail.html?userID=" + docID;
             newcard.querySelector('.userName').innerHTML = userName;
-            //link to open email and populate with the contact's email
-
+            
+            //shortens email if user's email is too long
             if (userEmail.length > 18) {
               let emailEnd = userEmail.substring(userEmail.indexOf('@'));
               let emailStartLength = (18 - emailEnd.length);
               userEmail = userEmail.substring(0, emailStartLength) + "..." + emailEnd;
             }
+
+            //link to open email and populate with the contact's email
             let buttons = `<a href="mailto:${userEmail}">${userEmail}</a>`
             newcard.querySelector('.nameButtons').innerHTML = buttons;
 

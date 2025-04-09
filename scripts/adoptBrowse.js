@@ -52,7 +52,7 @@ async function displayPetCards(collection, petType = null) {
 
       //toggles favorite button on/off when clicked
       newcard.querySelector(".favorite").addEventListener("click", (event) => {
-        changeFavorite(userID, docID, event);
+        changeFavorite(userID, docID);
       });
       
       //redirect to petDetails when clicked
@@ -105,6 +105,7 @@ function getUserID() {
 
 }
 
+//sets the favorite button to filled/unfilled when page loads
 function setFavorite(userID, petID) {
   return new Promise(function (resolve, reject) {
     if (userID == null) {
@@ -124,9 +125,10 @@ function setFavorite(userID, petID) {
   });
 }
 
-function changeFavorite(userID, petID, event) {
+//allows users to favorite/unfavorite a pet post
+function changeFavorite(userID, petID) {
   if (userID == null) {
-    loginMessage(event.target.parentNode.parentNode);
+    loginMessage();
   } else {
     //get user's 'favorites' field and store in variable favoriteList
     let docRef = db.collection("userProfiles").doc(userID);
@@ -152,9 +154,9 @@ function changeFavorite(userID, petID, event) {
 
 //asks user if they want to send contact request to pet's owner (after
 //they click on the message button)
-function viewContactPrompt(userID, petID, event) {
+function viewContactPrompt(userID, petID) {
   if (userID == null) {
-    loginMessage(event.target.parentNode.parentNode);
+    loginMessage();
   }
   else {
     let cardTemplate = document.getElementById("contactTemplate");
@@ -171,7 +173,7 @@ function viewContactPrompt(userID, petID, event) {
 }
 
 //sends contact request to pet's owner
-function sendRequest(userID, petID, event) {
+function sendRequest(userID, petID) {
   db.collection("petProfiles").doc(petID).get().then(doc => {
     //get pet info
     let interestedList = doc.data().interested;
@@ -209,7 +211,7 @@ function sendRequest(userID, petID, event) {
 function viewURL(userID, petID, event) {
   let card = event.target.parentNode.parentNode;
   if (userID == null) {
-    loginMessage(event.target.parentNode.parentNode);
+    loginMessage();
   } else {
     let message = `<input class="url-button" type="button" value="Copy URL" onclick="copyURL('${petID}')">`;
     let button = "<button>hide</button>";
@@ -227,12 +229,11 @@ function copyURL(petID) {
 }
 
 //message that displays when user clicks button but is not logged in
-function loginMessage(event) {
-  message = "You are not logged in. "
-    + "<a href='/html/login.html'>Log In</a> or "
-    + "<a href='/html/signup.html'>Sign Up</a>";
-  event.querySelector(".menuPlaceholder").innerHTML = message;
-  event.querySelector(".hidePlaceholder").innerHTML = "hide";
+function loginMessage() {
+  message = "You are not logged in. Click 'OK' to log in";
+  if (confirm(message)) {
+    window.location.href = "/html/login.html";
+  }
 }
 
 //removes expandable content
