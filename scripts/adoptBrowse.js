@@ -52,7 +52,7 @@ async function displayPetCards(collection, petType = null) {
 
       //toggles favorite button on/off when clicked
       newcard.querySelector(".favorite").addEventListener("click", (event) => {
-        changeFavorite(userID, docID);
+        changeFavorite(userID, docID, event);
       });
       
       //redirect to petDetails when clicked
@@ -126,7 +126,7 @@ function setFavorite(userID, petID) {
 }
 
 //allows users to favorite/unfavorite a pet post
-function changeFavorite(userID, petID) {
+function changeFavorite(userID, petID, event) {
   if (userID == null) {
     loginMessage();
   } else {

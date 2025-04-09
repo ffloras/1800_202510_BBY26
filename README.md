@@ -2,23 +2,25 @@
 # Paws & Homes
 
 ## Overview
-Our web application called Paws & Homes aimts to help pet owners who can no longer care for their pets connect with those who are looking to adopt, by providing a safe platform to effectively communicate.
+Our web application called Paws & Homes aims to help pet owners who can no longer care for their pets connect with those who are looking to adopt, by providing a safe platform to effectively communicate.
 
-Developed for the COMP1800 course, applying User-Centered Design practices, agile project management processes with by-weekly meetings, and Firebase backend services.
+Developed for the COMP1800 course, applying User-Centered Design practices, Agile methodology with by-weekly meetings, and Firebase backend services.
 
 ---
 
 ## Features
-- Allows owners to create personallized pet profiles.
-- Allows owners to accept/decline contact requests from users interested in adopting.
-- Allows users to filter all the options available.
-- Allows users to like/contact request/share a pet profile.
+- Allows pet owners to create/edit and post personallized pet profiles.
+- Allows pet owners to accept/decline contact requests from users interested in adopting.
+- Allows adopters to browse through a list of available pet postings.
+- Allows adopters to filter pet posting by pet type.
+- Allows users to create/edit a user profile.
+- Allows users to favorite, share a pet profile and send a contact request to the owner.
 
 ---
 
 ## Technologies Used
 
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: HTML, CSS, Bootstrap, JavaScript
 - **Backend**: Firebase for hosting
 - **Database**: Firestore
 
@@ -26,10 +28,10 @@ Developed for the COMP1800 course, applying User-Centered Design practices, agil
 
 ## Usage
 
-1. Go to _____(page link).
+1. Go to https://team26-paws-and-homes.web.app/
 2. Sign up - Enter your name, email & password, and select if you want to adopt or rehome a pet.
 3. depending on previous selection:
-    4. If adopt was selected, user will be promted to fill out a form that will provide useful info for pet owners.
+    4. If adopt was selected, user will be redirected to fill out a form that will provide useful info for pet owners.
     5. If rehome was selected, user will be taken to the create pet profile page.
 
 ---
@@ -38,20 +40,32 @@ Developed for the COMP1800 course, applying User-Centered Design practices, agil
 
 Paws & Homes
 ```
+Top level of project folder:
+├── .gitignore               # Git ignore file
+├── index.html               # landing HTML file, what users first see when they come to url
+├── README.md                # contains information about our app
+
 1800_202510_BBY26/
-├── html/
-|   ├── components/
+├── html/                               #folder for html files
+|   ├── components/                     #folder for html snippets
 |   |   └── navbars/footers.html
-|   ├── main-pages.hmtl
-├── images/
+|   ├── main-pages.html
+├── images/                             #folder for images
 |   ├── icons.png
 |   └── logo.png
-├── scripts/
+├── scripts/                            #folder for js scripts
 |   └── scripts.js
-├── styles/
+├── styles/                             #folder for css styles
 |   └── styles.css
-├── .gitignore
-└── README.md
+├── .git                                #folder for git repo
+
+
+Firebase hosting files
+├── .firebase
+	/hosting..cache
+├── 404.html
+├── firebase.json
+
 ```
 
 ---
@@ -62,16 +76,22 @@ Paws & Homes
 - **Minh** - Nice to meet you guys.
 ---
 
+## Resources
+- In-app icons from FontAwesome (https://fontawesome.com/icons)
+- 
+
+## Contact 
+* John Smith - jsmith@my.bcit.ca 
+* ...
+
 ## Limitations and Future Work
 ### Limitations
 
 - Currently if a user forgets their password, there is no function to reset it.
 - Email verification has not yet been implemented.
+- Back button sometimes redirects to the wrong page.
 
 ### Future Work
 
-Example: 
-- Add support for location-based weather detection using GPS.
-- Implement additional weather parameters like wind speed and UV index.
-- Create a dark mode for better usability in low-light conditions.
-- Integrate user accounts for saving favorite locations.
+- add Email varification upon signup.
+- change the contacting feature to an in-app messaging system.
