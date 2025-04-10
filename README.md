@@ -47,16 +47,84 @@ Top level of project folder:
 
 1800_202510_BBY26/
 ├── html/                               #folder for html files
-|   ├── components/                     #folder for html snippets
-|   |   └── navbars/footers.html
-|   ├── main-pages.html
+
+    ├── components/                     #folder for html snippets
+
+        ├── adoptFooter.html            #footer for pages related to adoption
+        ├── rehomeFooter.html           #footer for pages related to rehoming
+        ├── adoptNavBar.html            #navbar for pages related to adoption
+        ├── rehomeNavBar.html           #navbar for pages related to rehoming
+        ├── loginNavBar.html            #navbar for when user is not logged in
+        ├── adoptInfo.html              #adoption info for faq.html
+        ├── rehomeInfo.html             #rehome info for faq.html
+
+    ├── aboutUs.html                    #html page about our team and project
+    ├── adoptBrowse.html                #html page for browsing pet postings
+    ├── adoptContacts.html              #html page for adopter's contact list
+    ├── adoptPetDetails.html            #html page for pet posting details 
+    ├── adoptProfileDetails.html        #html page for profile of contacts
+    ├── adoptUserProfile.html           #html page for user's profile
+    ├── rehomeMain.html                 #html page for pet owners to view/add pet profiles
+    ├── rehomeContacts.html             #html page for pet owner's contact list
+    ├── rehomeDetails.html              #html page for pet owners to view their pet profile details 
+    ├── faqs.html                       #html page for profile of contacts
+    ├── favorites.html                  #html page for user's profile
+    ├── petForm.html                    #html form to add pet profile
+    ├── userForm.html                   #html form to add user profile info
+    ├── login.html                      #html page to login
+    ├── signup.html                     #html page to signup
+
 ├── images/                             #folder for images
-|   ├── icons.png
-|   └── logo.png
+
+|   ├── emailicon.png                   #icon for pet posting buttons
+    ├── fContact.png                    #icon for pet posting buttons
+    ├── fContactAlert.png               #icon for pet posting buttons
+    ├── heartFilledIcon.png             #icon for pet posting buttons
+    ├── heartUnfilledIcon.png           #icon for pet posting buttons
+    ├── shareIcon.png                   #icon for pet posting buttons
+    ├── member1.png                     #image for About Us page
+    ├── member2.png                     #image for About Us page
+    ├── member3.png                     #image for About Us page
+    ├── PAHlogo.png                     #image for navbar
+|   └── logo.png                        #our logo
+
 ├── scripts/                            #folder for js scripts
-|   └── scripts.js
+
+    ├── adoptBrowse.js                  #js for adoptBrowse.html
+    ├── adoptContacts.js                #js for adoptContacts.html
+    ├── adoptPetDetails.js              #js for adoptPetDetails.html
+    ├── adoptProfileDetails.js          #js for adoptProfileDetails.html
+    ├── adoptUserProfile.js             #js for adoptUserProfile.html
+    ├── rehomeMain.js                   #js for rehomeMain.html
+    ├── rehomeContacts.js               #js for rehomeContacts.html
+    ├── rehomeDetails.js                #js for rehomeDetails.html
+    ├── faqs.js                         #js for faqs.html
+    ├── favorites.js                    #js for favorites.html
+    ├── petForm.js                      #js for petForm.html
+    ├── userForm.js                     #js for userForm.html
+    ├── login.js                        #js for login.html and signup.html
+    ├── footer.js                       #js for adoptFooter.html and rehomeFooter.html
+    ├── script.js                       #js for index.html
+    ├── skeleton.js                     #js for all pages, to load navbar/footers
+    ├── firebaseAPI_team26.js           #js for all pages, containing firebase API info
+
 ├── styles/                             #folder for css styles
-|   └── styles.css
+
+    ├── adoptStyle .css                 #css for adoptBrowse.html and favorites.html
+    ├── adoptContacts.css               #css for adoptContacts.html
+    ├── adoptPetDetails.css             #css for adoptPetDetails.html
+    ├── adoptProfileDetails.css         #css for adoptProfileDetails.html
+    ├── adoptUserProfile.css            #css for adoptUserProfile.html
+    ├── rehomeMain.css                  #css for rehomeMain.html
+    ├── rehomeContacts.css              #css for rehomeContacts.html
+    ├── rehomeDetails.css               #css for rehomeDetails.html
+    ├── faqs.css                        #css for faqs.html
+    ├── favorites.css                   #css for favorites.html
+    ├── login.css                       #css for login.html and signup.html
+    ├── navBarStyle.css                 #css for adoptFooter.html and rehomeFooter.html
+    ├── aboutUs.css                     #css for aboutUs.html
+
+
 ├── .git                                #folder for git repo
 
 
@@ -77,11 +145,19 @@ Firebase hosting files
 ---
 
 ## Resources
-- In-app icons from FontAwesome (https://fontawesome.com/icons)
-- 
+- In-app icons from:
+    - FontAwesome (https://fontawesome.com/icons)
+    - Icons8 (https://icons8.com/icons)
+- Paws & Homes Logo from:
+    - AI generated (ChatGPT)
+- FAQs information from:
+    - Rescue Dogs 101 (https://www.rescuedogs101.com/things-to-know-before-adopting-dog/)
+    - City of Vancouver - Dog Licences and Tags (https://vancouver.ca/home-property-development/licensing-your-dog.aspx)
+    - BC SPCA (https://spca.bc.ca/faqs/can-rehome-animal/)
+
 
 ## Contact 
-* John Smith - jsmith@my.bcit.ca 
+* Flora Su - fsu8@my.bcit.ca
 * ...
 
 ## Limitations and Future Work
