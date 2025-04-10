@@ -141,7 +141,7 @@ Firebase hosting files
 ## Contributors
 - **Flora** - Hi, I'm excited to get started. Lets make something fun and interesting together.
 - **Joaquin Paredes** - BCIT CST Student aspiring to become a game developer in the future. Past experience in HTML, CSS, Java, C, and C++.
-- **Minh** - Nice to meet you guys.
+- **Minh** - Nice to meet you guys. Thanks for making the great application together hehe. I appreciate it >~< 
 ---
 
 ## Resources
@@ -158,7 +158,7 @@ Firebase hosting files
 
 ## Contact 
 * Flora Su - fsu8@my.bcit.ca
-* ...
+* Minh Phan - hphan17@my.bcit.ca
 
 ## Limitations and Future Work
 ### Limitations
