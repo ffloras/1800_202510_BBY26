@@ -1,3 +1,4 @@
+//displays owner's pets with their contacts/contact requests
 async function displayCards(collection) {
   let petTemplate = document.getElementById("petCardTemplate");
   let container = document.getElementById("container");
@@ -68,6 +69,7 @@ function getUserID() {
 }
 
 //adds a list of users interested in the pet under the "contact requests" section
+//method parameters: petID (ID of selected pet)
 function getInterestedUser(petID) {
   let contactTemplate = document.getElementById("contactCard");
   
@@ -113,6 +115,7 @@ function getInterestedUser(petID) {
 }
 
 //adds a list of contacts (that the owner accepted) under the "contacts" section
+//method parameters: petID (ID of selected pet)
 function getContacts(petID) {
   document.getElementById("contact-title-" + petID).innerHTML = "<h4>Contacts:</h4>";
   
@@ -164,6 +167,7 @@ function getContacts(petID) {
 }
 
 //adds contacts to the database when owner accepts interested user's request
+//method parameters: petID (ID of selected pet), userID (ID of the interested user)
 function acceptRequest(petID, userID) {
   var petInfo = db.collection("petProfiles").doc(petID);
   //adds interested user to the pet's contact list
@@ -182,6 +186,7 @@ function acceptRequest(petID, userID) {
 }
 
 //removes interested user from the database when owner declines request
+//method parameters: petID (ID of selected pet), userID (ID of the interested user)
 function declineRequest(petID, userID) {
   let text = "Are you sure you want to decline the request?"
   //opens up confirmation popup

@@ -1,3 +1,4 @@
+//gets information from pet profile in database by using petID and displays it on page
 function displayPetInfo() {
   let ID = getPetID();
 

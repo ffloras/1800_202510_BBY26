@@ -128,18 +128,21 @@ Top level of project folder:
 ├── .git                                #folder for git repo
 
 
-Firebase hosting files
+Firebase hosting files: 
 ├── .firebase
 	/hosting..cache
+├── .firebaserc
 ├── 404.html
 ├── firebase.json
+├── firestore.indexes.json
+├── firestore.rules
 
 ```
 
 ---
 
 ## Contributors
-- **Flora** - Hi, I'm excited to get started. Lets make something fun and interesting together.
+- **Flora** - I'm very proud of the project we made. Everyone did an amazing job!
 - **Joaquin Paredes** - BCIT CST Student aspiring to become a game developer in the future. Past experience in HTML, CSS, Java, C, and C++.
 - **Minh** - Nice to meet you guys. Thanks for making the great application together hehe. I appreciate it >~< 
 ---
