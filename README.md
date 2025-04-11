@@ -159,6 +159,7 @@ Firebase hosting files
 ## Contact 
 * Flora Su - fsu8@my.bcit.ca
 * Minh Phan - hphan17@my.bcit.ca
+* Joaquin Paredes - jparedes8@my.bcit.ca
 
 ## Limitations and Future Work
 ### Limitations
