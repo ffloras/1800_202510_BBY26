@@ -1,3 +1,4 @@
+//displays the contacts/contact requests for each pet
 async function displayPetContacts() {
   // Gets the template for the pet card
   let cardTemplate = document.getElementById("pet-contact");
@@ -78,6 +79,8 @@ async function resetNotification() {
   });
 }
 
+
+//returns current user's ID
 function getUserID() {
   return new Promise((resolve, reject) => {
     firebase.auth().onAuthStateChanged((user) => {

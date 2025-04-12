@@ -1,3 +1,4 @@
+//displays user's list of favorites
 async function displayFavorites() {
   let userID = await getUserID();
 
@@ -95,6 +96,7 @@ function getUserID() {
 }
 
 //sets favorites when page is loaded
+//method parameters: userID (ID of current user), petID (ID of selected pet)
 function setFavorite(userID, petID) {
   return new Promise(function (resolve, reject) {
     if (userID == null) {
@@ -115,6 +117,7 @@ function setFavorite(userID, petID) {
 }
 
 //changes favorites button when user clicks on heart icon
+//method parameters: userID (ID of current user), petID (ID of selected pet), event (click event)
 function changeFavorite(userID, petID, event) {
   if (userID == null) {
     loginMessage();
@@ -143,6 +146,7 @@ function changeFavorite(userID, petID, event) {
 
 //asks user if they want to send contact request to pet's owner (after
 //they click on the message button)
+//method parameters: userID (ID of current user), petID (ID of selected pet)
 function viewContactPrompt(userID, petID) {
   //if user is not logged in, will show them message to log in
   if (userID == null) {
@@ -162,6 +166,7 @@ function viewContactPrompt(userID, petID) {
 }
 
 //sends contact request to pet's owner
+//method parameters: userID (ID of current user), petID (ID of selected pet)
 function sendRequest(userID, petID) {
   db.collection("petProfiles").doc(petID).get().then(doc => {
     //get pet info
@@ -198,6 +203,7 @@ function sendRequest(userID, petID) {
 
 
 //adds a copy URL button when share button is clicked
+//method parameters: userID (ID of current user), petID (ID of selected pet), event (click event)
 function viewURL(userID, petID, event) {
   let card = event.target.parentNode.parentNode;
   if (userID == null) {
@@ -212,6 +218,7 @@ function viewURL(userID, petID, event) {
 }
 
 //copies URL of page to clipboard, with popup confirmation message
+//method parameters: petID (ID of selected pet)
 function copyURL(petID) {
   let URLlink = new URL(`${window.location.origin}/html/adoptPetDetails.html?docID=${petID}`);
   navigator.clipboard.writeText(URLlink);
@@ -228,6 +235,7 @@ function loginMessage() {
 }
 
 //removes expandable content
+//event (click event)
 function clearContent(event) {
   event.querySelector(".menuPlaceholder").innerHTML = "";
   event.querySelector(".hidePlaceholder").innerHTML = "";
